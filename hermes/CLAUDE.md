@@ -36,7 +36,7 @@ If ambiguous, don't guess — confirm which persona owns it in one line.
 | MantisAlgo | `Desktop/Mantis Algo/hermes/` — factory-manager, idea, ui, module-developer, development, critic |
 | ShiftTrade | `Desktop/ShiftTrade/hermes/microstructure-engineer.md` |
 | AccountingGo | `Desktop/AccountingGo/hermes/` — quiz-writer, learning-ux-designer |
-| Study (supports all) | [[personas/tutor]] (curriculum + learning log, stays in this wiki) |
+| Study (supports all) | [[personas/tutor]] → `study/` : [[study/pinescript-roadmap]] · [[study/learning-log]] · [[study/note-template]] (Pine/quant/stats curriculum) |
 | Wiki itself | [[personas/librarian]] |
 | Always loaded | CLAUDE.md, [[memory]] |
 
