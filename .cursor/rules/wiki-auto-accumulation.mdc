@@ -17,4 +17,4 @@ Shared ops journal (all tools): `${WIKI_PATH}/memory.md`.
 4. Substantial **query** answers (comparisons/analyses/connections) → still auto-file to `queries/` or `comparisons/` + index/log. Skip one-off fact checks.
 5. `wiki/raw/` is immutable. Contradictions → `> ⚠️ 상충:`, never silent overwrite.
 6. Pine/code analysis: capture to `wiki/raw/` → discuss takeaways → then analysis page + registry gap in 📌.
-7. Session decisions → same `${WIKI_PATH}/memory.md`. Taste → `kkj-taste.md`. Ideas → `ideas-inbox.md`. Answer 곽경준 in Korean.
+7. Session decisions → same `${WIKI_PATH}/memory.md`. Taste → `owner-taste.md`. Ideas → `ideas-inbox.md`. Answer 곽경준 in Korean.

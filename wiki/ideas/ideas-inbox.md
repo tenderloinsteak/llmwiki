@@ -14,7 +14,7 @@ sources: ["곽경준의 발언 (세션 중 자동 축적)"]
 - 작은 아이디어: 아래 표에 한 줄. 큰 아이디어: `ideas/<이름>.md` 개별 페이지 + 아래 표에 링크.
 - 형식: `날짜 | 프로젝트 | 아이디어 요약 | 상태(inbox→검토→채택/기각)`
 - MantisAlgo 제품 아이디어로 발전하면 [[factory-idea]]의 정식 스펙(idea JSON)으로 승격하고 상태를 갱신.
-- UI/UX 취향성 발언은 아이디어가 아니라 [[kkj-taste]]에.
+- UI/UX 취향성 발언은 아이디어가 아니라 [[owner-taste]]에.
 
 ## 인박스
 
@@ -24,6 +24,6 @@ sources: ["곽경준의 발언 (세션 중 자동 축적)"]
 
 ## 🔗 연결
 
-[[kkj-taste]] · [[factory-idea]] · [[mantisalgo]] [[accountinggo]] [[shifttrade]]
+[[owner-taste]] · [[factory-idea]] · [[mantisalgo]] [[accountinggo]] [[shifttrade]]
 
 - 2026-07-18 | Pine 공장·위키: 폴더 분류 대신 Tags 다대다 + pines/scripts↔categories 그래프

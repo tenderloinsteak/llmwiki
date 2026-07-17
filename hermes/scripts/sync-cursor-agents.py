@@ -230,7 +230,7 @@ def strip_title(soul: str) -> str:
 
 
 def write_agent(name: str, soul_body: str, meta: dict) -> Path:
-    memory = OBSIDIAN / "memory.md"
+    memory = "${WIKI_PATH}/memory.md"
     preamble = CURSOR_PREAMBLE.format(memory=memory)
     body = expand_paths(soul_body)
     extra = meta.get("extra") or ""
@@ -333,7 +333,7 @@ python3 hermes/scripts/sync-cursor-agents.py
 **Source of truth:** Hermes `SOUL.md` files under `~/.hermes/`.
 **Obsidian** mirrors personas for reading/linking; **Cursor** agents are generated.
 **Knowledge** stays in repo `hermes/` folders + this vault (`memory.md`, detailed personas).
-**Wiki:** `${WIKI_PATH}/wiki/` (SCHEMA auto-accumulation; WIKI_PATH = llmwiki repo root).
+**Wiki:** `${{WIKI_PATH}}/wiki/` (SCHEMA auto-accumulation; WIKI_PATH = llmwiki repo root).
 """,
         encoding="utf-8",
     )

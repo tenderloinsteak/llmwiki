@@ -74,3 +74,9 @@ Format: `date | persona | decision/progress | next`
 - 2026-07-18 | cursor | wiki lint: path_gate OK, orphan/index drift 0; JSON wikilink+pine-flat stale raw note 수정 | pending ingest 없음
 
 - 2026-07-18 | cursor | portability remediation (ShiftTrade 스크립트 상대경로, sync-cursor-agents 스크립트기준 resolve, PINESTUDY_PATH 도입, path_gate 강화) | 새 기기: clone → setup_env.py --init-env --force; 형제레포 커밋/푸시 권장
+
+- 2026-07-18 | cursor | SKU-09 VWAP Regime Quality 조립: 기존 모듈 28종(VWAP밴드·레짐·스퀴즈·합류·거버너·UI패널)로 시중 레짐퀄리티 축 재현, static PASS / rubric A / density in-band 0.55 | 패널 밀도는 Phase2 UI 모듈 업그레이드 여지
+
+- 2026-07-18 | cursor | username hardcodes scrub: kkj-taste→owner-taste, registry kkj→owner_review, ShiftTrade NEMOTRON_ENGINE_PATH, path_gate /Users/* | re-run sync-cursor-agents on new machine
+
+- 2026-07-18 | cursor | SKU-09 TV 컴파일 수정: CE10123(plotshape series text→const ★티어) + CW10004(ta.atr 삼항 호이스트); verify_v2에 CE10123/CW10004 게이트+테스트 추가

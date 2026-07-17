@@ -1,5 +1,5 @@
 ---
-tags: [preferences, kkj, ui-ux]
+tags: [preferences, owner-taste, ui-ux]
 created: 2026-07-16
 updated: 2026-07-17
 sources: ["곽경준의 발언 (세션 중 자동 축적)"]

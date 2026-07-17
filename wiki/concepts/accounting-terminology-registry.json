@@ -58,7 +58,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -129,7 +129,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -200,7 +200,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -271,7 +271,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -342,7 +342,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "損益計算書",
@@ -417,7 +417,7 @@
           ],
           "status": "DUAL",
           "note": "K-IFRS 재무상태표 / 부기·수험 대차대조표 DUAL; ko.wikipedia 재무상태표",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "貸借対照表",
@@ -492,7 +492,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -563,7 +563,7 @@
           "alts": [],
           "status": "W",
           "note": "ko.wikipedia",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -634,7 +634,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -705,7 +705,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -776,7 +776,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "純資産",
@@ -851,7 +851,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -922,7 +922,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -993,7 +993,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1064,7 +1064,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1135,7 +1135,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1206,7 +1206,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1277,7 +1277,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1348,7 +1348,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1419,7 +1419,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1493,7 +1493,7 @@
           ],
           "status": "W",
           "note": "ko.wikipedia 대변차변",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "借方·貸方",
@@ -1567,7 +1567,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1638,7 +1638,7 @@
           "alts": [],
           "status": "W",
           "note": "ko.wikipedia",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "複式簿記",
@@ -1711,7 +1711,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1782,7 +1782,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1853,7 +1853,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1924,7 +1924,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -1995,7 +1995,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2066,7 +2066,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "総勘定元帳",
@@ -2137,7 +2137,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "仕訳",
@@ -2208,7 +2208,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2279,7 +2279,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2350,7 +2350,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2421,7 +2421,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2492,7 +2492,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2563,7 +2563,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "試算表",
@@ -2634,7 +2634,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2705,7 +2705,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2776,7 +2776,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2847,7 +2847,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2918,7 +2918,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -2989,7 +2989,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3060,7 +3060,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3131,7 +3131,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3202,7 +3202,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3273,7 +3273,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3344,7 +3344,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3415,7 +3415,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3486,7 +3486,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3557,7 +3557,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3628,7 +3628,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3699,7 +3699,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3770,7 +3770,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3841,7 +3841,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3912,7 +3912,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -3983,7 +3983,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4054,7 +4054,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4125,7 +4125,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4196,7 +4196,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4267,7 +4267,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4338,7 +4338,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4409,7 +4409,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4480,7 +4480,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4551,7 +4551,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4622,7 +4622,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4693,7 +4693,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4764,7 +4764,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4835,7 +4835,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4906,7 +4906,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -4977,7 +4977,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5048,7 +5048,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5119,7 +5119,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5190,7 +5190,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5261,7 +5261,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5332,7 +5332,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "売掛金",
@@ -5405,7 +5405,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5476,7 +5476,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5547,7 +5547,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5618,7 +5618,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5689,7 +5689,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5760,7 +5760,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5831,7 +5831,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5902,7 +5902,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -5973,7 +5973,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6044,7 +6044,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6115,7 +6115,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6186,7 +6186,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6257,7 +6257,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6328,7 +6328,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6399,7 +6399,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6470,7 +6470,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6541,7 +6541,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6612,7 +6612,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6683,7 +6683,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6754,7 +6754,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6825,7 +6825,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6896,7 +6896,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -6967,7 +6967,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7038,7 +7038,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7109,7 +7109,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7180,7 +7180,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7251,7 +7251,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7322,7 +7322,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7393,7 +7393,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7464,7 +7464,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7535,7 +7535,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7606,7 +7606,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7677,7 +7677,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7748,7 +7748,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7819,7 +7819,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7890,7 +7890,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -7961,7 +7961,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8032,7 +8032,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8103,7 +8103,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8174,7 +8174,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8245,7 +8245,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8316,7 +8316,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8387,7 +8387,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8458,7 +8458,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8529,7 +8529,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8600,7 +8600,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8671,7 +8671,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8742,7 +8742,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8813,7 +8813,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8884,7 +8884,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -8955,7 +8955,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9026,7 +9026,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9097,7 +9097,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9168,7 +9168,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9239,7 +9239,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9310,7 +9310,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9381,7 +9381,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9452,7 +9452,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9523,7 +9523,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9594,7 +9594,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9665,7 +9665,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9736,7 +9736,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9807,7 +9807,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9878,7 +9878,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -9949,7 +9949,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10020,7 +10020,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10091,7 +10091,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10162,7 +10162,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/glossary.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10233,7 +10233,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10306,7 +10306,7 @@
           ],
           "status": "DUAL",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ | DUAL 외상매출금",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "売掛金",
@@ -10381,7 +10381,7 @@
           ],
           "status": "DUAL",
           "note": "repo=비품; proposed=소모품; 한국 수험·부기에서 supplies≈소모품; 비품은 furniture/fixtures·집기비품에 가깝다",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10452,7 +10452,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10523,7 +10523,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10594,7 +10594,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10667,7 +10667,7 @@
           ],
           "status": "DUAL",
           "note": "repo=비품·설비; proposed=비품; 수험 계정 '비품'; 레포 '비품·설비'는 설비(equipment/machinery) 혼용",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10738,7 +10738,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10809,7 +10809,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10880,7 +10880,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -10953,7 +10953,7 @@
           ],
           "status": "DUAL",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ | DUAL 외상매입금",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11024,7 +11024,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11095,7 +11095,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11166,7 +11166,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11237,7 +11237,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11308,7 +11308,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11379,7 +11379,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11450,7 +11450,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11521,7 +11521,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11592,7 +11592,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11663,7 +11663,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11734,7 +11734,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11805,7 +11805,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11876,7 +11876,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -11947,7 +11947,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12018,7 +12018,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12089,7 +12089,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12160,7 +12160,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12231,7 +12231,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12302,7 +12302,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12373,7 +12373,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12444,7 +12444,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12515,7 +12515,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12586,7 +12586,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12657,7 +12657,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12728,7 +12728,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12799,7 +12799,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12870,7 +12870,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -12941,7 +12941,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13012,7 +13012,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13083,7 +13083,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13154,7 +13154,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13225,7 +13225,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "from assets/content/ko/accounts.json — awaiting KKJ",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13296,7 +13296,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13367,7 +13367,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13440,7 +13440,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13511,7 +13511,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13582,7 +13582,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13653,7 +13653,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13724,7 +13724,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13795,7 +13795,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13868,7 +13868,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -13941,7 +13941,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14014,7 +14014,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14085,7 +14085,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14156,7 +14156,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14227,7 +14227,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14298,7 +14298,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14371,7 +14371,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14442,7 +14442,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14513,7 +14513,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14586,7 +14586,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14659,7 +14659,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14730,7 +14730,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14801,7 +14801,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14872,7 +14872,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -14943,7 +14943,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15014,7 +15014,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15087,7 +15087,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15158,7 +15158,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15229,7 +15229,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15302,7 +15302,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15373,7 +15373,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15444,7 +15444,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15517,7 +15517,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15588,7 +15588,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15659,7 +15659,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15730,7 +15730,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15801,7 +15801,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15872,7 +15872,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -15943,7 +15943,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16014,7 +16014,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16087,7 +16087,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16160,7 +16160,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16233,7 +16233,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16304,7 +16304,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16375,7 +16375,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16446,7 +16446,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16517,7 +16517,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16588,7 +16588,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16659,7 +16659,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16730,7 +16730,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16801,7 +16801,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16872,7 +16872,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -16945,7 +16945,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17018,7 +17018,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17089,7 +17089,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17160,7 +17160,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17231,7 +17231,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17302,7 +17302,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17373,7 +17373,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17444,7 +17444,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17517,7 +17517,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17588,7 +17588,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17661,7 +17661,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17732,7 +17732,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17803,7 +17803,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17874,7 +17874,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -17945,7 +17945,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18016,7 +18016,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18087,7 +18087,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18158,7 +18158,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18229,7 +18229,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18300,7 +18300,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18371,7 +18371,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18442,7 +18442,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18513,7 +18513,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18584,7 +18584,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18655,7 +18655,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18726,7 +18726,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18797,7 +18797,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18868,7 +18868,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -18939,7 +18939,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19010,7 +19010,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19081,7 +19081,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19154,7 +19154,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19227,7 +19227,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19300,7 +19300,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19373,7 +19373,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19444,7 +19444,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19517,7 +19517,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19588,7 +19588,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19659,7 +19659,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19730,7 +19730,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19801,7 +19801,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19872,7 +19872,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -19943,7 +19943,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20014,7 +20014,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20087,7 +20087,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20158,7 +20158,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20231,7 +20231,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20302,7 +20302,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20373,7 +20373,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20444,7 +20444,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20517,7 +20517,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20588,7 +20588,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20659,7 +20659,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20730,7 +20730,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20801,7 +20801,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20872,7 +20872,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -20943,7 +20943,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21014,7 +21014,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21085,7 +21085,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21156,7 +21156,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21227,7 +21227,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21298,7 +21298,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21369,7 +21369,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21440,7 +21440,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21513,7 +21513,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21584,7 +21584,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21657,7 +21657,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21730,7 +21730,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21803,7 +21803,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21876,7 +21876,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -21947,7 +21947,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -22018,7 +22018,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -22089,7 +22089,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -22160,7 +22160,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -22231,7 +22231,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -22304,7 +22304,7 @@
           ],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",
@@ -22375,7 +22375,7 @@
           "alts": [],
           "status": "EXAM",
           "note": "한국 수험·부기 계정과목 관행 초안 — 판본 cite 및 KKJ 검수 대기",
-          "kkj": "?"
+          "owner_review": "?"
         },
         "ja": {
           "term": "",

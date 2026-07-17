@@ -11,7 +11,7 @@ sources:
 ---
 # 회계 용어·계정과목 레지스트리 인덱스
 
-> 기계가독 정본: [[accounting-terminology-registry.json]] — **314 entries** (concept 143 + account 171).
+> 기계가독 정본: `concepts/accounting-terminology-registry.json` — **314 entries** (concept 143 + account 171).
 
 ## 🌱 쉽게
 
@@ -34,7 +34,7 @@ sources:
 |---|---:|---:|---|
 | en-US | 314 | 0 | 앱 authoring SoT |
 | en-UK | 314 | 0 | 지금은 en-US 복제+`CAND` — synonym pass 필요 |
-| ko | 314 | 0 | 전부 `kkj:?` 검수 대기 |
+| ko | 314 | 0 | 전부 `owner_review:?` 검수 대기 |
 | ja | 10 | 304 | `W`만 |
 | zh-CN | 4 | 310 | `W`만 |
 | de | 4 | 310 | `W`만 |
@@ -56,10 +56,10 @@ sources:
 
 1. `PENDING` 셀을 사전/LLM 직역으로 채우지 않는다.
 2. 채울 때 `status` + `note`(출처) 필수. 가능하면 raw/에 1차 자료 저장.
-3. ko는 곽경준 검수 후 `kkj: "✓"`.
+3. ko는 곽경준 검수 후 `owner_review: "✓"`.
 4. expanded account를 앱에 넣으려면 먼저 `accounts.json`에 id 추가.
 
-스키마 요약: 각 entry = `{id, kind: concept|account, labels: {locale: {term, alts, status, note, kkj?}}}`.
+스키마 요약: 각 entry = `{id, kind: concept|account, labels: {locale: {term, alts, status, note, owner_review?}}}`.
 
 상세 매칭·운영: [[accounting-terminology-matrix]] · 나라별 앵커: [[accounting-locale-registry]]
 

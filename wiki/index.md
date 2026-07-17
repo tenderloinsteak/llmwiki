@@ -60,7 +60,7 @@
 
 ## Living Pages (자동 축적)
 
-- [[entities/kkj-taste]] — 곽경준 취향·피드백 원장 (특히 UI/UX) — 에이전트가 자동 기록
+- [[entities/owner-taste]] — 곽경준 취향·피드백 원장 (특히 UI/UX) — 에이전트가 자동 기록
 - [[ideas/ideas-inbox]] — 툭 던진 아이디어 인박스 — 에이전트가 자동 기록
 
 ## Pines (auto-generated — `pine_factory_to_wiki.py`)

@@ -23,7 +23,7 @@ This vault has two trees. Read this before touching anything.
 - **Page template**: 🌱 쉽게(비유, 한국어) / ⚙️ 정확히(경로·수치·출처) / 🔗 연결([[wikilinks]]) / 📌 미해결. Every new page gets an `index.md` line — no orphans.
 - **Contradictions**: never silently overwrite; add `> ⚠️ 상충:` with both sources.
 - **Query filing still auto:** comparisons/analyses/discovered connections → `wiki/queries/` or `wiki/comparisons/` without asking (not the same as source ingest).
-- **Taste & ideas capture.** Praise/complaints/preferences → `wiki/entities/kkj-taste.md`; casually dropped ideas → `wiki/ideas/ideas-inbox.md`. Both without asking.
+- **Taste & ideas capture.** Praise/complaints/preferences → `wiki/entities/owner-taste.md`; casually dropped ideas → `wiki/ideas/ideas-inbox.md`. Both without asking.
 - **Two trees, one vault (all tools):** knowledge → `wiki/`; session decisions → `memory.md` (`date | tool-or-persona | decision | next`). Path is always `${WIKI_PATH}/memory.md`.
 - Answer 곽경준 in Korean, reason in English. Personas SoT: `~/.hermes/profiles/*/SOUL.md`; work standards: each repo's `hermes/*.md` — wiki summarizes and links, never forks.
 

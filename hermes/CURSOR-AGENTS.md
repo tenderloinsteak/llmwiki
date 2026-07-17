@@ -41,3 +41,4 @@ python3 hermes/scripts/sync-cursor-agents.py
 **Source of truth:** Hermes `SOUL.md` files under `~/.hermes/`.
 **Obsidian** mirrors personas for reading/linking; **Cursor** agents are generated.
 **Knowledge** stays in repo `hermes/` folders + this vault (`memory.md`, detailed personas).
+**Wiki:** `${WIKI_PATH}/wiki/` (SCHEMA auto-accumulation; WIKI_PATH = llmwiki repo root).

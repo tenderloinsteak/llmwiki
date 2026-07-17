@@ -37,7 +37,7 @@ sources: ["raw/llm-wiki-karpathy.md", "https://gist.github.com/karpathy/442a6bf5
 | 페이지 포맷 | 미지정 | 🌱/⚙️/🔗/📌 + 한국어 본문 |
 | 지식 vs 업무 | 한 위키에 섞일 수 있음 | `wiki/`(지식) ↔ `hermes/`(**도구 공통** 세션 일지) **역할 분리** — Hermes 전용 아님 |
 | 자동 생성 층 | 없음 | `modules/`·`skus/` = `registry_to_wiki.py` (공장 레지스트리 미러) |
-| living pages | 없음 | `kkj-taste` · `ideas-inbox` |
+| living pages | 없음 | `owner-taste` · `ideas-inbox` |
 | 학습 위키 | 단일 위키 가정 가능 | `Desktop/pinestudy/` **별도** (SCHEMA에 분리 명시) |
 | 멀티에이전트 | 단일 에이전트 전제 | Hermes 11 페르소나 + Cursor rules ×3 repos |
 

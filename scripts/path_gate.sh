@@ -6,8 +6,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DEV="$(cd "$ROOT/.." && pwd)"
 
-# Machine-absolute or Desktop-layout hardcodes that break on move/clone.
-PATTERN='/Users/kkj|~/Desktop(/dev)?|Desktop/dev/|Desktop/pinestudy'
+# Machine-absolute home paths, Desktop layout, or username-tied page ids.
+PATTERN='/Users/[A-Za-z0-9._-]+|~/Desktop(/dev)?|Desktop/dev/|Desktop/pinestudy|\bkkj-taste\b'
 
 echo "== path_gate: scanning portable docs =="
 

@@ -27,7 +27,7 @@ sources:
 | 나라 앵커 | [[accounting-locale-registry]] | 수험·기준서 주소록 |
 | 앱 SoT | `AccountingGo/assets/content/en/{glossary,accounts}.json` | authoring; ko 미러 있음 |
 
-ko는 314칸 초안 완료(`kkj:?`). ja/zh/de/…는 **출처 확인된 소수만** 채움 — 나머지는 `PENDING`(직역 채우기 금지).
+ko는 314칸 초안 완료(`owner_review:?`). ja/zh/de/…는 **출처 확인된 소수만** 채움 — 나머지는 `PENDING`(직역 채우기 금지).
 
 ### 운영 규칙
 
@@ -121,7 +121,7 @@ Wave 1 표 컬럼: **en-US · en-UK · ko · ja · zh-CN · de · fr · es · pt
 
 ## 📌 미해결
 
-1. 곽경준: 레지스트리 ko 314칸 검수 → `kkj: ✓` (우선 supplies/equipment/채권채무/재무상태표)
+1. 곽경준: 레지스트리 ko 314칸 검수 → `owner_review: ✓` (우선 supplies/equipment/채권채무/재무상태표)
 2. ja 171 accounts — 日商簿記 勘定科目으로 채우기
 3. zh-CN — 初级会计 会计科目表
 4. de/fr/es/pt-BR — SKR/PCG/PGC/CPC

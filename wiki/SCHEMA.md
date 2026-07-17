@@ -62,7 +62,7 @@ Related but separate: `${PINESTUDY_PATH}/wiki/` is the per-identifier Pine v6 st
 
 - `raw/` 캡처
 - 질답 중 **비교·분석·발견된 연결** → `queries/`·`comparisons/` 파일링 (탐색 복리; 1회성 팩트체크는 제외)
-- `kkj-taste` / `ideas-inbox` 한 줄 기록
+- `owner-taste` / `ideas-inbox` 한 줄 기록
 - 세션 결정 → `memory.md`
 
 ### 에이전트가 웹을 직접 fetch한 경우
@@ -76,7 +76,7 @@ Related but separate: `${PINESTUDY_PATH}/wiki/` is the per-identifier Pine v6 st
 2. **Ingest:** 위 협업 절차. “넣어줘/소화해줘/ingest” 또는 강조점 확정 후에만 컴파일.
 3. **Query 파일링:** 비교·분석·연결은 묻지 않고 `queries/`/`comparisons/` + index/log. 잡담·1회성 사실확인은 제외.
 4. **Pine 코드:** 공장 산출은 `MantisAlgo/pinescript_factory/{1_Indicators,2_Strategies}/`에 **평탄** 저장 (`// Title`/`// Kind`/`// Tags` 헤더) — **SoT는 공장**. 위키는 `pines/` 그래프만 동기화(`pine_factory_to_wiki.py`). 공장 전체를 raw에 복제하지 않음. 외부/분석 대상 1개는 그때 `raw/pine-*.pine` 캡처 후 요점 논의 → ingest.
-5. **취향·아이디어:** 자동 한 줄 (`kkj-taste` / `ideas-inbox`).
+5. **취향·아이디어:** 자동 한 줄 (`owner-taste` / `ideas-inbox`).
 6. **지식 갱신 vs 세션 일지:** 위키 사실이 바뀌면 페이지+⚠️; 세션 결정만 `../memory.md` (절대경로 `${WIKI_PATH}/memory.md`). 도구별 다른 일지 금지.
 
 ## Special Files
