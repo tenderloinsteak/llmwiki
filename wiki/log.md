@@ -44,3 +44,9 @@ registry.json modules gained a first-class `kind` field (ui/logic/infra) to sepa
 
 ## [2026-07-17] lint | structure-review follow-ups closed
 - AlertHub tv_safety 정책 정합(86 pytest pass). Cursor rule·SKU-01..08 product_skus·modules-map 미매핑 해소. wiki/ 최초 커밋 진행. → [[queries/mantisalgo-structure-review-2026-07-17]]
+
+## [2026-07-17] query | AccountingGo Master Polish Plan
+
+- Filed [[queries/accountinggo-master-polish-plan-2026-07-17]]; updated [[entities/accountinggo]] + [[entities/accountinggo-content-pipeline]].
+- Repo SoT: `docs/MASTER_POLISH_PLAN.md` (path fix: theory player under `lib/features/exercise/`).
+- Next recommended task: **0-1 tAccount** full posting interaction.
