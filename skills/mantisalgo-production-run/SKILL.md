@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-The factory IS the Python pipeline in `Desktop/dev/MantisAlgo`. This skill is the production checklist the factory-manager walks every cycle. Standards live in the repo (`hermes/factory-manager.md`, `AGENTS.md`); this skill enforces the order and the gates.
+The factory IS the Python pipeline in the sibling repo `../MantisAlgo`. This skill is the production checklist the factory-manager walks every cycle. Standards live in the repo (`hermes/factory-manager.md`, `AGENTS.md`); this skill enforces the order and the gates.
 
 ## When to Use
 

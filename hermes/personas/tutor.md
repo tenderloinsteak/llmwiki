@@ -75,7 +75,7 @@ owner: tutor
 ---
 
 ## 2.1 함수 레벨 세부 체크리스트 (공식 레퍼런스 기반)
-- `Desktop/pinestudy/pine_v6_checklist.md` — **공식 레퍼런스 실제 추출**(추측 없음).
+- `${PINESTUDY_PATH}/pine_v6_checklist.md` — **공식 레퍼런스 실제 추출**(추측 없음). (`PINESTUDY_PATH` = llmwiki 조상 옆 `pinestudy`, 예: `${WIKI_PATH}/../../pinestudy`; env 우선)
 - 2026-07-15 브라우저 DOM 파싱으로 식별자 **총 952개** 추출:
   - 타입 20 · 빌트인 변수 193 · 콘스탄트 216 · **함수 479** · 키워드 14 · 오퍼레이터 20 · 어노테이션 10
   - 함수는 네임스페이스별 그룹(ta 59, strategy 49, array 55, matrix 49, box 29, label 21, line 22, table 22, math 24, input 14, map 11, request 11, str 18, color 7, chart 5, linefill 5, polyline 2, footprint 9, volume_row 8, ticker 9, timeframe 3, syminfo 2, runtime 1, top 41)
@@ -84,7 +84,7 @@ owner: tutor
 
 ## 2.2 학습 방식 원칙 (골격 vs 살)
 - **골격(Phase 0→6, §2)**: 제가 잡은 나침반. 가볍게 훑기만. 무조건 순서대로 갈 필요 없음.
-- **살(세부)**: **실전 코드를 주시거나, 제가 던진 코드를 같이 뜯어보며** 하나하나 위키 문서(`Desktop/pinestudy/wiki/`)로 익힘.
+- **살(세부)**: **실전 코드를 주시거나, 제가 던진 코드를 같이 뜯어보며** 하나하나 위키 문서(`${PINESTUDY_PATH}/wiki/`)로 익힘.
 - 즉 "커리큘럼 = 골격 나침반, 위키 = 실전에서 채워지는 살". 남의 코드(특히 외부 참고 스크립트 등)를 뜯다 보면 자연히 필요한 걸 먼저 배움.
 - 매 학습: 함수/개념 1개 → `wiki/` 문서(용어해부+분류뜻+비유+인자+미니예제) → **"이해했다" 말씀 후에만** 체크리스트 `[x]` + `update_progress.py`.
 - 배경 지식은 `concepts/`(분류기초/통계) · `glossary.md`(도메인용어)에서 병행.
@@ -98,10 +98,10 @@ owner: tutor
 ---
 
 ## 4. 참고 — 기존 학습 자산
-- `Desktop/pinestudy/pine_v6_checklist.md` — 952개 식별자 체크리스트 (§2.1)
-- `Desktop/pinestudy/wiki/` — 식별자별 위키 문서 (템플릿 `wiki/_template.md`)
-- `Desktop/pinestudy/concepts/` — 분류 기초(`00_classifications.md`) · 통계(`statistics.md`)
-- `Desktop/pinestudy/glossary.md` — 도메인 용어집 / `progress.md` — 대시보드 (`update_progress.py`로 재생성)
-- `Desktop/pinestudy/idea.md` — 학습 시스템 기획 / `Pine_Script_Master.md` — 세부 진도표
+- `${PINESTUDY_PATH}/pine_v6_checklist.md` — 952개 식별자 체크리스트 (§2.1)
+- `${PINESTUDY_PATH}/wiki/` — 식별자별 위키 문서 (템플릿 `wiki/_template.md`)
+- `${PINESTUDY_PATH}/concepts/` — 분류 기초(`00_classifications.md`) · 통계(`statistics.md`)
+- `${PINESTUDY_PATH}/glossary.md` — 도메인 용어집 / `progress.md` — 대시보드 (`update_progress.py`로 재생성)
+- `${PINESTUDY_PATH}/idea.md` — 학습 시스템 기획 / `Pine_Script_Master.md` — 세부 진도표
 - `../MantisAlgo/` — 실전 파이프라인 (검토 대상) / `../ShiftTrade/` — TradingView 위젯 연결 대상
 - (구 스캐폴드) [[study/pinescript-roadmap]] Stage 0~9 · [[study/note-template]] · [[study/notes/index]] — Phase 로드맵으로 대체됨, 참고용

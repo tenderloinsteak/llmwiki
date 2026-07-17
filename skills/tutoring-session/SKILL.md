@@ -17,14 +17,15 @@ metadata:
 
 The bar is "usable in MantisAlgo/ShiftTrade tomorrow", not academic completeness.
 
-**File map (VERIFIED 2026-07-16 — wiki consolidated at ${WIKI_PATH}/hermes; a symlink Desktop/dev/헤르메스 → llmwiki/hermes keeps old paths working):**
+**File map (VERIFIED 2026-07-16 — wiki consolidated at `${WIKI_PATH}/hermes`):**
 - Persona / curriculum / learning log: `${WIKI_PATH}/hermes/personas/tutor.md`
 - SOUL.md (persona identity, already exists — do NOT overwrite): `~/.hermes/profiles/tutor/SOUL.md`. Its `Working Knowledge` section lists the wiki files; keep it in sync when you add study artifacts.
-- Per-item checklist (952 identifiers): `Desktop/pinestudy/pine_v6_checklist.md`
-- Per-identifier wiki docs: `Desktop/pinestudy/wiki/` (template `wiki/_template.md` — forces §0 term-dissection + §1.5 classification meaning)
-- Background concept docs: `Desktop/pinestudy/concepts/` (`00_classifications.md` = what type/var/const/func/operator mean; `statistics.md` = C-track)
-- Domain glossary (terms outside the reference): `Desktop/pinestudy/glossary.md`
-- Progress dashboard: `Desktop/pinestudy/progress.md` (regenerate via `python3 Desktop/pinestudy/update_progress.py`)
+- Pine study vault (`PINESTUDY_PATH`): llmwiki의 조상 폴더 옆 `pinestudy` (예: `${WIKI_PATH}/../../pinestudy`). env에 `PINESTUDY_PATH`가 있으면 그 값을 우선.
+- Per-item checklist (952 identifiers): `${PINESTUDY_PATH}/pine_v6_checklist.md`
+- Per-identifier wiki docs: `${PINESTUDY_PATH}/wiki/` (template `wiki/_template.md` — forces §0 term-dissection + §1.5 classification meaning)
+- Background concept docs: `${PINESTUDY_PATH}/concepts/` (`00_classifications.md` = what type/var/const/func/operator mean; `statistics.md` = C-track)
+- Domain glossary (terms outside the reference): `${PINESTUDY_PATH}/glossary.md`
+- Progress dashboard: `${PINESTUDY_PATH}/progress.md` (regenerate via `python3 ${PINESTUDY_PATH}/update_progress.py`)
 
 ### SCOPE SIGNAL (learned 2026-07-15)
 When 곽경준 says "익히는 게 목표야 / 모든 X를 체크하고 싶었어", he means **exhaustive, per-item** coverage — not a phase-only roadmap. A phase list is the map; he also wants the **complete item checklist** (every function/variable/constant) to tick off individually. Both coexist:

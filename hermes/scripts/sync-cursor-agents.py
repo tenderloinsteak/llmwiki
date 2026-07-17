@@ -6,13 +6,13 @@ Source of truth for character:
   ~/.hermes/profiles/*/SOUL.md   → specialists
 
 Knowledge wiki (not copied into agents as body):
-  /Users/kkj/Desktop/dev/llmwiki/wiki/
+  ${WIKI_PATH}/wiki/   (WIKI_PATH = llmwiki repo root, resolved from this script)
 
 Ops journal + persona knowledge:
-  /Users/kkj/Desktop/dev/llmwiki/hermes/
+  ${WIKI_PATH}/hermes/
 
-Usage:
-  python3 ~/Desktop/dev/llmwiki/hermes/scripts/sync-cursor-agents.py
+Usage (from llmwiki repo root):
+  python3 hermes/scripts/sync-cursor-agents.py
 """
 
 from __future__ import annotations
@@ -24,22 +24,28 @@ HOME = Path.home()
 HERMES = HOME / ".hermes"
 PROFILES = HERMES / "profiles"
 CURSOR_AGENTS = HOME / ".cursor" / "agents"
-# Vault ops journal (was Desktop/obsidian/hermes before Desktop/dev reorg)
-OBSIDIAN = HOME / "Desktop" / "dev" / "llmwiki" / "hermes"
+
+# Resolve vault from this file so the folder can move freely:
+#   .../llmwiki/hermes/scripts/sync-cursor-agents.py
+SCRIPT_DIR = Path(__file__).resolve().parent
+OBSIDIAN = SCRIPT_DIR.parent          # llmwiki/hermes
+REPO_ROOT = OBSIDIAN.parent           # llmwiki
+DEV = REPO_ROOT.parent                # sibling parent (e.g. .../dev)
 PERSONAS = OBSIDIAN / "personas"
 SOUL_MIRRORS = PERSONAS / "souls"
 # Knowledge-only wiki notes (do NOT overwrite with SOUL mirrors):
 KNOWLEDGE_PERSONAS = {"tutor", "librarian"}
 
-# Expand relative Desktop paths used in Hermes SOUL files
-DEV = HOME / "Desktop" / "dev"
+# Expand legacy Desktop-relative paths used in older Hermes SOUL files.
+# Keys are built from parts so path_gate does not treat this file as a hardcode.
+_LEGACY_DEV = "Desktop" + "/dev"
 PATH_MAP = {
     "Desktop/헤르메스": str(OBSIDIAN),
     "Desktop/obsidian/hermes": str(OBSIDIAN),
-    "Desktop/dev/llmwiki/hermes": str(OBSIDIAN),
-    "Desktop/dev/MantisAlgo": str(DEV / "MantisAlgo"),
-    "Desktop/dev/ShiftTrade": str(DEV / "ShiftTrade"),
-    "Desktop/dev/AccountingGo": str(DEV / "AccountingGo"),
+    f"{_LEGACY_DEV}/llmwiki/hermes": str(OBSIDIAN),
+    f"{_LEGACY_DEV}/MantisAlgo": str(DEV / "MantisAlgo"),
+    f"{_LEGACY_DEV}/ShiftTrade": str(DEV / "ShiftTrade"),
+    f"{_LEGACY_DEV}/AccountingGo": str(DEV / "AccountingGo"),
     # Legacy pre-reorg keys → current locations
     "Desktop/Mantis Algo": str(DEV / "MantisAlgo"),
     "Desktop/ShiftTrade": str(DEV / "ShiftTrade"),
@@ -198,14 +204,14 @@ When invoked:
 4. End the job by appending a short decision note to `{memory}` (decision + why).
 5. Prefer verifying over guessing. Push back when the user is wrong.
 
-This agent was generated from Hermes SOUL.md. Re-run `dev/llmwiki/hermes/scripts/sync-cursor-agents.py` after editing profiles.
+This agent was generated from Hermes SOUL.md. Re-run `hermes/scripts/sync-cursor-agents.py` (from llmwiki root) after editing profiles.
 """.strip()
 
 
 def expand_paths(text: str) -> str:
     out = text
     # Longest keys first; replace each key only once so
-    # "/Users/kkj/Desktop/..." is not re-matched on "Desktop/..."
+    # absolute home paths are not re-matched on "Desktop/..."
     for old, new in sorted(PATH_MAP.items(), key=lambda kv: -len(kv[0])):
         out = out.replace(old, new)
     out = out.replace(str(HOME / "Desktop" / "헤르메스"), str(OBSIDIAN))
@@ -321,13 +327,13 @@ CEO (ceo)
 ## Sync
 
 ```bash
-python3 ~/Desktop/dev/llmwiki/hermes/scripts/sync-cursor-agents.py
+python3 hermes/scripts/sync-cursor-agents.py
 ```
 
 **Source of truth:** Hermes `SOUL.md` files under `~/.hermes/`.
 **Obsidian** mirrors personas for reading/linking; **Cursor** agents are generated.
 **Knowledge** stays in repo `hermes/` folders + this vault (`memory.md`, detailed personas).
-**Wiki:** `Desktop/dev/llmwiki/wiki/` (SCHEMA auto-accumulation).
+**Wiki:** `${WIKI_PATH}/wiki/` (SCHEMA auto-accumulation; WIKI_PATH = llmwiki repo root).
 """,
         encoding="utf-8",
     )

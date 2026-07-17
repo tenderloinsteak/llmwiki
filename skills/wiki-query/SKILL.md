@@ -23,7 +23,7 @@ Knowledge wiki at `$WIKI_PATH` (`${WIKI_PATH}/wiki`). Queries run against the co
 - Requests for synthesis: comparison tables, analyses, an evolving thesis
 - "이 답변 저장해줘" after any wiki-grounded answer
 
-Don't use for: fresh web research with nothing ingested (offer to ingest findings instead), Hermes ops questions (memory.md), Pine identifier lookups (`Desktop/pinestudy/wiki/`).
+Don't use for: fresh web research with nothing ingested (offer to ingest findings instead), Hermes ops questions (memory.md), Pine identifier lookups (`${PINESTUDY_PATH}/wiki/`).
 
 ## Query Workflow
 

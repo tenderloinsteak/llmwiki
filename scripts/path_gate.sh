@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# path_gate.sh — fail if hard-coded machine paths remain in portable docs.
+# path_gate.sh — fail if hard-coded machine paths remain in portable docs/scripts.
 # History under wiki/ and memory.md journal lines are excluded.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DEV="$(cd "$ROOT/.." && pwd)"
 
-PATTERN='/Users/kkj|~/Desktop/dev|Desktop/dev/llmwiki'
+# Machine-absolute or Desktop-layout hardcodes that break on move/clone.
+PATTERN='/Users/kkj|~/Desktop(/dev)?|Desktop/dev/|Desktop/pinestudy'
 
 echo "== path_gate: scanning portable docs =="
 
@@ -17,8 +18,13 @@ scan() {
   local hits
   hits="$(grep -rn -I --exclude-dir=.git --exclude-dir=node_modules \
     --exclude-dir=build --exclude-dir=.next --exclude-dir=wiki \
-    -E "$PATTERN" --include='*.md' --include='*.mdc' "$@" 2>/dev/null \
-    | grep -v 'memory\.md:' || true)"
+    --exclude-dir=.dart_tool --exclude-dir=ephemeral \
+    --exclude='flutter_export_environment.sh' \
+    --exclude='flutter_native_integration.env' \
+    --exclude='Generated.xcconfig' \
+    -E "$PATTERN" --include='*.md' --include='*.mdc' \
+    --include='*.py' --include='*.sh' "$@" 2>/dev/null \
+    | grep -vE 'memory\.md:|path_gate\.sh:|flutter_export_environment\.sh:|flutter_native_integration\.env:' || true)"
   if [[ -n "$hits" ]]; then
     echo "FAIL [$label]:"
     echo "$hits"
@@ -28,9 +34,11 @@ scan() {
   fi
 }
 
-scan "llmwiki skills/docs" \
+scan "llmwiki skills/docs/scripts" \
   "$ROOT/skills" "$ROOT/CLAUDE.md" "$ROOT/AGENTS.md" \
-  "$ROOT/hermes/personas" "$ROOT/hermes/profiles" "$ROOT/hermes/CLAUDE.md"
+  "$ROOT/hermes/personas" "$ROOT/hermes/profiles" "$ROOT/hermes/CLAUDE.md" \
+  "$ROOT/hermes/CURSOR-AGENTS.md" "$ROOT/hermes/scripts" \
+  "$ROOT/setup_env.py" "$ROOT/scripts"
 
 # Empty-substitution check
 empty="$(grep -rn -E '(^|[^A-Za-z0-9_}~.])/memory\.md|~//' --include='*.md' \

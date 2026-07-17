@@ -68,3 +68,9 @@ Format: `date | persona | decision/progress | next`
 - 2026-07-18 | cursor | Pine 공장 평탄+제목통일+wiki pines/ 다대다 완료 (22 scripts, Tags SoT, factory_gate PASS) | 이후 신규 .pine은 평탄 저장; 동기화는 `pine_factory_to_wiki.py`
 
 - 2026-07-18 | cursor | llmwiki GitHub 연동: private repo tenderloinsteak/llmwiki 생성, origin(SSH) + main push 완료 | 이후 git push로 동기화
+
+- 2026-07-18 | cursor | raw 실험소스 폐기: clip 3 + pine복제 22 삭제; 공장 SoT만 유지; pine_factory_to_wiki raw복사 제거 | pending ingest 없음
+
+- 2026-07-18 | cursor | wiki lint: path_gate OK, orphan/index drift 0; JSON wikilink+pine-flat stale raw note 수정 | pending ingest 없음
+
+- 2026-07-18 | cursor | portability remediation (ShiftTrade 스크립트 상대경로, sync-cursor-agents 스크립트기준 resolve, PINESTUDY_PATH 도입, path_gate 강화) | 새 기기: clone → setup_env.py --init-env --force; 형제레포 커밋/푸시 권장

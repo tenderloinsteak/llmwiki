@@ -16,13 +16,13 @@ Goal: get an exhaustive, typo-free list of every function/variable/constant/keyw
    - groups FUNC by namespace prefix
    - marks a hand-picked `core` set with 🔴 (daily/essential) vs ⚪
    - returns the assembled markdown string
-3. To get the markdown out of the browser: build a `Blob`, make an `<a download>` and `.click()`. It lands in `~/Downloads/`. Then `mv` it into the project (e.g. `Desktop/pinestudy/`).
+3. To get the markdown out of the browser: build a `Blob`, make an `<a download>` and `.click()`. It lands in `~/Downloads/`. Then `mv` it into the pinestudy vault (e.g. `${PINESTUDY_PATH}/`).
    - Do NOT try to paste 950 lines through the chat — transcription errors. The blob download is the reliable path.
 
 ## Result of the 2026-07-15 run
 - Extracted **952 identifiers**: 20 types, 193 built-in vars, 216 constants, **479 functions**, 14 keywords, 20 operators, 10 annotations.
 - Functions grouped by namespace: ta 59, strategy 49, array 55, matrix 49, box 29, label 21, line 22, table 22, math 24, input 14, map 11, request 11, str 18, color 7, chart 5, linefill 5, polyline 2, footprint 9, volume_row 8, ticker 9, timeframe 3, syminfo 2, runtime 1, top-level 41.
-- Saved to `Desktop/pinestudy/pine_v6_checklist.md`.
+- Saved to `${PINESTUDY_PATH}/pine_v6_checklist.md`.
 
 ## Pitfalls
 - Korean-page (`kr.`) link text is clean ASCII identifiers (the menu words are the only Korean). The English page is the same structure. Either works; filter on non-ASCII to drop menu noise.
