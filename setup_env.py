@@ -95,9 +95,17 @@ def sync_profiles(target_dir: Path, dry_run=False, force=False) -> int:
 
         for file_name in [".env", "SOUL.md"]:
             src_file = profile_path / file_name
+            dest_file = dest_profile_dir / file_name
             if src_file.exists():
-                dest_file = dest_profile_dir / file_name
                 if create_symlink(src_file, dest_file, dry_run, force):
+                    count += 1
+            elif (
+                file_name == ".env"
+                and dry_run
+                and (profile_path / ".env.template").exists()
+            ):
+                # --init-env dry-run: .env will exist before real link step
+                if create_symlink(profile_path / ".env", dest_file, dry_run, force):
                     count += 1
     print(f"프로필 파일 완료: {count}개 파일 연결됨.")
     return count
@@ -107,6 +115,10 @@ def upsert_wiki_path(env_path: Path, wiki_path: str, dry_run=False) -> str:
     """Set WIKI_PATH=<repo root> in .env. Returns action: created|updated|unchanged|dry-run."""
     line = f"WIKI_PATH={wiki_path}"
     if not env_path.exists():
+        template = env_path.parent / ".env.template"
+        if dry_run and template.exists():
+            print(f"[Dry-run] WIKI_PATH (after init): {env_path} -> {wiki_path}")
+            return "dry-run:after-init"
         return "missing"
 
     text = env_path.read_text(encoding="utf-8")
@@ -206,16 +218,18 @@ def main():
     if args.dry_run:
         print("※ Dry-run — 파일 변경 없음\n")
 
+    # Order matters: create .env before linking/injecting so new machines get 22 profile files.
+    if args.init_env:
+        init_env_files(args.dry_run)
+
+    wiki_results = inject_wiki_paths(args.dry_run)
+
     skill_count = 0
     profile_count = 0
     if not args.skip_links:
         skill_count = sync_skills(gemini_skills_dir, args.dry_run, args.force)
         profile_count = sync_profiles(hermes_profiles_dir, args.dry_run, args.force)
 
-    if args.init_env:
-        init_env_files(args.dry_run)
-
-    wiki_results = inject_wiki_paths(args.dry_run)
     injected = sum(
         1
         for v in wiki_results.values()
