@@ -66,3 +66,5 @@ Format: `date | persona | decision/progress | next`
 - 2026-07-18 | cursor | portability remediation (빈치환 25건 복구, 형제레포 치환, .env 분리, WIKI_PATH=레포루트 주입, SOUL.md 복구) | rehearsal on second machine
 
 - 2026-07-18 | cursor | Pine 공장 평탄+제목통일+wiki pines/ 다대다 완료 (22 scripts, Tags SoT, factory_gate PASS) | 이후 신규 .pine은 평탄 저장; 동기화는 `pine_factory_to_wiki.py`
+
+- 2026-07-18 | cursor | llmwiki GitHub 연동: private repo tenderloinsteak/llmwiki 생성, origin(SSH) + main push 완료 | 이후 git push로 동기화
