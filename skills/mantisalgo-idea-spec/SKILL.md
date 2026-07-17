@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-The idea part owns the start (idea JSON) and end (sales copy) of every product. A weak idea means a well-made product nobody buys. Standards live in `Desktop/dev/MantisAlgo/hermes/idea.md`; this skill is the authoring workflow.
+The idea part owns the start (idea JSON) and end (sales copy) of every product. A weak idea means a well-made product nobody buys. Standards live in `../MantisAlgo/hermes/idea.md`; this skill is the authoring workflow.
 
 ## When to Use
 
@@ -41,7 +41,7 @@ Structure: one-line hook → what it shows → how to use in 3 steps → setting
 
 - The 3 differentiators must survive **verbatim** into the copy.
 - Never hide limitations — refunds and reputation cost more than honesty.
-- Done when: copy registered with the SKU in `config/product_skus/` and logged to `/memory.md`.
+- Done when: copy registered with the SKU in `config/product_skus/` and logged to `${WIKI_PATH}/memory.md`.
 
 ## Common Pitfalls
 

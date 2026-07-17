@@ -103,5 +103,5 @@ owner: tutor
 - `Desktop/pinestudy/concepts/` — 분류 기초(`00_classifications.md`) · 통계(`statistics.md`)
 - `Desktop/pinestudy/glossary.md` — 도메인 용어집 / `progress.md` — 대시보드 (`update_progress.py`로 재생성)
 - `Desktop/pinestudy/idea.md` — 학습 시스템 기획 / `Pine_Script_Master.md` — 세부 진도표
-- `Desktop/dev/MantisAlgo/` — 실전 파이프라인 (검토 대상) / `Desktop/dev/ShiftTrade/` — TradingView 위젯 연결 대상
+- `../MantisAlgo/` — 실전 파이프라인 (검토 대상) / `../ShiftTrade/` — TradingView 위젯 연결 대상
 - (구 스캐폴드) [[study/pinescript-roadmap]] Stage 0~9 · [[study/note-template]] · [[study/notes/index]] — Phase 로드맵으로 대체됨, 참고용

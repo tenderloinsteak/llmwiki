@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-The repo's offline pipeline is law: **generate offline → validate → bundle**. The app never invents questions at runtime. Standards: `Desktop/dev/AccountingGo/hermes/quiz-writer.md`; before mass production read `docs/QUESTION_GENERATION.md`, `docs/CONTENT_SCHEMA.md`, `docs/CURRICULUM_V1.md`.
+The repo's offline pipeline is law: **generate offline → validate → bundle**. The app never invents questions at runtime. Standards: `../AccountingGo/hermes/quiz-writer.md`; before mass production read `docs/QUESTION_GENERATION.md`, `docs/CONTENT_SCHEMA.md`, `docs/CURRICULUM_V1.md`.
 
 ## When to Use
 
@@ -59,4 +59,4 @@ Before mass production: propose a type/difficulty distribution table and **get a
 - [ ] Tags set; glossary/account references valid
 - [ ] `validate_content.dart --strict` passes
 - [ ] questionIds new and permanent; batch table approved (if batch)
-- [ ] Session logged to `/memory.md`
+- [ ] Session logged to `${WIKI_PATH}/memory.md`

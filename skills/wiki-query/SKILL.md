@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Knowledge wiki at `$WIKI_PATH` (`Desktop/dev/llmwiki/wiki`). Queries run against the compiled wiki, not the raw sources — the cross-references and contradiction flags are already there. Good answers get filed back as pages so they don't evaporate into chat history.
+Knowledge wiki at `$WIKI_PATH` (`${WIKI_PATH}/wiki`). Queries run against the compiled wiki, not the raw sources — the cross-references and contradiction flags are already there. Good answers get filed back as pages so they don't evaporate into chat history.
 
 ## When to Use
 

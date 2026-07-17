@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Modules and their registry are owned independently of product deadlines, because parts always lose to products on a shared schedule — the root of staleness. Single source of truth: `config/module_registry/registry.json` (163 modules). Standards: `Desktop/dev/MantisAlgo/hermes/module-developer.md`.
+Modules and their registry are owned independently of product deadlines, because parts always lose to products on a shared schedule — the root of staleness. Single source of truth: `config/module_registry/registry.json` (163 modules). Standards: `../MantisAlgo/hermes/module-developer.md`.
 
 ## When to Use
 
@@ -47,7 +47,7 @@ Don't use for: assembling final products (development), deciding what product to
 2. Evaluate moduleizing new concepts arriving from tutor.
 3. Audit `planned` modules that never ship — accumulating plans is also inertia.
 
-Done when: gap map updated in `MASTER_PLAN.md` and priorities logged to `/memory.md`.
+Done when: gap map updated in `MASTER_PLAN.md` and priorities logged to `${WIKI_PATH}/memory.md`.
 
 ## Common Pitfalls
 

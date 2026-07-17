@@ -40,9 +40,9 @@ Not for read-only checks (`mantis-ui-module-lint`) or logic/analysis modules (`m
 
 8. **Regenerate what changed**: if a shipping SKU picked up the module, `python3 scripts/regenerate_sku_factory.py` (writes the `.pine` file), then `python3 scripts/visual_sku_review.py` (refreshes `output/sku_visual_review.html` so the visual diff is easy to eyeball).
 
-9. **Sync the knowledge wiki — do this without asking, if reachable.** MantisAlgo's registry has a mirror in the llmwiki knowledge base (`~/Desktop/dev/llmwiki/wiki/modules/`). If that folder is accessible in this session:
-   - Run `python3 ~/Desktop/dev/llmwiki/hermes/scripts/registry_to_wiki.py` — it reads `registry.json` fresh and regenerates every module page + the `modules-map` hub. This is the **only** way module changes reach the wiki; nothing does it automatically (no file watcher, no git hook — it's a plain script that has to be run).
-   - Append one line to `~//memory.md` in the existing format: `date | factory-module-developer | what changed | next`.
+9. **Sync the knowledge wiki — do this without asking, if reachable.** MantisAlgo's registry has a mirror in the llmwiki knowledge base (`${WIKI_PATH}/wiki/modules/`). If that folder is accessible in this session:
+   - Run `python3 ${WIKI_PATH}/hermes/scripts/registry_to_wiki.py` — it reads `registry.json` fresh and regenerates every module page + the `modules-map` hub. This is the **only** way module changes reach the wiki; nothing does it automatically (no file watcher, no git hook — it's a plain script that has to be run).
+   - Append one line to `${WIKI_PATH}/memory.md` in the existing format: `date | factory-module-developer | what changed | next`.
    - If the folder is **not** reachable (not mounted/connected in this session), say so plainly instead of silently skipping it — the wiki will drift out of sync with the registry until someone runs the sync script.
 
 ## Common Pitfalls

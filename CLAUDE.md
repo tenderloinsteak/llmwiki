@@ -1,5 +1,8 @@
 # Obsidian Vault — Agent Operating Rules
 
+> **WIKI_PATH 해석:** 이 레포와 같은 부모 폴더의 `llmwiki` 형제 디렉터리 (예: `../llmwiki`). env에 `WIKI_PATH`가 있으면 그 값을 우선한다. 위키 본문=`${WIKI_PATH}/wiki/`, 운영 일지=`${WIKI_PATH}/memory.md`.
+
+
 This vault has two trees. Read this before touching anything.
 
 | Tree | What it is | Rules file |
@@ -26,4 +29,4 @@ This vault has two trees. Read this before touching anything.
 
 ## Project repos (knowledge lives with the code)
 
-`~/Desktop/dev/MantisAlgo` (AGENTS.md) · `~/Desktop/dev/ShiftTrade` (DEVELOPMENT_MAP.md) · `~/Desktop/dev/AccountingGo` (README.md) — each points back here.
+형제 디렉터리 `../MantisAlgo` (AGENTS.md) · `../ShiftTrade` (DEVELOPMENT_MAP.md) · `../AccountingGo` (README.md) — each points back here.

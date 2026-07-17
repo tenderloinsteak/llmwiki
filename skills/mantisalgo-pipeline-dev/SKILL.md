@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Most effort goes into improving the pipeline and defending the verification gate, not hand-writing scripts. Bypassing the factory keeps it weak. Standards: `Desktop/dev/MantisAlgo/hermes/development.md`; Pine rules single source: `pinescript_v6_master_rules.md` (read only when touching `.pine` files — token economy).
+Most effort goes into improving the pipeline and defending the verification gate, not hand-writing scripts. Bypassing the factory keeps it weak. Standards: `../MantisAlgo/hermes/development.md`; Pine rules single source: `pinescript_v6_master_rules.md` (read only when touching `.pine` files — token economy).
 
 ## When to Use
 
@@ -76,4 +76,4 @@ On any critic rejection: append `date | product | reason | prevention rule` to t
 - [ ] Non-negotiables 1–5 all respected
 - [ ] Self-verification block fully checked
 - [ ] Reusable code handed to module-developer
-- [ ] Decision logged to `/memory.md`
+- [ ] Decision logged to `${WIKI_PATH}/memory.md`

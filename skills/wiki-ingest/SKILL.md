@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Knowledge wiki at `$WIKI_PATH` (`Desktop/dev/llmwiki/wiki`).
+Knowledge wiki at `$WIKI_PATH` (`${WIKI_PATH}/wiki`).
 
 **Capture ≠ Ingest.** Saving to `raw/` is automatic. Ingest = compile into interlinked wiki pages **after** 곽경준 steers emphasis (Karpathy: stay involved; guide what to emphasize). Structure contract: `SCHEMA.md`.
 
@@ -25,7 +25,7 @@ Knowledge wiki at `$WIKI_PATH` (`Desktop/dev/llmwiki/wiki`).
 - A new file is in `wiki/raw/` **and** this session is doing ingest (do not auto-ingest every new raw file)
 - Batch ingest only when he asks — still one source at a time unless he says skip discussion
 
-Don't use for: answering questions (`wiki-query`), health checks (`wiki-lint`), ops journal (`/memory.md`).
+Don't use for: answering questions (`wiki-query`), health checks (`wiki-lint`), ops journal (`${WIKI_PATH}/memory.md`).
 
 ## Ingest Workflow (per source)
 

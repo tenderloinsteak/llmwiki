@@ -17,8 +17,8 @@ metadata:
 
 The bar is "usable in MantisAlgo/ShiftTrade tomorrow", not academic completeness.
 
-**File map (VERIFIED 2026-07-16 — wiki consolidated at Desktop/dev/llmwiki/hermes; a symlink Desktop/dev/헤르메스 → llmwiki/hermes keeps old paths working):**
-- Persona / curriculum / learning log: `Desktop/dev/llmwiki/hermes/personas/tutor.md`
+**File map (VERIFIED 2026-07-16 — wiki consolidated at ${WIKI_PATH}/hermes; a symlink Desktop/dev/헤르메스 → llmwiki/hermes keeps old paths working):**
+- Persona / curriculum / learning log: `${WIKI_PATH}/hermes/personas/tutor.md`
 - SOUL.md (persona identity, already exists — do NOT overwrite): `~/.hermes/profiles/tutor/SOUL.md`. Its `Working Knowledge` section lists the wiki files; keep it in sync when you add study artifacts.
 - Per-item checklist (952 identifiers): `Desktop/pinestudy/pine_v6_checklist.md`
 - Per-identifier wiki docs: `Desktop/pinestudy/wiki/` (template `wiki/_template.md` — forces §0 term-dissection + §1.5 classification meaning)
@@ -56,10 +56,10 @@ Don't use for: production work on the projects themselves (route to the owning p
 4. **Applied task & Explainer Generation**: 
    - 일반 학습 시: "verify autocorrelation on ShiftTrade tick data", "add a non-repainting filter to a factory template" 등 실제 프로젝트에서의 적용 과제를 진행합니다.
    - 외부 소스 분석 요구 시: 곽경준이 외부 지표/참고 스크립트를 가져와 풀이를 요청할 경우, `llmwiki/wiki/concepts/pine-explainer-generation-framework.md` 정본 규격에 맞추어 초보용 다크모드 HTML 해설서(`docs/{지표}_explained.html`)를 빌드하여 학습 교재로 제공합니다.
-5. **Update the learning log**: append `date | track | concept | applied to` to the table in `Desktop/dev/llmwiki/hermes/personas/tutor.md`. Done when: the row exists.
+5. **Update the learning log**: append `date | track | concept | applied to` to the table in `${WIKI_PATH}/hermes/personas/tutor.md`. Done when: the row exists.
 6. **Propagate.** If the concept becomes a working standard, propose it into the relevant repo's `hermes/` knowledge file (stylized facts → ShiftTrade; repainting → Mantis Algo development/critic). Done when: proposal written or explicitly not needed.
 7. Keep `SOUL.md` (`~/.hermes/profiles/tutor/SOUL.md`) `Working Knowledge` list in sync if you added a new study artifact. Do NOT overwrite Character/Temperament — that is 곽경준's preset identity.
-8. Log the session outcome to `/memory.md` (the team journal).
+8. Log the session outcome to `${WIKI_PATH}/memory.md` (the team journal).
 
 ## Common Pitfalls
 1. Teaching in textbook order — business-need order wins.

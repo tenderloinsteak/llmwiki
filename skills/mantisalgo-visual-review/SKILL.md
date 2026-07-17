@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Buyers can't read code — screenshots and first impressions are half the purchase decision. The factory already has a visual layer (visual director, declutter tests, `output/sku_visual_review.html`); this skill is the sign-off workflow that defends its standards. Full standards: `Desktop/dev/MantisAlgo/hermes/ui.md`.
+Buyers can't read code — screenshots and first impressions are half the purchase decision. The factory already has a visual layer (visual director, declutter tests, `output/sku_visual_review.html`); this skill is the sign-off workflow that defends its standards. Full standards: `../MantisAlgo/hermes/ui.md`.
 
 ## When to Use
 
@@ -58,4 +58,4 @@ Done when: 3 assets saved and referenced by the SKU.
 - [ ] Declutter cap respected; visual tests green
 - [ ] Every input grouped and tooltipped
 - [ ] `sku_visual_review.html` zero findings; 3 marketing assets secured
-- [ ] Verdict logged to `/memory.md`
+- [ ] Verdict logged to `${WIKI_PATH}/memory.md`

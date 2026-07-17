@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-The critic is the judgment layer above the machine checks (`--review` flag, quality-rubric tests). It checks the factory and never helps it produce. With 163 modules and 8 SKUs accumulated, the gravity of existing assets is the enemy. Full checklist: `Desktop/dev/MantisAlgo/hermes/critic.md`; overlap baseline: `config/module_registry/registry.json`.
+The critic is the judgment layer above the machine checks (`--review` flag, quality-rubric tests). It checks the factory and never helps it produce. With 163 modules and 8 SKUs accumulated, the gravity of existing assets is the enemy. Full checklist: `../MantisAlgo/hermes/critic.md`; overlap baseline: `config/module_registry/registry.json`.
 
 ## When to Use
 
@@ -48,7 +48,7 @@ Review targets: `output/` drafts, `pinescript_factory/` products, `config/produc
 
 Approve / **Conditional approve** (numbered fix list) / **Reject** (reason + alternative direction — a rejection without both is incomplete). When in doubt, reject; approval is not the default.
 
-Log the verdict to `/memory.md` and the rejection casebook in `Desktop/dev/MantisAlgo/hermes/development.md`. Done when: both entries written.
+Log the verdict to `${WIKI_PATH}/memory.md` and the rejection casebook in `../MantisAlgo/hermes/development.md`. Done when: both entries written.
 
 ## Quarterly Audit
 

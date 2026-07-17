@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Owner of ShiftTrade's market realism. Core law: never generate a price and decorate a book around it — **generate order events; let price, book, and tape emerge together** so the three are always consistent. Standards: `Desktop/dev/ShiftTrade/hermes/microstructure-engineer.md`; data plan: `docs/user-data-and-rollup-plan.md`.
+Owner of ShiftTrade's market realism. Core law: never generate a price and decorate a book around it — **generate order events; let price, book, and tape emerge together** so the three are always consistent. Standards: `../ShiftTrade/hermes/microstructure-engineer.md`; data plan: `docs/user-data-and-rollup-plan.md`.
 
 ## When to Use
 
@@ -64,4 +64,4 @@ Done when: each fact is verified by runnable test code on the generated data, no
 - [ ] Scenario injection still works (surge, capitulation, chop, limit-up/down)
 - [ ] Tick replay meets scalping-grade speed
 - [ ] tick → aggregate → Supabase pipeline runs end-to-end
-- [ ] Decision logged to `/memory.md`
+- [ ] Decision logged to `${WIKI_PATH}/memory.md`

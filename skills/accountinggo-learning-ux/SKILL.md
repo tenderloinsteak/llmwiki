@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Duolingo is the baseline, reinterpreted for accounting — never copied. The app is a Flutter Phase-1 MVP (offline, no backend, no ads/IAP by design). Standards: `Desktop/dev/AccountingGo/hermes/learning-ux-designer.md`.
+Duolingo is the baseline, reinterpreted for accounting — never copied. The app is a Flutter Phase-1 MVP (offline, no backend, no ads/IAP by design). Standards: `../AccountingGo/hermes/learning-ux-designer.md`.
 
 ## When to Use
 
@@ -75,4 +75,4 @@ Done when: deliverable uses these exact formats and names the existing systems i
 - [ ] Every element mapped to an existing system or flagged as new
 - [ ] Session/feedback/reward rules respected
 - [ ] Storyboard/wireframe in the required format
-- [ ] Quality bar fully met; logged to `/memory.md`
+- [ ] Quality bar fully met; logged to `${WIKI_PATH}/memory.md`

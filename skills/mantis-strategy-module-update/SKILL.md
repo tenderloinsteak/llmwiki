@@ -45,7 +45,7 @@ Not for read-only checks (`mantis-strategy-module-lint`) or UI/display modules (
 
 10. **Regenerate what changed**: if a shipping SKU picked it up, `python3 scripts/regenerate_sku_factory.py` then `python3 scripts/visual_sku_review.py`.
 
-11. **Sync the knowledge wiki — do this without asking, if reachable.** Same as the UI-update skill: if `~/Desktop/dev/llmwiki` is accessible, run `python3 ~/Desktop/dev/llmwiki/hermes/scripts/registry_to_wiki.py` (regenerates every `wiki/modules/*.md` + the hub from the fresh registry — nothing does this automatically, it's a plain script) and append one line to `~//memory.md` (`date | factory-module-developer | what changed | next`). If it's not reachable, say so explicitly rather than skipping silently.
+11. **Sync the knowledge wiki — do this without asking, if reachable.** Same as the UI-update skill: if `${WIKI_PATH}` is accessible, run `python3 ${WIKI_PATH}/hermes/scripts/registry_to_wiki.py` (regenerates every `wiki/modules/*.md` + the hub from the fresh registry — nothing does this automatically, it's a plain script) and append one line to `${WIKI_PATH}/memory.md` (`date | factory-module-developer | what changed | next`). If it's not reachable, say so explicitly rather than skipping silently.
 
 ## Common Pitfalls
 

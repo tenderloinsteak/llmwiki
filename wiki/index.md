@@ -73,6 +73,7 @@
 - [[comparisons/karpathy-llm-wiki-vs-llmwiki]] — Karpathy gist 패턴 vs 우리 구현: 핵심 충실 / 의도적 확장 / 실천 갭 (2026-07-17)
 
 ## Queries (filed answers)
+- [[queries/pine-flat-multitag-structure-2026-07-18]] — Pine 평탄 저장 + Tags 다대다 카테고리 연결 구조 제안 (2026-07-18)
 
 - [[queries/accounting-multilingual-terms-wave1-2026-07-17]] — 다국어 회계용어 Wave1: 레지스트리 314 + KO 전수 초안
 - [[queries/llmwiki-integration-status-2026-07-16]] — Hermes·Cursor·레포 ↔ llmwiki 연동 점검 (2026-07-16)

@@ -54,7 +54,7 @@ Each module prints as `[ok]`, `[warn]` (advisories only), or `[FAIL]` (findings 
 1. Re-run the same lint command and confirm `findings=0`.
 2. Run `python3 scripts/factory_gate.py` — module-level cleanliness doesn't guarantee the *assembled* SKU stays clean (multiple UI modules can each be fine alone but crowd a chart together). The gate's `[UI] SKU-XX: ...` lines are the assembled-level version of the same checks.
 3. If a shipping SKU's visuals changed, regenerate the review artifact: `python3 scripts/visual_sku_review.py` (writes `output/sku_visual_review.html`).
-4. If `~/Desktop/dev/llmwiki` is reachable in this session, this is a good moment to mention it's stale if module descriptions/counts changed — but a pure lint pass with no code changes usually doesn't need a wiki sync (that belongs to the update skill).
+4. If `${WIKI_PATH}` is reachable in this session, this is a good moment to mention it's stale if module descriptions/counts changed — but a pure lint pass with no code changes usually doesn't need a wiki sync (that belongs to the update skill).
 
 ## Common Pitfalls
 

@@ -25,3 +25,5 @@ sources: ["곽경준의 발언 (세션 중 자동 축적)"]
 ## 🔗 연결
 
 [[kkj-taste]] · [[factory-idea]] · [[mantisalgo]] [[accountinggo]] [[shifttrade]]
+
+- 2026-07-18 | Pine 공장·위키: 폴더 분류 대신 Tags 다대다 + pines/scripts↔categories 그래프

@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-The wiki lives at `$WIKI_PATH` (`Desktop/dev/llmwiki/wiki`). Lint keeps the wiki healthy as it grows: humans abandon wikis because maintenance outgrows value — here maintenance is the LLM's job. Distinct from `hermes-wiki-maintenance`, which covers the ops journal at `${WIKI_PATH}/memory.md`.
+The wiki lives at `$WIKI_PATH` (`${WIKI_PATH}/wiki`). Lint keeps the wiki healthy as it grows: humans abandon wikis because maintenance outgrows value — here maintenance is the LLM's job. Distinct from `hermes-wiki-maintenance`, which covers the ops journal at `${WIKI_PATH}/memory.md`.
 
 ## When to Use
 
@@ -41,8 +41,9 @@ Don't use for: ingesting (wiki-ingest), answering content questions (wiki-query)
    - Missing cross-references between obviously related pages
    Done when: each finding names the pages involved.
 4. **Gap pass.** Questions the wiki nearly-but-can't answer; suggest concrete new sources or web searches worth ingesting. This is where lint feeds the reading list.
-5. **Fix list → approval → apply.** Small mechanical fixes (broken links, index lines, missing frontmatter) apply directly. Merges, splits, and deletions need 곽경준's approval first — decisions preserved via redirect links, never lost. Done when: applied fixes listed, pending fixes await approval.
-6. **Report in Korean, short**: findings / fixed now / needs approval / suggested next sources. Append `## [YYYY-MM-DD] lint | summary` to `log.md`.
+5. **Portability / hard-coded path pass.** From the llmwiki repo root run `bash scripts/path_gate.sh`. Failures = machine-specific absolute/home paths that break clone-on-new-machine. History under `wiki/` and `memory.md` journal lines are excluded by the script. Done when: gate exit 0.
+6. **Fix list → approval → apply.** Small mechanical fixes (broken links, index lines, missing frontmatter) apply directly. Merges, splits, and deletions need 곽경준's approval first — decisions preserved via redirect links, never lost. Done when: applied fixes listed, pending fixes await approval.
+7. **Report in Korean, short**: findings / fixed now / needs approval / suggested next sources. Append `## [YYYY-MM-DD] lint | summary` to `log.md`.
 
 ## Common Pitfalls
 
@@ -58,4 +59,5 @@ Don't use for: ingesting (wiki-ingest), answering content questions (wiki-query)
 - [ ] Contradiction/stale findings name their pages and sources
 - [ ] Mechanical fixes applied; destructive changes only proposed
 - [ ] Suggested sources/questions delivered
+- [ ] `scripts/path_gate.sh` passes (no machine-absolute or `Desktop/dev` hardcodes in portable docs)
 - [ ] log.md lint entry appended

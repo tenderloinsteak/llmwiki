@@ -109,3 +109,6 @@ Filed [[queries/llmwiki-fragility-2026-07-17]]. Top risks: thin raw fuel, prompt
 - **중복 스킬 간소화 및 통합**: 별개로 존재하던 `pine-analyst-toolkit` 및 `pine-explainer-generator` 스킬 디렉토리를 전면 폐기하고, 그 기능을 각각 기존 스킬인 `mantisalgo-module-registry` 및 `tutoring-session`에 통합함으로써 에이전트 스킬 엔트로피를 최적화하고 지식 위키를 정본으로 정렬함.
 
 
+
+## [2026-07-18] query | Pine 평탄 저장 + 다대다 카테고리 연결 구조
+폴더=단일부모 한계 → factory 평탄 + `// Tags:` SoT + wiki `pines/scripts`↔`pines/categories` wikilink 다대다 제안. 결정 대기.
