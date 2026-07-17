@@ -2,7 +2,7 @@
 tags: [ai-agents, comparison, llm-wiki]
 created: 2026-07-17
 updated: 2026-07-17
-sources: ["raw/articles/llm-wiki-karpathy.md", "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"]
+sources: ["raw/llm-wiki-karpathy.md", "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"]
 ---
 # Karpathy LLM Wiki vs llmwiki 구현
 
@@ -33,7 +33,7 @@ sources: ["raw/articles/llm-wiki-karpathy.md", "https://gist.github.com/karpathy
 | 항목 | Karpathy | 우리 |
 |---|---|---|
 | 스키마 위치 | CLAUDE.md / AGENTS.md 예시 | `wiki/SCHEMA.md`가 계약 + 루트 AGENTS/CLAUDE가 교차도구로 강제 |
-| 인제스트 톤 | “읽고 **당신과 논의**한 뒤” 선호 | **묻지 말고** raw 저장·파일링 (auto-accumulation) — 속도·도구전환 우선 |
+| 인제스트 톤 | “읽고 **당신과 논의**한 뒤” 선호 | **2026-07-17 정렬:** Capture(raw)만 자동 · Ingest는 요점 논의 후 (알아서/배치 예외) |
 | 페이지 포맷 | 미지정 | 🌱/⚙️/🔗/📌 + 한국어 본문 |
 | 지식 vs 업무 | 한 위키에 섞일 수 있음 | `wiki/`(지식) ↔ `hermes/`(**도구 공통** 세션 일지) **역할 분리** — Hermes 전용 아님 |
 | 자동 생성 층 | 없음 | `modules/`·`skus/` = `registry_to_wiki.py` (공장 레지스트리 미러) |
@@ -58,7 +58,7 @@ sources: ["raw/articles/llm-wiki-karpathy.md", "https://gist.github.com/karpathy
 
 ## 🔗 연결
 
-- [[llm-wiki-pattern]] · [[librarian]] · [[hermes-org]] · 원문 `raw/articles/llm-wiki-karpathy.md`
+- [[llm-wiki-pattern]] · [[librarian]] · [[hermes-org]] · 원문 `raw/llm-wiki-karpathy.md`
 - [[structure-lint-2026-07-17]]
 
 ## 📌 미해결

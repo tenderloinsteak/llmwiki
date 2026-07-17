@@ -3,8 +3,8 @@ tags: [query, accountinggo, accounting-edu, i18n]
 created: 2026-07-17
 updated: 2026-07-17
 sources:
-  - "raw/articles/accounting-terms-wikipedia-summaries-2026-07-17.json"
-  - "raw/articles/accounting-terminology-research-notes-2026-07-17.md"
+  - "raw/accounting-terms-wikipedia-summaries-2026-07-17.json"
+  - "raw/accounting-terminology-research-notes-2026-07-17.md"
   - "concepts/accounting-terminology-matrix.md"
 ---
 # Query: AccountingGo 다국어 회계용어 — Wave 1 (2026-07-17)
@@ -24,8 +24,8 @@ sources:
 |---|---|
 | 매칭 허브 | `wiki/concepts/accounting-terminology-matrix.md` |
 | 로케일 레지스트리 | `wiki/concepts/accounting-locale-registry.md` |
-| raw extracts | `wiki/raw/articles/accounting-terms-wikipedia-summaries-2026-07-17.json` |
-| 방법론 노트 | `wiki/raw/articles/accounting-terminology-research-notes-2026-07-17.md` |
+| raw extracts | `wiki/raw/accounting-terms-wikipedia-summaries-2026-07-17.json` |
+| 방법론 노트 | `wiki/raw/accounting-terminology-research-notes-2026-07-17.md` |
 
 ### 레퍼런스로 확인된 핵심 (발췌)
 

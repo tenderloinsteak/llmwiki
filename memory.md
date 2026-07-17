@@ -48,3 +48,15 @@ Format: `date | persona | decision/progress | next`
 - 2026-07-17 | cursor (MantisAlgo) | **Phase 1 신호 밀도 엔진 완료**: `signal_mirror`/`signal_calibrator`/`sig_governor`(INFRA_ALWAYS)·`signal_density_targets.json`·idea `signal_profile`+`extra.calibration`·factory_gate 밀도 게이트. 8/8 SKU 3×3 밴드 내. pytest 98 pass. 다음: Phase 2 비주얼 v2
 
 - 2026-07-17 | cursor (AccountingGo) | 다국어 회계용어 레지스트리 Wave1: `wiki/concepts/accounting-terminology-registry.json` 314 entries (glossary 143 + accounts 43 in-app + COA 확장 128). en-US·ko 전셀 채움(ko=`kkj:?`). ja/zh/de/fr/es는 Wikipedia 검증분만. supplies 레포'비품' vs 수험'소모품' 플래그. | 다음: 곽경준 ko 검수 → ja 日商勘定科目 → zh 初级科目表
+
+- 2026-07-17 | cursor | raw inbox = wiki/raw/clips/ catch-all (articles renamed); Clipper should point there | Set Obsidian Web Clipper folder to wiki/raw/clips
+
+- 2026-07-17 | cursor | Flattened raw/ to one inbox (kept assets/ for images only); Clipper → wiki/raw/ | Point Obsidian Web Clipper at wiki/raw
+
+- 2026-07-17 | cursor | Aligned to Karpathy: capture auto / ingest collaborative (SCHEMA+vault Cursor+AGENTS+Hermes wiki-ingest). Sibling repo rule sync still pending approval | Discuss 2 new raw clips before filing
+
+- 2026-07-18 | antigravity | 전체 구조 감사 및 동기화: MantisAlgo 신규 모듈(sig_governor) 동기화, 고아 쿼리 페이지 인덱스 수리, 3개 raw 파일 요점 분석 완료. 사서(librarian) 및 개발/기획/UI/공장장/Tutor/Audit 등 11개 프로필의 모든 커스텀 워크플로우 스킬 총 18종을 현재 Gemini/Antigravity 도구 환경(~/.gemini/config/skills/)에 이식 및 일괄 등록 완료 | 3개 pending raw 파일 인제스트 승인 대기
+- 2026-07-18 | antigravity | 중복 스킬 정리 및 llmwiki 정본 동기화: pine-analyst-toolkit 및 pine-explainer-generator 스킬을 폐기하고, 그 기능을 각각 기존 스킬인 mantisalgo-module-registry 및 tutoring-session에 완벽히 통합/미러링 완료 | 3개 pending raw 파일 인제스트 승인 대기 또는 다음 지시 대기
+
+
+

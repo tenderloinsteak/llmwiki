@@ -1,8 +1,8 @@
 ---
 tags: [concept, ai-agents, wiki]
 created: 2026-07-16
-updated: 2026-07-16
-sources: ["raw/articles/llm-wiki-karpathy.md"]
+updated: 2026-07-17
+sources: ["raw/llm-wiki-karpathy.md"]
 ---
 # LLM 위키 패턴 (Karpathy's LLM Wiki Pattern)
 
@@ -15,6 +15,7 @@ RAG(업로드한 파일에서 그때그때 검색)는 매번 처음부터 다시
 ## ⚙️ 정확히
 
 - 3층 구조: raw/(불변 원본) → 위키 페이지(LLM 소유) → 스키마(SCHEMA.md — 규율 문서, 함께 진화)
+- 단계 분리: **Capture**(raw 자동) ≠ **Ingest**(요점 논의 후 컴파일 — Karpathy 협업)
 - 3대 작업: **Ingest**(소스 1건이 페이지 10~15개를 갱신 가능) / **Query**(index 먼저 → 페이지 → 인용 답변, 좋은 답은 다시 파일링) / **Lint**(모순·낡음·고아·누락 링크·데이터 갭 점검)
 - 특수 파일: index.md(내용 색인, 매 인제스트 갱신) / log.md(연대기, `## [날짜] 작업 | 제목` 접두사로 grep 가능)
 - 규모: 색인 파일만으로 ~100소스·수백 페이지까지 동작, 그 이상은 검색 도구(qmd 등) 고려
@@ -23,7 +24,7 @@ RAG(업로드한 파일에서 그때그때 검색)는 매번 처음부터 다시
 
 ## 🔗 연결
 
-[[hermes-org]](운영 주체) · 담당: [[librarian]] · 원문: `raw/articles/llm-wiki-karpathy.md`
+[[hermes-org]](운영 주체) · 담당: [[librarian]] · 원문: `raw/llm-wiki-karpathy.md`
 
 ## 📌 미해결
 

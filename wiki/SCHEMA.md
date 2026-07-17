@@ -1,8 +1,8 @@
 # Wiki Schema — 곽경준's Knowledge Base
 
 > **한눈에:** 이 폴더는 LLM이 대신 관리하는 지식 위키다(Karpathy LLM Wiki 패턴).
-> 나는 소스를 던지고 질문만 한다. 요약·연결·정리·모순 체크는 전부 LLM 몫.
-> 옆 트리 `../hermes/`는 **도구 공통 운영 저널**(Cursor·Claude Code·Codex·Hermes 모두 같은 `memory.md`에 기록). 폴더 이름은 역사적 — Hermes 전용이 아니다. 여기는 **지식**, 저기는 **세션 결정**.
+> **캡처(raw)는 자동**, **인제스트(위키 컴파일)는 협업** — 곽경준이 강조점을 넣은 뒤에야 “내 위키”가 된다.
+> 옆 트리 `../hermes/`는 **도구 공통 운영 저널**(Cursor·Claude Code·Codex·Hermes 모두 같은 `memory.md`). 폴더 이름은 역사적 — Hermes 전용 아님.
 
 ## Domain
 
@@ -12,7 +12,9 @@ Related but separate: `Desktop/pinestudy/wiki/` is the per-identifier Pine v6 st
 
 ## Three Layers
 
-1. **`raw/`** — immutable sources (articles, papers, transcripts, assets). LLM reads, never edits. Obsidian Web Clipper drops go here.
+1. **`raw/`** — immutable sources. LLM reads, never edits.
+   - **전부 `wiki/raw/`에 평탄하게 둔다** (블로그·위키·뉴스·유튜브 링크·논문·코드·Web Clipper). 하위 분류 폴더 없음.
+   - `raw/assets/`만 예외 — 이미지 첨부용(옵시디언 Attachment folder로 지정 가능).
 2. **Wiki pages** — `entities/`, `concepts/`, `comparisons/`, `queries/`. LLM-owned. 곽경준 reads, LLM writes.
 3. **This file** — structure contract. Co-evolves as we learn what works.
 
@@ -39,14 +41,42 @@ Related but separate: `Desktop/pinestudy/wiki/` is the per-identifier Pine v6 st
 - Contradictions: never silently overwrite. Add a `> ⚠️ 상충:` callout naming both sources and dates.
 - One concept = one page. Same concept in two pages → merge, leave a redirect link.
 
-## Auto-Accumulation Rules (모든 에이전트 공통 — 묻지 말고 저장)
+## Capture vs Ingest (Karpathy 정렬 — 도구 공통)
 
-1. **외부 자료를 가져왔으면 무조건 raw/에 저장한다.** 웹 페이지·논문·코드 등 에이전트가 fetch한 것은 사용자에게 묻지 않고 `raw/articles|papers|code/`에 떨어뜨린 뒤 인제스트한다. 사용자가 손으로 넣는 경우는 브라우저 클리핑뿐이다.
-2. **의미 있는 답변은 자동 파일링한다.** 질답 중 만들어진 비교·분석·발견된 연결은 "저장할까요?" 묻지 않고 `queries/` 또는 `comparisons/`에 저장하고 index/log를 갱신한다. 1회성 사실 확인·잡담은 저장하지 않는다.
-3. **외부 Pine 코드 분석 플로:** 코드 → `raw/code/<이름>.pine(.md)` 저장 → 분석 페이지(무슨 기법·구조·핵심 아이디어) 생성 → MantisAlgo 레지스트리(`config/module_registry/registry.json`)와 대조해 없는 부품 목록 → 모듈 등록 후보를 분석 페이지 📌에 기록.
-4. **취향·피드백 자동 기록.** 곽경준이 칭찬·불만·선호를 표현하면(특히 UI/UX) `entities/kkj-taste.md`에 즉시 한 줄 추가한다. 묻지 않는다.
-5. **아이디어 자동 기록.** 곽경준이 아이디어를 툭 던지면(다듬어지지 않아도) `ideas/ideas-inbox.md` 표에 추가하거나 개별 페이지로 만든다. MantisAlgo 제품감이면 factory-idea 스펙으로 승격 제안.
-6. **작업 후 지식 반영.** 어떤 도구(Hermes/Claude Code/Codex/Cursor)로 작업했든, 새로 알게 된 사실이 기존 페이지와 다르면 페이지를 갱신하고(상충은 ⚠️), 세션의 결정은 **공유** 운영 저널(`../hermes/memory.md`, 절대경로 `~/Desktop/dev/llmwiki/hermes/memory.md`)에 적는다. 도구마다 다른 일지를 쓰지 않는다.
+두 단계를 **절대 섞지 않는다.**
+
+| 단계 | 무엇을 | 자동? |
+|---|---|---|
+| **Capture** | 자료를 `wiki/raw/`에 떨어뜨림 (Clipper·에이전트 fetch·붙여넣기) | **예 — 묻지 않음** |
+| **Ingest** | raw를 읽고 위키 페이지로 컴파일 (요약·엔티티/컨셉 갱신·교차링크·index/log) | **아니오 — 협업이 기본** |
+
+### Ingest 기본 절차 (모든 도구)
+
+1. raw 파일을 읽는다 (수정 금지).
+2. 곽경준에게 **핵심 요점 3–5개**를 한국어로 제시하고, **무엇에 무게를 둘지** 묻는다.
+3. 강조점이 확정되면(또는 “알아서” / “배치로” 지시가 있으면) 그때 위키에 기록한다.
+4. **한 번에 소스 1개**가 기본. 여러 개면 하나씩, 또는 배치 전에 “이번엔 논의 생략?”을 한 번만 묻는다.
+
+### 여전히 자동인 것 (인제스트가 아님)
+
+- `raw/` 캡처
+- 질답 중 **비교·분석·발견된 연결** → `queries/`·`comparisons/` 파일링 (탐색 복리; 1회성 팩트체크는 제외)
+- `kkj-taste` / `ideas-inbox` 한 줄 기록
+- 세션 결정 → `memory.md`
+
+### 에이전트가 웹을 직접 fetch한 경우
+
+- `raw/` 저장까지는 자동.
+- 위키 컴파일(ingest)은 **하지 않고** “raw에 저장함 — ingest 할까?”로 한 줄 제안. 예외: 사용자가 이미 “알아서 ingest / 배치 ingest”라고 한 세션.
+
+## Auto-Accumulation Rules (세부)
+
+1. **Capture:** 외부 자료 → `wiki/raw/` (종류 가리지 않음). Web Clipper inbox = `wiki/raw/`.
+2. **Ingest:** 위 협업 절차. “넣어줘/소화해줘/ingest” 또는 강조점 확정 후에만 컴파일.
+3. **Query 파일링:** 비교·분석·연결은 묻지 않고 `queries/`/`comparisons/` + index/log. 잡담·1회성 사실확인은 제외.
+4. **Pine 코드:** 일단 `raw/` 캡처 → 분석 ingest도 요점 논의 후 (알아서면 즉시). 레지스트리 대조·📌 후보는 ingest 단계에서.
+5. **취향·아이디어:** 자동 한 줄 (`kkj-taste` / `ideas-inbox`).
+6. **지식 갱신 vs 세션 일지:** 위키 사실이 바뀌면 페이지+⚠️; 세션 결정만 `../memory.md` (절대경로 `${WIKI_PATH}/memory.md`). 도구별 다른 일지 금지.
 
 ## Special Files
 
@@ -60,3 +90,5 @@ Defined as Hermes skills (librarian profile): `wiki-ingest`, `wiki-query`, `wiki
 ## Tag Taxonomy (extend as needed)
 
 `pine-script`, `quant`, `statistics`, `microstructure`, `trading-psychology`, `market-research`, `accounting-edu`, `ai-agents`, `business`
+
+프로젝트 소속(클리핑·페이지): `mantisalgo` · `shifttrade` · `accountinggo` · `wiki-meta`(llmwiki/에이전트 자체). raw 클립은 Web Clipper 체크박스/`projects` 리스트로 남기고, ingest 때 위키 `tags`와 `[[entity]]` 링크로 승격.

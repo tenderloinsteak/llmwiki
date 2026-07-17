@@ -3,7 +3,7 @@ tags: [accounting-edu, accountinggo, i18n]
 created: 2026-07-17
 updated: 2026-07-17
 sources:
-  - "raw/articles/accounting-terminology-research-notes-2026-07-17.md"
+  - "raw/accounting-terminology-research-notes-2026-07-17.md"
   - "repo: Desktop/dev/AccountingGo/assets/config/locales.json"
 ---
 # 회계 로케일·수험 레지스트리 (Accounting Locale Registry)

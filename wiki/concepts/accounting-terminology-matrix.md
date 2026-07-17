@@ -3,8 +3,8 @@ tags: [accounting-edu, accountinggo, i18n]
 created: 2026-07-17
 updated: 2026-07-17
 sources:
-  - "raw/articles/accounting-terms-wikipedia-summaries-2026-07-17.json"
-  - "raw/articles/accounting-terminology-research-notes-2026-07-17.md"
+  - "raw/accounting-terms-wikipedia-summaries-2026-07-17.json"
+  - "raw/accounting-terminology-research-notes-2026-07-17.md"
   - "repo: Desktop/dev/AccountingGo/assets/content/en/glossary.json"
   - "repo: Desktop/dev/AccountingGo/docs/I18N.md"
 ---

@@ -42,6 +42,8 @@
 - [[concepts/series-vs-array]] — 봉마다 자동 실행되는 값의 줄 (Pine의 핵심)
 - [[concepts/repainting]] — 과거를 고쳐 그리는 지표 사기, 검증 1순위
 - [[concepts/5-part-anatomy]] — Pine 코드 표준 골격 5부
+- [[concepts/pine-script-analysis-framework]] — 외부 Pine Script 해체 분석 정본 프레임워크
+- [[concepts/pine-explainer-generation-framework]] — Pine 한 줄 해설서 HTML 생성 정본 프레임워크
 - [[concepts/backtest-and-overfitting]] — 기출만 잘 푸는 전략 걸러내기
 - [[concepts/market-microstructure]] — 가격이 만들어지는 경매장 역학
 - [[concepts/stylized-facts]] — 시장의 통계 지문 4종, 시뮬레이션 합격선
@@ -63,7 +65,7 @@
 
 ## Modules & SKUs (auto-generated — `registry_to_wiki.py`)
 
-- [[modules/modules-map]] — 모듈 173개 지도 (kind: ui/logic/infra별 + family별) + SKU 연결 허브
+- [[modules/modules-map]] — 모듈 174개 지도 (kind: ui/logic/infra별 + family별) + SKU 연결 허브
 - SKU 상세: [[skus/SKU-01]] [[skus/SKU-02]] [[skus/SKU-03]] [[skus/SKU-04]] [[skus/SKU-05]] [[skus/SKU-06]] [[skus/SKU-07]] [[skus/SKU-08]] — 각 페이지에서 사용 모듈이 그래프로 연결됨
 
 ## Comparisons
@@ -77,12 +79,15 @@
 - [[queries/mantisalgo-quality-audit-2026-07-17]] — TradingView 상용급 품질 감사: 결함 발견→개선 11건→C0 달성 (2026-07-17)
 - [[queries/mantisalgo-structure-review-2026-07-17]] — Claude 대량변경 후 구조·흐름·wiki 연동 검토 (게이트 OK / tv_safety 6실패 / Cursor rule 구식)
 - [[queries/accountinggo-master-polish-plan-2026-07-17]] — AccountingGo Master Polish Plan 접수·P0 게이트 실측 (2026-07-17)
+- [[queries/accountinggo-master-polish-phase2-4-2026-07-17]] — AccountingGo Master Polish Phase 2–4 마감 (2026-07-17)
+- [[queries/structure-audit-2026-07-18]] — 지식 위키 및 형제 레포 전체 구조 감사 (2026-07-18)
 - [[queries/structure-lint-2026-07-17]] — 전체 구조·형제폴더 연동·스킬 보유 확인 + lint (2026-07-17)
 - [[queries/llmwiki-fragility-2026-07-17]] — LLM 위키로서 취약점·부족점·개선 우선순위 (2026-07-17)
+- [[queries/obsidian-web-clipper-setup]] — Web Clipper 확장 설정값 (보관소 llmwiki → wiki/raw)
 
 ## Sources (raw/)
 
-- [[raw/articles/llm-wiki-karpathy]] — Karpathy LLM Wiki 원문 (2026-07-16 인제스트 → [[concepts/llm-wiki-pattern]])
-- [[raw/articles/pine-v6-learning-system-idea]] — Pine v6 학습 시스템 기획서 (구 IDEA.md). 미소화 — pinestudy로 대부분 실현됨, 필요시 인제스트
-- [[raw/articles/accounting-terms-wikipedia-summaries-2026-07-17]] — 다국어 회계용어 Wikipedia extract JSON
-- [[raw/articles/accounting-terminology-research-notes-2026-07-17]] — 용어 리서치 방법·로케일 앵커 노트
+- [[raw/llm-wiki-karpathy]] — Karpathy LLM Wiki 원문 (2026-07-16 인제스트 → [[concepts/llm-wiki-pattern]])
+- [[raw/pine-v6-learning-system-idea]] — Pine v6 학습 시스템 기획서 (구 IDEA.md). 미소화 — pinestudy로 대부분 실현됨, 필요시 인제스트
+- [[raw/accounting-terms-wikipedia-summaries-2026-07-17]] — 다국어 회계용어 Wikipedia extract JSON
+- [[raw/accounting-terminology-research-notes-2026-07-17]] — 용어 리서치 방법·로케일 앵커 노트

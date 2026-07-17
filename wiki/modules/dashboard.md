@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, premium, kind/ui]
-updated: 2026-07-17
+updated: 2026-07-18
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 

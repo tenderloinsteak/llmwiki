@@ -87,3 +87,25 @@ Filed [[queries/llmwiki-fragility-2026-07-17]]. Top risks: thin raw fuel, prompt
 - Filed: [[queries/accounting-multilingual-terms-wave1-2026-07-17]]
 - ko 314 filled (`kkj:?`); ja/zh/de/… mostly PENDING (no mass MT)
 
+
+## [2026-07-17] lint | raw/articles → raw/clips (catch-all inbox)
+- Renamed folder; Web Clipper + agent fetches default to `wiki/raw/clips/` for everything (blog/wiki/YouTube/code). Specialized papers/code/transcripts optional only.
+
+## [2026-07-17] lint | flatten raw/ to single inbox
+- Removed clips/papers/code/transcripts subfolders. All sources live flat in `wiki/raw/`; only `raw/assets/` kept for images. Web Clipper inbox = `wiki/raw/`.
+
+## [2026-07-17] lint | Capture≠Ingest (Karpathy collaboration)
+- SCHEMA/CLAUDE/AGENTS/Cursor rules + librarian wiki-ingest: raw capture stays auto; wiki compile requires takeaway discussion (or 알아서/배치). Removed accidental `wiki/queries 1/` duplicate.
+- Pending collaborative ingest: `raw/LLM-Wiki - LLM을 활용하여 개인 지식저장소 구축 하기.md`, `raw/docs update feature overview.md`
+
+## [2026-07-18] query | 지식 위키 및 형제 레포 전체 구조 감사
+- MantisAlgo 신규 모듈 `sig_governor` 감지 및 `registry_to_wiki.py` 실행을 통한 위키 반영 (모듈 173 -> 174).
+- `index.md` 모듈 지도 개수 업데이트 및 누락 고아 파일 `queries/accountinggo-master-polish-phase2-4-2026-07-17` 인덱스 등록 완료.
+- `wiki_lint.py` 검사로 broken link / orphan 0개 확인. 3개 pending raw 파일 요약 및 인제스트 방향 정리.
+- 사서(librarian), 개발, 기획, UI, 공장장 등 11개 프로필에서 사용하던 모든 프로젝트 커스텀 스킬 총 18종을 Gemini/Antigravity 환경(~/.gemini/config/skills/)으로 이식 및 등록 완료.
+
+## [2026-07-18] ingest | Pine 분석 및 한 줄 해설서 프레임워크 뼈대 구축 및 스킬 동기화
+- `llmwiki` 내에 두 스킬의 정본(Source of Truth) 개념 문서인 [[concepts/pine-script-analysis-framework]] 및 [[concepts/pine-explainer-generation-framework]]를 작성하여 지식 자산으로 수록.
+- **중복 스킬 간소화 및 통합**: 별개로 존재하던 `pine-analyst-toolkit` 및 `pine-explainer-generator` 스킬 디렉토리를 전면 폐기하고, 그 기능을 각각 기존 스킬인 `mantisalgo-module-registry` 및 `tutoring-session`에 통합함으로써 에이전트 스킬 엔트로피를 최적화하고 지식 위키를 정본으로 정렬함.
+
+
