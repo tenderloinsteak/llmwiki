@@ -111,13 +111,8 @@ sources: [raw/pine-pac-lite-sku01.pine]
 
 ## 📌 미해결
 
-- [ ] 공장 평탄화 지금 할지 / wiki 구조만 먼저 할지
-- [ ] `// Category:` 완전 폐기 vs Tags[0]로 흡수
-- [ ] 파일명 규칙 확정 (SKU 접미사 필수 여부)
-- [ ] 외부에서 가져온(비공장) Pine도 같은 `pines/`에 넣을지 → 추천: 예, `kind`+`origin: external|factory`
-- [ ] 30종 택소노미를 `wiki/pines/categories/`에 선등록할지 / 실제 사용분만
----
-
-## 결정 대기
-
-곽경준 강조점 확인 후 SCHEMA·factory_saver·첫 배치 캡처 진행.
+- [x] 공장 평탄화 + Tags SoT (2026-07-18)
+- [x] 헤더 Title/Kind/Tags 통일 + TV 제목=파일 stem
+- [x] wiki/pines/ 그래프 + raw 캡처
+- [ ] 외부(비공장) Pine도 같은 `pines/`에 넣을지 — 추천: origin 필드로 수용
+- [ ] score_factory 경로 표기 갱신(output/factory_quality.md는 다음 스코어 시 자동)

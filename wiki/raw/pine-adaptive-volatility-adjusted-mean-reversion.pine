@@ -1,0 +1,219 @@
+//@version=6
+// Title: Adaptive Volatility Adjusted Mean Reversion
+// Kind: strategy
+// Tags: Volatility
+strategy("Adaptive_Volatility_Adjusted_Mean_Reversion", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, currency=currency.USD)
+
+// === [FIXED SKELETON: INITIAL SETUP & STRATEGY DEFINITION] ===
+// Strategy metadata and configuration handled above
+
+// === [AI INJECTION ZONE: PARAMETERS & INDICATORS] ===
+// [AI_START_INPUTS]
+// 파라미터 입력
+grpMain = "메인 전략 설정"
+lookbackPeriod = input.int(20, "Lookback Period (평균/표준편차 기간)", minval=2, group=grpMain)
+zThreshold = input.float(2.0, "Z-Score Threshold (진입 임계값)", minval=0.5, step=0.1, group=grpMain)
+volFilterPeriod = input.int(14, "Volatility Filter Period (변동성 필터 기간)", minval=2, group=grpMain)
+rviThreshold = input.float(50.0, "RVI Threshold (변동성 확장 임계값)", minval=0, maxval=100, group=grpMain)
+adxThreshold = input.int(25, "ADX Threshold (추세 필터 임계값)", minval=0, group=grpMain)
+signalSmoothLen = input.int(3, "Signal Smoothing Length (신호 평활화 기간)", minval=1, group=grpMain)
+
+grpRisk = "리스크 관리 (ATR 기반)"
+atrPeriod = input.int(14, "ATR Period", minval=1, group=grpRisk)
+atrMultSL = input.float(1.5, "ATR Multiplier Stop Loss", minval=0.1, step=0.1, group=grpRisk)
+atrMultTP = input.float(2.0, "ATR Multiplier Take Profit (Mean Reversion Target)", minval=0.1, step=0.1, group=grpRisk)
+// [AI_END_INPUTS]
+
+// === [FIXED SKELETON: MIDDLEWARE / SETUP] ===
+// Timeframe filter - only trade on specified timeframes
+timeframeFilter = input.timeframe("15", "Trading Timeframe")
+useTimeframeFilter = input.bool(true, "Use Timeframe Filter")
+
+// Session filter
+useSessionFilter = input.bool(false, "Use Session Filter")
+sessionStart = input.session("0930-1600", "Trading Session")
+
+// Calculate timeframe condition
+inTimeframe = not useTimeframeFilter or (timeframe.isintraday and timeframe.multiplier <= 60)
+inSession = not useSessionFilter or time(timeframe.period, sessionStart)
+
+// Current bar data
+src = close
+high_ = high
+low_ = low
+open_ = open
+volume_ = volume
+
+// === [AI INJECTION ZONE: ENTRY & EXIT CONDITIONS] ===
+// [AI_START_CONDITIONS]
+// 1. Z-Score 계산 (로그 수익률 기반 평균 회귀)
+// 로그 수익률 계산
+logRet = math.log(src / src[1])
+// 이동 평균 (평균 회귀의 중심선)
+meanPrice = ta.sma(src, lookbackPeriod)
+// 표준 편차 (변동성 측정)
+stdDev = ta.stdev(src, lookbackPeriod)
+// 0으로 나누기 방지
+safeStdDev = math.max(stdDev, 0.00001)
+// Z-Score: (현재가 - 평균) / 표준편차
+zScore = (src - meanPrice) / safeStdDev
+// 신호 평활화 (노이즈 제거)
+zScoreSmooth = ta.sma(zScore, signalSmoothLen)
+
+// 2. Relative Volatility Index (RVI) 계산
+// 표준편차의 RSI를 사용하여 변동성 확장 여부 판단
+rvi = ta.rsi(stdDev, volFilterPeriod)
+// RVI 평활화
+rviSmooth = ta.sma(rvi, signalSmoothLen)
+
+// 3. ADX 계산 (추세 강도 필터)
+[diPlus, diMinus, adx] = ta.dmi(volFilterPeriod, volFilterPeriod)
+// ADX 평활화
+adxSmooth = ta.sma(adx, signalSmoothLen)
+
+// 4. ATR 계산 (손절/익절용)
+atrVal = ta.atr(atrPeriod)
+
+// 5. 진입/청산 조건 정의
+// 롱 진입: Z-Score가 -임계값 이하(과매도), RVI 임계값 이상(변동성 확장), ADX 임계값 이하(비추세)
+longCondition = (zScoreSmooth <= -zThreshold) and (rviSmooth >= rviThreshold) and (adxSmooth <= adxThreshold)
+
+// 숏 진입: Z-Score가 +임계값 이상(과매수), RVI 임계값 이상(변동성 확장), ADX 임계값 이하(비추세)
+shortCondition = (zScoreSmooth >= zThreshold) and (rviSmooth >= rviThreshold) and (adxSmooth <= adxThreshold)
+
+// 청산 조건: 가격이 이동평균선(Mean) 도달 또는 Z-Score가 0 교차
+// 롱 포지션: 가격 >= 평균선 또는 Z-Score >= 0
+// 숏 포지션: 가격 <= 평균선 또는 Z-Score <= 0
+exitLong = (src >= meanPrice) or (zScoreSmooth >= 0)
+exitShort = (src <= meanPrice) or (zScoreSmooth <= 0)
+
+// 통합 청산 조건 (실행 엔진에서 포지션 방향에 따라 분기 처리)
+exitCondition = (strategy.position_size > 0 and exitLong) or (strategy.position_size < 0 and exitShort)
+
+// 시각화용 변수 할당 (Fixed Skeleton Visualization 부분에서 사용 안 함, 별도 플로팅 필요)
+// 하지만 알림 조건 등을 위해 변수 유지
+// [AI_END_CONDITIONS]
+
+// === [FIXED SKELETON: EXECUTION ENGINE] ===
+// Default conditions (overridden by AI injection)
+longCondition := longCondition
+shortCondition := shortCondition
+exitCondition := exitCondition
+
+// Position management
+var float entryPrice = na
+var float stopLossPrice = na
+var float takeProfitPrice = na
+var int positionSize = 0
+
+// Risk management inputs (Overriding skeleton defaults with ATR logic)
+useStopLoss = input.bool(true, "Use ATR Stop Loss")
+useTakeProfit = input.bool(true, "Use ATR Take Profit / Mean Target")
+useTrailingStop = input.bool(false, "Use Trailing Stop")
+
+// Max position size
+maxPositionSize = input.int(1, "Max Concurrent Positions")
+
+// Execution Logic
+if inTimeframe and inSession
+    // Long Entry
+    if longCondition and strategy.position_size == 0
+        strategy.entry("Long", strategy.long)
+        entryPrice := close
+        if useStopLoss
+            stopLossPrice := close - (atrVal * atrMultSL)
+        if useTakeProfit
+            // 익절 목표: 평균 회귀선(Mean) 또는 리스크 보상 비율 중 빠른 것. 여기서는 평균선 타겟 우선, ATR 배수 백업
+            takeProfitPrice := meanPrice // 평균 회귀 타겟
+            // 백업: 만약 평균선이 너무 가깝다면 ATR 배수 사용 (로직상 meanPrice가 진입가보다 위에 있음 보장 안됨)
+            // 진입가 기준 리스크 대비 보상 1:1.5 설정
+            riskDist = close - stopLossPrice
+            altTp = close + riskDist * 1.5
+            // 롱이므로 평균선이 위쪽에 있어야 함. Z-Score 음수이므로 close < meanPrice 임. 안전.
+    
+    // Short Entry
+    if shortCondition and strategy.position_size == 0
+        strategy.entry("Short", strategy.short)
+        entryPrice := close
+        if useStopLoss
+            stopLossPrice := close + (atrVal * atrMultSL)
+        if useTakeProfit
+            takeProfitPrice := meanPrice // 평균 회귀 타겟
+            riskDist = stopLossPrice - close
+            altTp = close - riskDist * 1.5
+            // 숏이므로 평균선이 아래쪽에 있어야 함. Z-Score 양수이므로 close > meanPrice 임. 안전.
+
+    // Exit Logic
+    if strategy.position_size > 0
+        // Long position management
+        // 청산 조건: 평균선 도달, Z-Score 0 상향 돌파, 손절, 익절
+        hitSl = useStopLoss and low <= stopLossPrice
+        hitTp = useTakeProfit and high >= takeProfitPrice
+        
+        if exitLong or hitSl or hitTp
+            strategy.close("Long", comment="Exit Long")
+            entryPrice := na
+            stopLossPrice := na
+            takeProfitPrice := na
+        else if useTrailingStop and high > entryPrice
+            // Trailing stop for long
+            newStop := high - (atrVal * atrMultSL * 0.5) // 트레일링은 좀 더 타이트하게
+            stopLossPrice := math.max(stopLossPrice, newStop)
+    
+    if strategy.position_size < 0
+        // Short position management
+        hitSl = useStopLoss and high >= stopLossPrice
+        hitTp = useTakeProfit and low <= takeProfitPrice
+        
+        if exitShort or hitSl or hitTp
+            strategy.close("Short", comment="Exit Short")
+            entryPrice := na
+            stopLossPrice := na
+            takeProfitPrice := na
+        else if useTrailingStop and low < entryPrice
+            // Trailing stop for short
+            newStop := low + (atrVal * atrMultSL * 0.5)
+            stopLossPrice := math.min(stopLossPrice, newStop)
+
+// === [FIXED SKELETON: VISUALIZATION & ALERTS] ===
+// Plot entry/exit signals
+plotshape(longCondition and strategy.position_size == 0, title="Long Entry", location=location.belowbar, color=color.green, style=shape.labelup, text="LONG", textcolor=color.white, size=size.small)
+plotshape(shortCondition and strategy.position_size == 0, title="Short Entry", location=location.abovebar, color=color.red, style=shape.labeldown, text="SHORT", textcolor=color.white, size=size.small)
+plotshape(exitCondition and strategy.position_size != 0, title="Exit Signal", location=location.abovebar, color=color.orange, style=shape.labeldown, text="EXIT", textcolor=color.white, size=size.small)
+
+// Plot Mean Reversion Line (Center Line)
+plot(meanPrice, "Mean Price (Center)", color=color.blue, linewidth=2)
+
+// Plot Z-Score Threshold Bands (Visual Guide on Price Chart)
+// Upper Band = Mean + Threshold * StdDev
+// Lower Band = Mean - Threshold * StdDev
+upperBand = meanPrice + zThreshold * safeStdDev
+lowerBand = meanPrice - zThreshold * safeStdDev
+pUpper = plot(upperBand, "Upper Z-Band", color=color.red, style=plot.style_dashed)
+pLower = plot(lowerBand, "Lower Z-Band", color=color.green, style=plot.style_dashed)
+fill(pUpper, pLower, color=color.new(color.gray, 90), title="Z-Score Channel")
+
+// Plot stop loss and take profit levels
+plot(useStopLoss and strategy.position_size > 0 ? stopLossPrice : na, "Stop Loss Long", color=color.red, style=plot.style_linebr)
+plot(useTakeProfit and strategy.position_size > 0 ? takeProfitPrice : na, "Take Profit Long", color=color.green, style=plot.style_linebr)
+plot(useStopLoss and strategy.position_size < 0 ? stopLossPrice : na, "Stop Loss Short", color=color.red, style=plot.style_linebr)
+plot(useTakeProfit and strategy.position_size < 0 ? takeProfitPrice : na, "Take Profit Short", color=color.green, style=plot.style_linebr)
+
+// Background Color for Volatility Regime / Signal Strength
+bgcolor(longCondition ? color.new(color.green, 90) : shortCondition ? color.new(color.red, 90) : na, title="Signal Background")
+
+// Alert conditions
+alertcondition(longCondition, title="Long Entry Alert", message="AVAMR: Long Entry Signal - Z-Score Overbought Reversion")
+alertcondition(shortCondition, title="Short Entry Alert", message="AVAMR: Short Entry Signal - Z-Score Oversold Reversion")
+alertcondition(exitCondition, title="Exit Alert", message="AVAMR: Exit Signal - Mean Reversion Target Hit")
+
+// Z-Score Oscillator Plot (Separate Pane Simulation via Scaling - Not possible in overlay strategy directly)
+// Instead, we plot Z-Score scaled to price range for visual reference if needed, or just rely on bands.
+// For true oscillator, user should add indicator separately. 
+// Here we add a small label showing current Z-Score value.
+var label zLabel = na
+if barstate.islast
+    label.delete(zLabel)
+    zLabel := label.new(bar_index, high, "Z-Score: " + str.tostring(zScoreSmooth, "#.##") + "\nRVI: " + str.tostring(rviSmooth, "#.#") + "\nADX: " + str.tostring(adxSmooth, "#.#"), color=color.gray, textcolor=color.white, style=label.style_label_left, size=size.normal)
+
+// === [END OF STRATEGY] ===

@@ -63,6 +63,10 @@
 - [[entities/kkj-taste]] — 곽경준 취향·피드백 원장 (특히 UI/UX) — 에이전트가 자동 기록
 - [[ideas/ideas-inbox]] — 툭 던진 아이디어 인박스 — 에이전트가 자동 기록
 
+## Pines (auto-generated — `pine_factory_to_wiki.py`)
+
+- [[pines/pines-map]] — 파인 스크립트 지도 (indicator/strategy + Tags 다대다)
+
 ## Modules & SKUs (auto-generated — `registry_to_wiki.py`)
 
 - [[modules/modules-map]] — 모듈 174개 지도 (kind: ui/logic/infra별 + family별) + SKU 연결 허브

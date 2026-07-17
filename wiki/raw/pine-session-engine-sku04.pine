@@ -1,0 +1,755 @@
+//@version=6
+// Title: Session Engine SKU-04
+// Kind: indicator
+// Tags: Time_Based, Volatility, Volume
+// Concept: SKU-04 Session Engine — ORB, IB, Power Hour, RVOL, Killzone
+// Tier: platform
+// Repaint policy: bar_close
+indicator("Session_Engine_SKU04", shorttitle="SES4", overlay=true, max_polylines_count=100, max_labels_count=500, max_boxes_count=500, max_lines_count=500)
+
+// [PLATFORM_START_INPUTS]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 00 - 플랫폼 마스터 설정
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+grpPlatform = "Session_Engine_SKU04 Platform"
+swingLen = input.int(5, "스윙 피벗 길이", minval=2, group=grpPlatform, display=display.none, tooltip="주요 시장 구조를 잡는 스윙 포인트 길이 — 크게 하면 굵직한 구조만 표시됩니다")
+internalLen = input.int(3, "내부 스윙 길이", minval=2, group=grpPlatform, display=display.none, tooltip="단기(내부) 구조 탐지 길이 — 스윙 피벗 길이보다 작게 설정하세요")
+maxBoxCap = input.int(200, "최대 박스 수", minval=20, group=grpPlatform, display=display.none, tooltip="차트에 유지할 박스 최대 개수 — 초과 시 오래된 것부터 자동 삭제됩니다")
+maxLineCap = input.int(200, "최대 라인 수", minval=20, group=grpPlatform, display=display.none, tooltip="차트에 유지할 라인 최대 개수 — 초과 시 오래된 것부터 자동 삭제됩니다")
+confirmBars = input.bool(true, "바 종가 확정 후 시그널", group=grpPlatform, display=display.none, tooltip="봉 마감 확정 후에만 시그널을 표시해 리페인트를 방지합니다")
+// Registry modules (26): infra_drawing_manager, infra_helpers_library, sess_filter, sess_profiles, sess_killzone, sess_orb, sess_initial_balance, sess_power_hour, sess_statistics, sess_timezone_inputs, sess_vwap_reset, ui_theme_presets
+//   + ui_visual_director, vol_cvd_proxy, vol_delta_proxy, vol_footprint_lite, vol_imbalance_bar, vol_poc_vah_val, vol_rvol, sess_orb_rvol, vol_climax, vol_sma_filter, vol_vp_fixed, vol_vp_session
+tzSess = input.string("America/New_York", "타임존", group=grpPlatform, display=display.none, tooltip="세션·킬존 계산 기준 타임존")
+// Optional cross-module defaults when feature modules absent
+msBias = "NEUT"
+structMarkBull = false
+structMarkBear = false
+chochPlusUp = false
+chochPlusDn = false
+useDrawMgr = input.bool(true, "드로잉 매니저", group=grpPlatform, display=display.none, tooltip="박스·라인 등 드로잉 객체의 수명주기를 자동 관리합니다")
+useSessions = input.bool(true, "세션 프로필", group=grpPlatform, display=display.none, tooltip="아시아·런던·뉴욕 세션 구간과 고저를 표시합니다")
+useTheme = input.bool(true, "테마/스타일", group=grpPlatform, display=display.none, tooltip="MantisAlgo 시그니처 팔레트(teal/orange)를 적용합니다")
+grpVisual = "차트 표시 (겹침 방지)"
+showSessBg = input.bool(false, "세션·킬존 배경색", group=grpVisual, tooltip="아시아·런던·뉴욕 세션과 킬존 구간을 배경 음영으로 표시합니다")
+showVolBg = input.bool(false, "볼륨·VWAP 배경색", group=grpVisual, tooltip="볼륨 급증·VWAP 이격 구간을 배경 음영으로 표시합니다")
+showSigBg = input.bool(false, "시그널 합류 배경색", group=grpVisual, tooltip="다중 조건이 합류한 구간을 배경 음영으로 강조합니다")
+showOrbMarkers = input.bool(true, "ORB 돌파 마커", group=grpVisual, tooltip="오프닝 레인지(개장 변동폭) 돌파 시 삼각형 마커를 표시합니다")
+showPlatformDash = input.bool(true, "플랫폼 상태 패널 (우하단)", group=grpVisual, tooltip="구조·모멘텀·세션 상태를 요약한 실시간 패널을 표시합니다")
+grpSess = "세션 엔진"
+minRvol = input.float(1.5, "최소 RVOL", minval=0.5, step=0.1, group=grpSess, tooltip="ORB 돌파 인정 최소 상대볼륨")
+// [PLATFORM_END_INPUTS]
+// [AI_START_INPUTS]
+
+// [AI_END_INPUTS]
+
+// [PLATFORM_START_TYPES]
+
+// [PLATFORM_END_TYPES]
+
+// [PLATFORM_START_HELPERS]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 19 - 헬퍼 라이브러리
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+f_isBullBar() =>
+    close > open
+
+f_isBearBar() =>
+    close < open
+
+f_bodyRatio() =>
+    rangeBar = math.max(high - low, syminfo.mintick)
+    math.abs(close - open) / rangeBar
+
+f_upperWick() =>
+    math.max(high - math.max(open, close), 0.0)
+
+f_lowerWick() =>
+    math.max(math.min(open, close) - low, 0.0)
+
+f_atrPct(len) =>
+    ta.atr(len) / close * 100
+
+f_nearLevel(price, level, tol) =>
+    not na(level) and math.abs(price - level) <= tol
+
+f_safeEma(src, len) =>
+    ta.ema(src, math.max(len, 1))
+
+f_safeRsi(src, len) =>
+    ta.rsi(src, math.max(len, 2))
+
+f_volRatio(len) =>
+    volume / math.max(ta.sma(volume, len), 1)
+
+f_trendStrength() =>
+    ema20 = ta.ema(close, 20)
+    ema50 = ta.ema(close, 50)
+    ema20 > ema50 ? 1 : ema20 < ema50 ? -1 : 0
+
+f_structureBias() =>
+    0
+
+f_compositeBias() =>
+    f_trendStrength()
+
+f_midRange() =>
+    float result = na
+    result
+
+f_inDiscount() =>
+    false
+
+f_inPremium() =>
+    false
+
+f_hasBullStack() =>
+    volR = f_volRatio(20)
+    f_isBullBar() and f_bodyRatio() > 0.5 and volR > 1.2
+
+f_hasBearStack() =>
+    volR = f_volRatio(20)
+    f_isBearBar() and f_bodyRatio() > 0.5 and volR > 1.2
+// [PLATFORM_END_HELPERS]
+
+// [PLATFORM_START_DRAWING]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 02 - 드로잉 매니저 (배열 lifecycle)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+var array<box> boxPool = array.new_box()
+var array<line> linePool = array.new_line()
+var array<label> labelPool = array.new_label()
+
+f_trim_boxes() =>
+    while array.size(boxPool) > maxBoxCap
+        bx = array.shift(boxPool)
+        if not na(bx)
+            box.delete(bx)
+
+f_trim_lines() =>
+    while array.size(linePool) > maxLineCap
+        ln = array.shift(linePool)
+        if not na(ln)
+            line.delete(ln)
+
+f_trim_labels() =>
+    while array.size(labelPool) > 100
+        lb = array.shift(labelPool)
+        if not na(lb)
+            label.delete(lb)
+
+f_push_box(bx) =>
+    if useDrawMgr and not na(bx)
+        array.push(boxPool, bx)
+        f_trim_boxes()
+
+f_push_line(ln) =>
+    if useDrawMgr and not na(ln)
+        array.push(linePool, ln)
+        f_trim_lines()
+
+f_push_label(lb) =>
+    if useDrawMgr and not na(lb)
+        array.push(labelPool, lb)
+        f_trim_labels()
+
+if useDrawMgr and barstate.islastconfirmedhistory
+    f_trim_boxes()
+    f_trim_lines()
+    f_trim_labels()
+// [PLATFORM_END_DRAWING]
+
+// [PLATFORM_START_THEME]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ui_visual_director — 표시 계층
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+displayProfile = input.string("Standard", "표시 프로필", options=["Compact", "Standard", "Full"], group=grpVisual, tooltip="Compact: 핵심 구조만 / Standard: 권장 기본값 / Full: 모든 보조 마커까지 표시")
+showTier1 = true
+showTier2 = displayProfile != "Compact"
+showTier3 = displayProfile == "Full"
+compactMode = displayProfile == "Compact"
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 10 - 테마
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+grpTheme = "테마/색상"
+bullColorIn = input.color(color.teal, "상승", group=grpTheme, inline="thm1", tooltip="상승(불) 요소 기본 색 — 구조·FVG·시그널에 공통 적용됩니다")
+bearColorIn = input.color(color.orange, "하락", group=grpTheme, inline="thm1", tooltip="하락(베어) 요소 기본 색 — 구조·FVG·시그널에 공통 적용됩니다")
+neutralColorIn = input.color(color.gray, "중립", group=grpTheme, inline="thm1", tooltip="중립·보조 요소 색 — 라벨 및 비활성 상태에 적용됩니다")
+zoneTransp = input.int(85, "영역 투명도", minval=50, maxval=98, group=grpTheme, tooltip="FVG·오더블록 등 영역 채우기 투명도 — 높을수록 옅어집니다")
+bullColor = useTheme ? bullColorIn : color.green
+bearColor = useTheme ? bearColorIn : color.red
+neutralColor = useTheme ? color.new(neutralColorIn, 40) : color.gray
+fvgBullBg = useTheme ? color.new(bullColorIn, zoneTransp) : color.new(color.green, 88)
+fvgBearBg = useTheme ? color.new(bearColorIn, zoneTransp) : color.new(color.red, 88)
+// [PLATFORM_END_THEME]
+
+// [PLATFORM_START_STRUCTURE]
+
+// [PLATFORM_END_STRUCTURE]
+
+// [PLATFORM_START_FVG]
+
+// [PLATFORM_END_FVG]
+
+// [PLATFORM_START_MITIGATION]
+
+// [PLATFORM_END_MITIGATION]
+
+// [PLATFORM_START_OB]
+
+// [PLATFORM_END_OB]
+
+// [PLATFORM_START_SESSION]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 07 - 세션 프로필
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+asiaSess = input.session("2000-0000", "아시아", group=grpPlatform, display=display.none, tooltip="아시아 세션 구간 (거래소 시간 기준)")
+londonSess = input.session("0300-0800", "런던", group=grpPlatform, display=display.none, tooltip="런던 세션 구간 (거래소 시간 기준)")
+nySess = input.session("0930-1600", "뉴욕", group=grpPlatform, display=display.none, tooltip="뉴욕 세션 구간 (거래소 시간 기준)")
+inAsia = useSessions and not na(time(timeframe.period, asiaSess, tzSess))
+inLondon = useSessions and not na(time(timeframe.period, londonSess, tzSess))
+inNy = useSessions and not na(time(timeframe.period, nySess, tzSess))
+
+sessionName = inNy ? "NY" : inLondon ? "LDN" : inAsia ? "ASIA" : "OFF"
+
+var float asiaHigh = na
+var float asiaLow = na
+var float ldnHigh = na
+var float ldnLow = na
+asiaStart = inAsia and not inAsia[1]
+ldnStart = inLondon and not inLondon[1]
+if useSessions
+    if asiaStart
+        asiaHigh := high
+        asiaLow := low
+    else if inAsia
+        asiaHigh := math.max(asiaHigh, high)
+        asiaLow := math.min(asiaLow, low)
+    if ldnStart
+        ldnHigh := high
+        ldnLow := low
+    else if inLondon
+        ldnHigh := math.max(ldnHigh, high)
+        ldnLow := math.min(ldnLow, low)
+
+bgcolor(useSessions and showSessBg and inAsia ? color.new(color.yellow, 95) : na)
+bgcolor(useSessions and showSessBg and inLondon ? color.new(color.blue, 96) : na)
+bgcolor(useSessions and showSessBg and inNy ? color.new(color.purple, 96) : na)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_killzone
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+kzLondon = input.session("0200-0500", "London KZ", group=grpPlatform, tooltip="런던 킬존 구간 (거래소 시간)")
+kzNy = input.session("0830-1100", "NY KZ", group=grpPlatform, tooltip="뉴욕 킬존 구간 (거래소 시간)")
+inKzLondon = not na(time(timeframe.period, kzLondon, tzSess))
+inKzNy = not na(time(timeframe.period, kzNy, tzSess))
+inKillzone = inKzLondon or inKzNy
+bgcolor(showSessBg and inKzLondon ? color.new(color.blue, 93) : na)
+bgcolor(showSessBg and inKzNy ? color.new(color.purple, 93) : na)
+plotchar(showTier3 and (inKillzone), title="Killzone", char="K", location=location.top, color=color.yellow, size=size.tiny)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_orb
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+orbBarsSess = input.int(3, "ORB 봉 수", minval=1, group=grpPlatform, tooltip="오프닝 레인지(ORB) 구성 봉 수")
+inNyOrb = inNy
+nyStart = inNyOrb and not inNyOrb[1]
+var int orbBar = 0
+var float orbH = na
+var float orbL = na
+if nyStart
+    orbBar := 0
+    orbH := high
+    orbL := low
+else if inNyOrb
+    orbBar += 1
+    if orbBar <= orbBarsSess
+        orbH := math.max(orbH, high)
+        orbL := math.min(orbL, low)
+orbReady = orbBar > orbBarsSess
+plot(orbReady ? orbH : na, "ORB High", color=color.green, linewidth=2)
+plot(orbReady ? orbL : na, "ORB Low", color=color.red, linewidth=2)
+_crossOrbUp = ta.crossover(close, orbH)
+_crossOrbDn = ta.crossunder(close, orbL)
+orbBreakUp = orbReady and _crossOrbUp
+orbBreakDn = orbReady and _crossOrbDn
+orbMid = orbReady ? (orbH + orbL) / 2.0 : na
+orbRange = orbReady ? orbH - orbL : na
+orbExtUp = orbReady ? orbH + orbRange * 0.5 : na
+orbExtDn = orbReady ? orbL - orbRange * 0.5 : na
+plot(orbMid, "ORB Mid", color=color.new(color.gray, 40), style=plot.style_circles)
+plot(orbExtUp, "ORB Ext Up", color=color.new(color.green, 60))
+plot(orbExtDn, "ORB Ext Dn", color=color.new(color.red, 60))
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_initial_balance
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ibBars = input.int(2, "IB 봉 수 (1시간≈12 on 5m)", minval=1, group=grpPlatform, tooltip="이니셜 밸런스 구성 봉 수")
+var float ibH = na
+var float ibL = na
+if nyStart
+    ibH := high
+    ibL := low
+else if inNy and orbBar <= ibBars
+    ibH := math.max(ibH, high)
+    ibL := math.min(ibL, low)
+plot(orbBar > ibBars ? ibH : na, "IB High", color=color.new(color.blue, 30))
+plot(orbBar > ibBars ? ibL : na, "IB Low", color=color.new(color.blue, 30))
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_power_hour
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+powerHour = input.session("1500-1600", "Power Hour", group=grpPlatform, tooltip="파워아워 세션 구간 (거래소 시간)")
+inPower = not na(time(timeframe.period, powerHour, tzSess))
+bgcolor(showSessBg and inPower ? color.new(color.fuchsia, 94) : na)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_statistics
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+var int orbBreaks = 0
+var int orbFakes = 0
+var float sessVol = 0.0
+if orbBreakUp or orbBreakDn
+    orbBreaks += 1
+if orbBreakUp[1] and close < orbMid
+    orbFakes += 1
+if orbBreakDn[1] and close > orbMid
+    orbFakes += 1
+if inNy
+    sessVol += volume
+plot(orbBreaks, "ORB Break Count", display=display.none)
+var table sessStats = table.new(position.middle_left, 2, 4, border_width=1)
+if barstate.islast
+    table.cell(sessStats, 0, 0, "SESSION", text_size=size.tiny)
+    table.cell(sessStats, 1, 0, sessionName, text_size=size.tiny)
+    table.cell(sessStats, 0, 1, "ORB Brk", text_size=size.tiny)
+    table.cell(sessStats, 1, 1, str.tostring(orbBreaks), text_size=size.tiny)
+    table.cell(sessStats, 0, 2, "Fake", text_size=size.tiny)
+    table.cell(sessStats, 1, 2, str.tostring(orbFakes), text_size=size.tiny)
+    table.cell(sessStats, 0, 3, "Vol", text_size=size.tiny)
+    table.cell(sessStats, 1, 3, str.tostring(sessVol, "#"), text_size=size.tiny)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_timezone_inputs
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// tzSess from sess_profiles; extra TZ display
+var table tzDash = table.new(position.bottom_center, 1, 1, border_width=1)
+if barstate.islast
+    table.cell(tzDash, 0, 0, "TZ: " + tzSess, text_size=size.tiny)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_vwap_reset
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// Session VWAP reset on NY open — complements vol_vwap_session
+nyOpen = inNy and not inNy[1]
+var float nyVwapNum = 0.0
+var float nyVwapDen = 0.0
+if nyOpen
+    nyVwapNum := 0.0
+    nyVwapDen := 0.0
+if inNy
+    nyVwapNum += hlc3 * volume
+    nyVwapDen += volume
+nyVwap = nyVwapDen > 0 ? nyVwapNum / nyVwapDen : na
+plot(inNy ? nyVwap : na, "NY VWAP", color=color.aqua, linewidth=2)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// sess_orb_rvol — ORB + RVOL 확인
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+orbRvolMin = input.float(1.5, "ORB RVOL 최소", minval=0.5, step=0.1, group=grpPlatform, tooltip="ORB 돌파 인정 최소 상대볼륨 배수")
+orbRvolLen = input.int(20, "ORB RVOL MA", minval=5, group=grpPlatform, tooltip="ORB 상대볼륨 기준 이동평균 기간")
+_orbRvolMa = ta.sma(volume, orbRvolLen)
+orbRvol = volume / math.max(_orbRvolMa, 1)
+orbRvolOk = orbRvol >= orbRvolMin
+orbConfirmUp = orbBreakUp and orbRvolOk and barstate.isconfirmed
+orbConfirmDn = orbBreakDn and orbRvolOk and barstate.isconfirmed
+plotshape(showOrbMarkers and orbConfirmUp, title="ORB RVOL Up", style=shape.triangleup, location=location.belowbar, color=color.lime, size=size.normal)
+plotshape(showOrbMarkers and orbConfirmDn, title="ORB RVOL Dn", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.normal)
+var table orbDash = table.new(position.top_center, 2, 3, border_width=1)
+if barstate.islast
+    table.cell(orbDash, 0, 0, "ORB", text_size=size.tiny)
+    table.cell(orbDash, 1, 0, orbReady ? "READY" : "BUILD", text_size=size.tiny)
+    table.cell(orbDash, 0, 1, "RVOL", text_size=size.tiny)
+    table.cell(orbDash, 1, 1, str.tostring(orbRvol, "#.##"), text_size=size.tiny)
+    table.cell(orbDash, 0, 2, "Range", text_size=size.tiny)
+    table.cell(orbDash, 1, 2, orbReady ? str.tostring(orbH - orbL, "#.##") : "—", text_size=size.tiny)
+// [PLATFORM_END_SESSION]
+
+// [PLATFORM_START_VOLUME]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_cvd_proxy
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+deltaBar = close >= open ? volume : -volume
+var float cvd = 0.0
+cvd += deltaBar
+cvdMa = ta.sma(cvd, 20)
+cvdBull = cvd > cvdMa
+cvdBear = cvd < cvdMa
+plot(cvd, "CVD Proxy", color=color.new(color.aqua, 30), display=display.pane)
+plot(cvdMa, "CVD MA", color=color.orange, display=display.pane)
+bgcolor(showVolBg and cvdBull ? color.new(color.teal, 97) : showVolBg and cvdBear ? color.new(color.red, 97) : na)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_delta_proxy
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+buyVol = close > open ? volume : 0
+sellVol = close < open ? volume : 0
+deltaRatio = buyVol / math.max(buyVol + sellVol, 1)
+deltaBull = deltaRatio > 0.6
+deltaBear = deltaRatio < 0.4
+plot(deltaRatio, "Delta Ratio", color=color.purple, display=display.pane)
+hline(0.6, "Bull Delta", color=color.green)
+hline(0.4, "Bear Delta", color=color.red)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_footprint_lite
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+fpRows = input.int(12, "Footprint Rows", minval=4, maxval=24, group=grpPlatform, tooltip="풋프린트 가격 구간(행) 수")
+fpLookback = input.int(20, "Footprint Lookback", minval=5, group=grpPlatform, tooltip="풋프린트 분석 룩백 봉 수")
+fpTop = ta.highest(high, fpLookback)
+fpBot = ta.lowest(low, fpLookback)
+fpStep = math.max((fpTop - fpBot) / fpRows, syminfo.mintick)
+
+var array<float> fpBuy = array.new_float(fpRows, 0.0)
+var array<float> fpSell = array.new_float(fpRows, 0.0)
+
+if barstate.islast
+    for i = 0 to fpRows - 1
+        array.set(fpBuy, i, 0.0)
+        array.set(fpSell, i, 0.0)
+    for j = 0 to math.min(fpLookback - 1, bar_index)
+        px = close[j]
+        if px >= fpBot and px <= fpTop
+            idx = int(math.floor((px - fpBot) / fpStep))
+            idx := math.min(idx, fpRows - 1)
+            if close[j] >= open[j]
+                array.set(fpBuy, idx, array.get(fpBuy, idx) + volume[j])
+            else
+                array.set(fpSell, idx, array.get(fpSell, idx) + volume[j])
+    maxFp = 0.0
+    for i = 0 to fpRows - 1
+        maxFp := math.max(maxFp, array.get(fpBuy, i) + array.get(fpSell, i))
+    var array<box> fpBoxes = array.new_box()
+    while array.size(fpBoxes) > 0
+        box.delete(array.shift(fpBoxes))
+    for i = 0 to fpRows - 1
+        buyV = array.get(fpBuy, i)
+        sellV = array.get(fpSell, i)
+        tot = buyV + sellV
+        if tot <= 0
+            continue
+        y0 = fpBot + i * fpStep
+        y1 = y0 + fpStep
+        buyW = int(10 * buyV / math.max(maxFp, 1))
+        sellW = int(10 * sellV / math.max(maxFp, 1))
+        if buyV > sellV
+            bx = box.new(bar_index - fpLookback, y1, bar_index - fpLookback + buyW, y0,
+                 bgcolor=color.new(color.teal, 80), border_color=color.teal)
+            array.push(fpBoxes, bx)
+            f_push_box(bx)
+        else if sellV > buyV
+            bx = box.new(bar_index - fpLookback, y1, bar_index - fpLookback + sellW, y0,
+                 bgcolor=color.new(color.red, 80), border_color=color.red)
+            array.push(fpBoxes, bx)
+            f_push_box(bx)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_imbalance_bar
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+imbBarRatio = input.float(2.0, "Imbalance Ratio", minval=1.0, step=0.1, group=grpPlatform, tooltip="임밸런스 바 판정 비율 — 클수록 엄격")
+buyBar = close > open ? volume : 0
+sellBar = close < open ? volume : 0
+imbBullBar = buyBar > sellBar * imbBarRatio and buyBar > 0
+imbBearBar = sellBar > buyBar * imbBarRatio and sellBar > 0
+plotshape(showTier3 and showVolBg and imbBullBar and (not structMarkBull), title="Vol Imb Bull", style=shape.square, location=location.belowbar, color=color.teal, size=size.tiny)
+plotshape(showTier3 and showVolBg and imbBearBar and (not structMarkBear), title="Vol Imb Bear", style=shape.square, location=location.abovebar, color=color.orange, size=size.tiny)
+bgcolor(showVolBg and imbBullBar ? color.new(color.green, 95) : showVolBg and imbBearBar ? color.new(color.red, 95) : na)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_poc_vah_val
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+vpLen = input.int(50, "VP Lookback", minval=10, group=grpPlatform, tooltip="볼륨 프로파일 계산 룩백 봉 수")
+vpHigh = ta.highest(high, vpLen)
+vpLow = ta.lowest(low, vpLen)
+vpMid = (vpHigh + vpLow) / 2.0
+vah = vpMid + (vpHigh - vpMid) * 0.7
+val = vpMid - (vpMid - vpLow) * 0.7
+poc = ta.vwap(hlc3)
+plot(vah, "VAH", color=color.new(color.red, 40), style=plot.style_circles)
+plot(val, "VAL", color=color.new(color.green, 40), style=plot.style_circles)
+plot(poc, "POC", color=color.new(color.yellow, 20), linewidth=2)
+inValueArea = close <= vah and close >= val
+bgcolor(showVolBg and inValueArea ? color.new(color.blue, 97) : na)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_rvol
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+rvolLen = input.int(20, "RVOL MA", group=grpPlatform, tooltip="상대볼륨 기준 이동평균 기간")
+_rvolMa = ta.sma(volume, rvolLen)
+rvolVal = volume / math.max(_rvolMa, 1)
+rvolHigh = rvolVal >= 1.5
+plot(rvolVal, "RVOL", color=color.new(color.blue, 30))
+hline(1.5, "RVOL 1.5", color=color.gray)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_climax
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+climaxLen = input.int(20, "Climax MA", group=grpPlatform, tooltip="클라이맥스 볼륨 판정용 이동평균 기간")
+climaxMult = input.float(2.5, "Climax Mult", group=grpPlatform, tooltip="평균 볼륨 대비 클라이맥스 판정 배수")
+_climaxVolMa = ta.sma(volume, climaxLen)
+climaxVol = volume > _climaxVolMa * climaxMult
+climaxBull = climaxVol and close > open
+climaxBear = climaxVol and close < open
+plotshape(showVolBg and not compactMode and climaxBull, title="Vol Climax Bull", style=shape.arrowup, location=location.belowbar, color=color.teal, size=size.small)
+plotshape(showVolBg and not compactMode and climaxBear, title="Vol Climax Bear", style=shape.arrowdown, location=location.abovebar, color=color.red, size=size.small)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_sma_filter
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+volSmaLen = input.int(20, "Vol SMA", group=grpPlatform, tooltip="볼륨 이동평균 기간 — 급증 판정 기준")
+_volSma = ta.sma(volume, volSmaLen)
+volSmaOk = volume > _volSma
+plotshape(showTier3 and (volSmaOk), title="Vol OK", style=shape.cross, location=location.bottom, color=color.gray, size=size.tiny)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_vp_fixed
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+vpFixedRows = input.int(16, "VP Rows", minval=8, group=grpPlatform, tooltip="볼륨 프로파일 가격 구간(행) 수")
+vpFixedLook = input.int(30, "VP Lookback", group=grpPlatform, tooltip="볼륨 프로파일 계산 룩백 봉 수")
+vpFTop = ta.highest(high, vpFixedLook)
+vpFBot = ta.lowest(low, vpFixedLook)
+vpFStep = math.max((vpFTop - vpFBot) / vpFixedRows, syminfo.mintick)
+var array<float> vpFixedVol = array.new_float(vpFixedRows, 0.0)
+var float pocFixed = na
+if barstate.islast
+    for i = 0 to vpFixedRows - 1
+        array.set(vpFixedVol, i, 0.0)
+    for j = 0 to math.min(vpFixedLook - 1, bar_index)
+        px = hlc3[j]
+        if px >= vpFBot and px <= vpFTop
+            idx = int(math.floor((px - vpFBot) / vpFStep))
+            idx := math.min(idx, vpFixedRows - 1)
+            array.set(vpFixedVol, idx, array.get(vpFixedVol, idx) + volume[j])
+    maxV = 0.0
+    pocI = 0
+    for i = 0 to vpFixedRows - 1
+        v = array.get(vpFixedVol, i)
+        if v > maxV
+            maxV := v
+            pocI := i
+    pocFixed := vpFBot + pocI * vpFStep
+plot(pocFixed, "VP Fixed POC", color=color.yellow, linewidth=2)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_vp_session
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+vpRows = input.int(20, "VP Rows", minval=8, maxval=40, group=grpPlatform, tooltip="볼륨 프로파일 가격 구간(행) 수")
+vpLookback = input.int(40, "VP Lookback", minval=10, group=grpPlatform, tooltip="볼륨 프로파일 계산 룩백 봉 수")
+vpTop = ta.highest(high, vpLookback)
+vpBot = ta.lowest(low, vpLookback)
+vpStep = math.max((vpTop - vpBot) / vpRows, syminfo.mintick)
+
+var array<float> vpVol = array.new_float(vpRows, 0.0)
+var array<box> vpBoxes = array.new_box()
+
+if barstate.islast
+    for i = 0 to vpRows - 1
+        array.set(vpVol, i, 0.0)
+    for j = 0 to math.min(vpLookback - 1, bar_index)
+        px = hlc3[j]
+        if px >= vpBot and px <= vpTop
+            idx = int(math.floor((px - vpBot) / vpStep))
+            idx := math.min(idx, vpRows - 1)
+            array.set(vpVol, idx, array.get(vpVol, idx) + volume[j])
+    maxVol = 0.0
+    pocIdx = 0
+    for i = 0 to vpRows - 1
+        v = array.get(vpVol, i)
+        if v > maxVol
+            maxVol := v
+            pocIdx := i
+    pocPrice = vpBot + pocIdx * vpStep
+    while array.size(vpBoxes) > 0
+        box.delete(array.shift(vpBoxes))
+    for i = 0 to vpRows - 1
+        v = array.get(vpVol, i)
+        if v <= 0
+            continue
+        barW = int(20 * v / math.max(maxVol, 1))
+        y0 = vpBot + i * vpStep
+        y1 = y0 + vpStep
+        bx = box.new(bar_index - vpLookback, y1, bar_index - vpLookback + barW, y0,
+             bgcolor=color.new(color.blue, 85), border_color=color.new(color.blue, 60))
+        array.push(vpBoxes, bx)
+        f_push_box(bx)
+    var line pocLine = na
+    if not na(pocLine)
+        line.delete(pocLine)
+    pocLine := line.new(bar_index - vpLookback, pocPrice, bar_index, pocPrice,
+         color=color.yellow, width=2, style=line.style_dashed)
+    f_push_line(pocLine)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_vwap_session
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+vwapSess = input.session("0930-1600", "VWAP 세션", group=grpPlatform, tooltip="VWAP 리셋 기준 세션")
+inVwapSess = not na(time(timeframe.period, vwapSess, tzSess))
+var float sessVwapNum = 0.0
+var float sessVwapDen = 0.0
+if inVwapSess and not inVwapSess[1]
+    sessVwapNum := 0.0
+    sessVwapDen := 0.0
+if inVwapSess
+    sessVwapNum += hlc3 * volume
+    sessVwapDen += volume
+sessVwap = sessVwapDen > 0 ? sessVwapNum / sessVwapDen : na
+plot(inVwapSess ? sessVwap : na, "Session VWAP", color=color.fuchsia, linewidth=2)
+aboveVwap = inVwapSess and close > sessVwap
+belowVwap = inVwapSess and close < sessVwap
+bgcolor(showVolBg and aboveVwap ? color.new(color.green, 97) : showVolBg and belowVwap ? color.new(color.red, 97) : na)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// vol_flow_dashboard
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+var table flowDash = table.new(position.bottom_left, 2, 5, border_width=1)
+if barstate.islast
+    table.cell(flowDash, 0, 0, "FLOW", text_size=size.tiny, bgcolor=color.new(color.gray, 80))
+    table.cell(flowDash, 1, 0, "VALUE", text_size=size.tiny, bgcolor=color.new(color.gray, 80))
+    table.cell(flowDash, 0, 1, "RVOL", text_size=size.tiny)
+    table.cell(flowDash, 1, 1, str.tostring(rvolVal, "#.##"), text_size=size.tiny)
+    table.cell(flowDash, 0, 2, "CVD", text_size=size.tiny)
+    table.cell(flowDash, 1, 2, str.tostring(cvd, "#"), text_size=size.tiny)
+    table.cell(flowDash, 0, 3, "Delta", text_size=size.tiny)
+    table.cell(flowDash, 1, 3, str.tostring(deltaRatio, "#.##"), text_size=size.tiny)
+    table.cell(flowDash, 0, 4, "VWAP", text_size=size.tiny)
+    table.cell(flowDash, 1, 4, close > sessVwap ? "ABOVE" : "BELOW", text_size=size.tiny)
+// [PLATFORM_END_VOLUME]
+
+// [PLATFORM_START_LIQUIDITY]
+
+// [PLATFORM_END_LIQUIDITY]
+
+// [PLATFORM_START_PATTERNS]
+
+// [PLATFORM_END_PATTERNS]
+
+// [PLATFORM_START_TRENDLINES]
+
+// [PLATFORM_END_TRENDLINES]
+
+// [PLATFORM_START_LABELS]
+
+// [PLATFORM_END_LABELS]
+
+// [PLATFORM_START_MOMENTUM]
+
+// [PLATFORM_END_MOMENTUM]
+
+// [PLATFORM_START_SIGNAL_VARS]
+
+// [PLATFORM_END_SIGNAL_VARS]
+
+// [PLATFORM_START_CORE]
+// [AI_START_LOGIC]
+longSignal = orbBreakUp and rvolVal >= minRvol and inKillzone
+shortSignal = orbBreakDn and rvolVal >= minRvol and inKillzone
+plot(rvolVal, "RVOL", color=color.blue, display=display.pane)
+// [AI_END_LOGIC]
+// [PLATFORM_END_CORE]
+
+// [PLATFORM_START_CONFLUENCE]
+
+// [PLATFORM_END_CONFLUENCE]
+
+// [PLATFORM_START_SCORE]
+
+// [PLATFORM_END_SCORE]
+
+// [PLATFORM_START_MTF]
+
+// [PLATFORM_END_MTF]
+
+// [PLATFORM_START_ALERTS]
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 알림
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+alertcondition(longSignal, title="Session_Engine_SKU04 Long Signal", message="Session_Engine_SKU04 long signal on {ticker}")
+alertcondition(shortSignal, title="Session_Engine_SKU04 Short Signal", message="Session_Engine_SKU04 short signal on {ticker}")
+// [PLATFORM_END_ALERTS]
+
+// [PLATFORM_START_DASHBOARD]
+
+
+// 대시보드
+grpDash = "대시보드"
+dashIndPosIn = input.string("우상단", "패널 위치", options=["우상단", "우중단", "우하단", "좌상단", "좌하단"], group=grpDash, tooltip="상태 패널이 표시될 차트 모서리 위치")
+dashIndSizeIn = input.string("보통", "패널 글자 크기", options=["작게", "보통", "크게"], group=grpDash, tooltip="상태 패널 텍스트 크기 — 화면 해상도에 맞게 조절하세요")
+dashIndPos = dashIndPosIn == "우상단" ? position.top_right : dashIndPosIn == "우중단" ? position.middle_right : dashIndPosIn == "우하단" ? position.bottom_right : dashIndPosIn == "좌상단" ? position.top_left : position.bottom_left
+dashIndTxtSz = dashIndSizeIn == "작게" ? size.tiny : dashIndSizeIn == "보통" ? size.small : size.normal
+var table dashInd = table.new(dashIndPos, 2, 2, border_width=1)
+if barstate.islast
+    table.cell(dashInd, 0, 0, "Session_Engine_SKU04", text_size=dashIndTxtSz)
+    table.cell(dashInd, 1, 0, "MODE", text_size=dashIndTxtSz)
+    table.cell(dashInd, 0, 1, "Bias", text_size=dashIndTxtSz)
+    biasTxt = longSignal ? "BULL" : shortSignal ? "BEAR" : "NEUTRAL"
+    table.cell(dashInd, 1, 1, biasTxt, text_size=dashIndTxtSz)
+// [PLATFORM_END_DASHBOARD]
+
+// [MODULE_START_VISUALS]
+
+// [MODULE_END_VISUALS]

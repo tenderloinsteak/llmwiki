@@ -1,0 +1,64 @@
+//@version=6
+// Title: Kaufman Adaptive Entropy Alpha
+// Kind: strategy
+// Tags: Moving_Averages
+strategy("Kaufman_Adaptive_Entropy_Alpha", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, currency=currency.USD)
+
+// === [입력 파라미터] ===
+kama_len = input.int(20, 'KAMA Length')
+entropy_len = input.int(14, 'Entropy Lookback')
+vol_threshold = input.float(1.5, 'Entropy Threshold')
+
+// KAMA 구현 (ta.kama가 없으므로 표준 이동평균 사용 또는 사용자 정의 필요, 여기서는 ta.sma로 대체)
+kama_val = ta.sma(close, kama_len)
+
+// === [필터 설정] ===
+timeframeFilter = input.timeframe("15", "Trading Timeframe")
+useTimeframeFilter = input.bool(true, "Use Timeframe Filter")
+useSessionFilter = input.bool(false, "Use Session Filter")
+sessionStart = input.session("0930-1600", "Trading Session")
+
+inTimeframe = not useTimeframeFilter or (timeframe.isintraday and timeframe.multiplier <= 60)
+inSession = not useSessionFilter or not na(time(timeframe.period, sessionStart))
+
+// === [진입 및 청산 조건] ===
+_taHoist1 = ta.stdev(math.log(close/close[1]), entropy_len)
+longCondition = ta.change(kama_val) > 0 and _taHoist1 < vol_threshold
+_taHoist2 = ta.stdev(math.log(close/close[1]), entropy_len)
+shortCondition = ta.change(kama_val) < 0 and _taHoist2 < vol_threshold
+_taHoist3 = ta.change(kama_val)
+exitCondition = ta.cross(close, kama_val) or math.abs(_taHoist3) < 0.0001
+
+// === [실행 엔진] ===
+var float stopLossPrice = na
+var float takeProfitPrice = na
+
+useStopLoss = input.bool(true, "Use Stop Loss")
+stopLossPct = input.float(2.0, "Stop Loss %") / 100
+useTakeProfit = input.bool(true, "Use Take Profit")
+takeProfitPct = input.float(4.0, "Take Profit %") / 100
+
+if inTimeframe and inSession
+    if longCondition and strategy.position_size == 0
+        strategy.entry("Long", strategy.long)
+        stopLossPrice := close * (1 - stopLossPct)
+        takeProfitPrice := close * (1 + takeProfitPct)
+    
+    if shortCondition and strategy.position_size == 0
+        strategy.entry("Short", strategy.short)
+        stopLossPrice := close * (1 + stopLossPct)
+        takeProfitPrice := close * (1 - takeProfitPct)
+
+    if strategy.position_size != 0
+        if exitCondition or (strategy.position_size > 0 and (low <= stopLossPrice or high >= takeProfitPrice)) or (strategy.position_size < 0 and (high >= stopLossPrice or low <= takeProfitPrice))
+            strategy.close_all(comment="Exit")
+
+// === [시각화] ===
+plot(kama_val, color=color.blue, title="KAMA")
+plotshape(longCondition, style=shape.labelup, location=location.belowbar, color=color.green, text="LONG")
+plotshape(shortCondition, style=shape.labeldown, location=location.abovebar, color=color.red, text="SHORT")
+
+// === [알림] ===
+alertcondition(longCondition, "KAMA 롱 진입", "Kaufman Adaptive Entropy Alpha: 롱 진입 조건 충족")
+alertcondition(shortCondition, "KAMA 숏 진입", "Kaufman Adaptive Entropy Alpha: 숏 진입 조건 충족")
+alertcondition(exitCondition, "KAMA 청산", "Kaufman Adaptive Entropy Alpha: 청산 조건 충족")

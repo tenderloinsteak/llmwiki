@@ -1,0 +1,149 @@
+//@version=6
+// Title: Premium Micro Seconds Liquidity Engine
+// Kind: strategy
+// Tags: Liquidity
+// Repaint policy: bar_close (request.security lookahead_off — 실시간 신호 리페인트 없음)
+strategy("Premium_Micro_Seconds_Liquidity_Engine", overlay=true, process_orders_on_close=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100, currency=currency.USD, max_labels_count=200, max_boxes_count=100)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 1. INPUTS & CONFIGURATION (입력 및 설정)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// 메인 차트 타임프레임 검증 (1분 또는 5분만 허용)
+// timeframe.period는 분 단위를 "1", "5"로 반환 — v6에 없는 strpos/strtonumber 제거
+var string MAIN_TF = timeframe.period
+var bool IS_VALID_TF = MAIN_TF == "1" or MAIN_TF == "5"
+
+// 15초 타임프레임 (Premium 전용)
+SEC_TF = "15S"
+
+// ATR 설정
+atrLength = input.int(14, "ATR Period", minval=1, group="Risk Management")
+atrMultSL = input.float(2.0, "SL Multiplier (ATR)", minval=0.1, step=0.1, group="Risk Management")
+atrMultTP = input.float(4.5, "TP Multiplier (ATR)", minval=0.1, step=0.1, group="Risk Management")
+
+// 진입 조건 파라미터
+lookbackHigh = input.int(8, "Highest High Lookback (15S)", minval=1, group="Entry Conditions")
+volLookback = input.int(20, "Volume Average Lookback (Main TF)", minval=1, group="Entry Conditions")
+volThreshold = input.float(1.5, "Volume Threshold Multiplier", minval=0.1, step=0.1, group="Entry Conditions") // 50% above avg = 1.5x
+
+// 시각화 설정
+showEntries = input.bool(true, "Show Entry Signals", group="Visualization", tooltip="진입 시그널 라벨을 차트에 표시합니다")
+showExits = input.bool(true, "Show Exit Signals", group="Visualization", tooltip="SL/TP 도달 시 청산 라벨을 표시합니다")
+showLevels = input.bool(true, "Show Key Levels", group="Visualization", tooltip="돌파 기준선·손절·익절 레벨 라인을 표시합니다")
+dbgPosIn = input.string("우상단", "패널 위치", options=["우상단", "우중단", "우하단", "좌상단", "좌하단"], group="Visualization", tooltip="디버그/상태 패널이 표시될 차트 모서리 위치")
+dbgSizeIn = input.string("보통", "패널 글자 크기", options=["작게", "보통", "크게"], group="Visualization", tooltip="패널 텍스트 크기 — 화면 해상도에 맞게 조절하세요")
+dbgPos = dbgPosIn == "우상단" ? position.top_right : dbgPosIn == "우중단" ? position.middle_right : dbgPosIn == "우하단" ? position.bottom_right : dbgPosIn == "좌상단" ? position.top_left : position.bottom_left
+dbgTxtSz = dbgSizeIn == "작게" ? size.tiny : dbgSizeIn == "보통" ? size.small : size.normal
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 2. CORE CALCULATIONS (핵심 계산)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// --- 메인 차트 ATR 계산 (네이티브 v6) ---
+atrValue = ta.atr(atrLength)
+
+// --- 15초 데이터 가져오기 (Premium 전용: request.security 사용) ---
+// lookahead=barmerge.lookahead_off으로 미래 데이터 방지
+[secOpen, secHigh, secLow, secClose, secVolume] = request.security(
+    syminfo.tickerid, 
+    SEC_TF, 
+    [open, high, low, close, volume], 
+    lookahead=barmerge.lookahead_off,
+    gaps=barmerge.gaps_on
+)
+
+// --- 15초 데이터 기반 진입 조건 계산 ---
+
+// 1) 15S Close가 지난 8개 15S 바의 최고가 돌파
+highestHigh15S = ta.highest(secHigh, lookbackHigh)
+crossAboveHighest = secClose > highestHigh15S[1] and secClose[1] <= highestHigh15S[1]
+
+// 2) 15S 강한 양봉 (Close > Open)
+strongGreenCandle = secClose > secOpen
+
+// 3) 15S 거래량이 메인 차트 20기간 평균 거래량의 50% 초과 (1.5배)
+// 메인 차트 평균 거래량 계산
+avgVolumeMain = ta.sma(volume, volLookback)
+// 0으로 나누기 방지
+avgVolumeMainSafe = avgVolumeMain > 0 ? avgVolumeMain : 1
+volCondition15S = secVolume > avgVolumeMainSafe * volThreshold
+
+// --- 종합 진입 조건 ---
+longCondition = crossAboveHighest and strongGreenCandle and volCondition15S and IS_VALID_TF
+
+// --- 손절/익절 가격 계산 ---
+longSL = strategy.position_avg_price - atrValue * atrMultSL
+longTP = strategy.position_avg_price + atrValue * atrMultTP
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 3. STRATEGY EXECUTION (전략 실행)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// 롱 진입
+if longCondition and strategy.position_size == 0
+    strategy.entry("Long", strategy.long)
+
+// 롱 포지션 관리 (SL/TP)
+if strategy.position_size > 0
+    strategy.exit("Exit Long SL", "Long", stop=longSL, limit=longTP)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 4. VISUALIZATION (시각화)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// 진입 신호 플롯
+plotshape(longCondition and showEntries, title="Long Entry", location=location.belowbar, color=color.green, style=shape.labelup, text="LONG\n15S Breakout", textcolor=color.white, size=size.small)
+
+// 청산 신호 플롯
+plotshape(strategy.position_size > 0 and (close <= longSL or close >= longTP) and showExits, title="Exit Signal", location=location.abovebar, color=color.red, style=shape.labeldown, text="EXIT\nSL/TP Hit", textcolor=color.white, size=size.small)
+
+// 주요 레벨 표시
+var float plotHighestHigh = na
+var float plotSL = na
+var float plotTP = na
+
+if longCondition
+    plotHighestHigh := highestHigh15S
+    plotSL := longSL
+    plotTP := longTP
+
+plot(showLevels and not na(plotHighestHigh) ? plotHighestHigh : na, "Highest High (15S)", color=color.yellow, linewidth=2, style=plot.style_stepline)
+plot(showLevels and not na(plotSL) ? plotSL : na, "Stop Loss", color=color.red, linewidth=1, style=plot.style_stepline)
+plot(showLevels and not na(plotTP) ? plotTP : na, "Take Profit", color=color.green, linewidth=1, style=plot.style_stepline)
+
+// ATR 값 표시
+plot(atrValue, "ATR Value", color=color.blue, display=display.pane)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 5. ALERTS & DEBUG (알림 및 디버그)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// 알림 조건
+alertcondition(longCondition, title="Long Entry Alert", message="Premium Micro-Seconds Liquidity Engine: Long Entry Signal on {{ticker}} at {{time}}")
+
+// 동적 메시지 알림 (티커·가격 포함)
+if longCondition and barstate.isconfirmed
+    alert("PMS Liquidity Engine LONG | " + syminfo.ticker + " @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+
+// 디버그 정보 (데이터 윈도우에 표시)
+var table debugTable = table.new(dbgPos, 2, 7, border_width=1)
+if barstate.islast
+    table.cell(debugTable, 0, 0, "Debug Info", bgcolor=color.gray, text_color=color.white, text_size=dbgTxtSz)
+    table.cell(debugTable, 1, 0, "", bgcolor=color.gray)
+    table.cell(debugTable, 0, 1, "Main TF", text_color=color.white)
+    table.cell(debugTable, 1, 1, MAIN_TF, text_color=color.white)
+    table.cell(debugTable, 0, 2, "Sec TF", text_color=color.white)
+    table.cell(debugTable, 1, 2, SEC_TF, text_color=color.white)
+    table.cell(debugTable, 0, 3, "Valid TF", text_color=color.white)
+    table.cell(debugTable, 1, 3, str.tostring(IS_VALID_TF), text_color=color.white)
+    table.cell(debugTable, 0, 4, "15S Close", text_color=color.white)
+    table.cell(debugTable, 1, 4, str.tostring(secClose, "#.#####"), text_color=color.white)
+    table.cell(debugTable, 0, 5, "Highest High (8)", text_color=color.white)
+    table.cell(debugTable, 1, 5, str.tostring(highestHigh15S, "#.#####"), text_color=color.white)
+    table.cell(debugTable, 0, 6, "Volume Cond", text_color=color.white)
+    table.cell(debugTable, 1, 6, str.tostring(volCondition15S), text_color=color.white)
+
+// 경고: 유효하지 않은 타임프레임
+if not IS_VALID_TF
+    runtime.error("이 전략은 1분(1m) 또는 5분(5m) 타임프레임에서만 작동합니다. 현재: " + MAIN_TF)

@@ -15,7 +15,8 @@ Related but separate: `Desktop/pinestudy/wiki/` is the per-identifier Pine v6 st
 1. **`raw/`** — immutable sources. LLM reads, never edits.
    - **전부 `wiki/raw/`에 평탄하게 둔다** (블로그·위키·뉴스·유튜브 링크·논문·코드·Web Clipper). 하위 분류 폴더 없음.
    - `raw/assets/`만 예외 — 이미지 첨부용(옵시디언 Attachment folder로 지정 가능).
-2. **Wiki pages** — `entities/`, `concepts/`, `comparisons/`, `queries/`. LLM-owned. 곽경준 reads, LLM writes.
+2. **Wiki pages** — `entities/`, `concepts/`, `comparisons/`, `queries/`, plus auto hubs `modules/`, `skus/`, `pines/`. LLM-owned. 곽경준 reads, LLM writes.
+   - `pines/` — factory `.pine` 그래프 (scripts ↔ categories 다대다). SoT는 레포 `pinescript_factory/` + `// Tags:`; 페이지는 `pine_factory_to_wiki.py`가 생성.
 3. **This file** — structure contract. Co-evolves as we learn what works.
 
 ## Page Template (all pages follow this)
@@ -74,7 +75,7 @@ Related but separate: `Desktop/pinestudy/wiki/` is the per-identifier Pine v6 st
 1. **Capture:** 외부 자료 → `wiki/raw/` (종류 가리지 않음). Web Clipper inbox = `wiki/raw/`.
 2. **Ingest:** 위 협업 절차. “넣어줘/소화해줘/ingest” 또는 강조점 확정 후에만 컴파일.
 3. **Query 파일링:** 비교·분석·연결은 묻지 않고 `queries/`/`comparisons/` + index/log. 잡담·1회성 사실확인은 제외.
-4. **Pine 코드:** 일단 `raw/` 캡처 → 분석 ingest도 요점 논의 후 (알아서면 즉시). 레지스트리 대조·📌 후보는 ingest 단계에서.
+4. **Pine 코드:** 공장 산출은 `MantisAlgo/pinescript_factory/{1_Indicators,2_Strategies}/`에 **평탄** 저장 (`// Title`/`// Kind`/`// Tags` 헤더). 위키에는 `raw/pine-*.pine` 캡처 + `pines/` 그래프 동기화(`pine_factory_to_wiki.py`). 분석 ingest는 요점 논의 후 (알아서면 즉시).
 5. **취향·아이디어:** 자동 한 줄 (`kkj-taste` / `ideas-inbox`).
 6. **지식 갱신 vs 세션 일지:** 위키 사실이 바뀌면 페이지+⚠️; 세션 결정만 `../memory.md` (절대경로 `${WIKI_PATH}/memory.md`). 도구별 다른 일지 금지.
 

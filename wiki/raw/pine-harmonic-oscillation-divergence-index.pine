@@ -1,0 +1,37 @@
+//@version=6
+// Title: Harmonic Oscillation Divergence Index
+// Kind: indicator
+// Tags: Oscillators, Divergences
+// Concept: 변동성 정규화 ROC 오실레이터 + HMA 시그널 라인 교차
+// Repaint policy: bar_close (확정봉 기준, security 미사용)
+indicator("Harmonic_Oscillation_Divergence_Index", shorttitle="HODI", overlay=false, format=format.price, precision=2)
+
+// === [AI INJECTION ZONE: PARAMETERS & INDICATORS] ===
+// [AI_START_INPUTS]
+grpMain = "핵심 설정"
+length = input.int(20, "진동 주기", minval=2, group=grpMain, tooltip="변동성 정규화에 사용할 표준편차 기간 — 크게 하면 신호가 완만해집니다")
+roc_len = input.int(10, "ROC 주기", minval=1, group=grpMain, tooltip="모멘텀(변화율) 계산 기간")
+sensitivity = input.float(1.5, "시그널 민감도", minval=0.1, step=0.1, group=grpMain, tooltip="과매수·과매도 기준 레벨 배수 — 낮추면 신호가 잦아집니다")
+grpVisual = "표시 설정"
+showSignals = input.bool(true, "교차 시그널 마커", group=grpVisual, tooltip="오실레이터·시그널 라인 교차 지점에 삼각형 마커를 표시합니다")
+// [AI_END_INPUTS]
+
+// === [AI INJECTION ZONE: LOGIC, VISUALIZATION & ALERTS] ===
+// [AI_START_LOGIC]
+r = ta.roc(close, roc_len)
+oscillation = r / (ta.stdev(close, length) + 0.0001)
+signal = ta.hma(oscillation, 5)
+crossUp = ta.crossover(oscillation, signal)
+crossDn = ta.crossunder(oscillation, signal)
+plot(oscillation, color=color.new(color.teal, 0), title="Oscillation Index")
+plot(signal, color=color.new(color.orange, 0), title="Signal Line")
+hline(0, "기준선", color=color.new(color.gray, 50), linestyle=hline.style_dashed)
+hline(1.5, "과매수 참고", color=color.new(color.gray, 70), linestyle=hline.style_dotted)
+hline(-1.5, "과매도 참고", color=color.new(color.gray, 70), linestyle=hline.style_dotted)
+plotshape(showSignals and crossUp and barstate.isconfirmed, style=shape.triangleup, location=location.bottom, color=color.new(color.teal, 0), size=size.tiny, title="상승 교차")
+plotshape(showSignals and crossDn and barstate.isconfirmed, style=shape.triangledown, location=location.top, color=color.new(color.orange, 0), size=size.tiny, title="하락 교차")
+alertcondition(crossUp, "HODI 상승 교차", "HODI: 오실레이터가 시그널 라인을 상향 돌파")
+alertcondition(crossDn, "HODI 하락 교차", "HODI: 오실레이터가 시그널 라인을 하향 돌파")
+// [AI_END_LOGIC]
+
+// === [END OF INDICATOR] ===

@@ -64,3 +64,5 @@ Format: `date | persona | decision/progress | next`
 - 2026-07-18 | cursor | Pine 구조: 카테고리 폴더 폐기·평탄 저장 + Tags/wikilink 다대다 제안 파일링 (`queries/pine-flat-multitag-structure-2026-07-18`) | 곽경준 강조점 확인 후 factory flatten / wiki pines/ 착수
 
 - 2026-07-18 | cursor | portability remediation (빈치환 25건 복구, 형제레포 치환, .env 분리, WIKI_PATH=레포루트 주입, SOUL.md 복구) | rehearsal on second machine
+
+- 2026-07-18 | cursor | Pine 공장 평탄+제목통일+wiki pines/ 다대다 완료 (22 scripts, Tags SoT, factory_gate PASS) | 이후 신규 .pine은 평탄 저장; 동기화는 `pine_factory_to_wiki.py`

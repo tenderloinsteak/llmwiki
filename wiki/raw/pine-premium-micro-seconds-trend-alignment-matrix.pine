@@ -1,0 +1,117 @@
+//@version=6
+// Title: Premium Micro Seconds Trend Alignment Matrix
+// Kind: indicator
+// Tags: Moving_Averages, Trend, Time_Based
+// Repaint policy: user-gated lookahead (기본 lookahead_off — 실시간 신호는 리페인트 없음; use_lookahead는 백테스트 전용 옵션)
+indicator("Premium_Micro_Seconds_Trend_Alignment_Matrix", shorttitle="PM_Matrix", overlay=true, format=format.price, precision=2, max_bars_back=5000)
+
+// =============================================================================
+// Part 1: Inputs & Settings (입력 및 설정)
+// =============================================================================
+
+// --- EMA 설정 ---
+grp_ema     = "EMA 설정"
+emaLen      = input.int(9, "EMA 길이", minval=1, group=grp_ema, tooltip="추세 정렬 판정에 쓰이는 EMA 기간 — 짧을수록 민감해집니다")
+src         = input.source(close, "소스", group=grp_ema, tooltip="EMA 계산에 사용할 가격 소스")
+
+// --- Multi-Timeframe Seconds 설정 ---
+grp_mtf     = "Multi-Timeframe Seconds (Premium)"
+tf_15s      = input.timeframe("15S", "15-Seconds Timeframe", group=grp_mtf, tooltip="Premium 전용: 15초 봉 데이터")
+tf_30s      = input.timeframe("30S", "30-Seconds Timeframe", group=grp_mtf, tooltip="Premium 전용: 30초 봉 데이터")
+use_lookahead = input.bool(false, "Look-ahead 허용 (백테스트용)", group=grp_mtf, tooltip="실시간 거래용으로는 false 권장")
+
+// --- 시각화 설정 ---
+grp_vis     = "시각화 설정"
+bullColor   = input.color(color.new(color.green, 85), "상승 정렬 배경색", group=grp_vis, tooltip="상승 정렬 구간의 배경 음영 색")
+bearColor   = input.color(color.new(color.red, 85), "하락 정렬 배경색", group=grp_vis, tooltip="하락 정렬 구간의 배경 음영 색")
+showLabels  = input.bool(true, "진입 라벨 표시", group=grp_vis, tooltip="정렬 발생 시 매수/매도 라벨을 표시합니다")
+bullLabelColor = input.color(color.green, "상승 라벨 색상", group=grp_vis, tooltip="매수 라벨 색")
+bearLabelColor = input.color(color.red, "하락 라벨 색상", group=grp_vis, tooltip="매도 라벨 색")
+
+// --- 알림 설정 ---
+grp_alert   = "알림 설정"
+alertBull   = input.bool(true, "상승 정렬 알림", group=grp_alert, tooltip="상승 정렬 발생 시 알림을 발송합니다")
+alertBear   = input.bool(true, "하락 정렬 알림", group=grp_alert, tooltip="하락 정렬 발생 시 알림을 발송합니다")
+
+// =============================================================================
+// Part 2: Filter Engine & Data Sources (필터 엔진 및 데이터 소스)
+// =============================================================================
+
+// --- 현재 1분 차트 EMA 계산 ---
+ema_1m = ta.ema(src, emaLen)
+
+// --- Premium Multi-Timeframe: 15초, 30초 데이터 요청 ---
+// [수정] bool 값을 직접 넣지 않고 파인스크립트 전용 상수(lookahead_on/off)로 변환
+string lookahead_mode = use_lookahead ? barmerge.lookahead_on : barmerge.lookahead_off
+
+// [수정] 존재하지 않는 lookahead_barmerge 파라미터 삭제
+[close_15s, ema_15s] = request.security(syminfo.tickerid, tf_15s, [close, ta.ema(close, emaLen)], lookahead=lookahead_mode, gaps=barmerge.gaps_on)
+[close_30s, ema_30s] = request.security(syminfo.tickerid, tf_30s, [close, ta.ema(close, emaLen)], lookahead=lookahead_mode, gaps=barmerge.gaps_on)
+
+// [수정] math.is_nan() 대신 Pine Script 내장 nz() 함수를 사용하여 깔끔하게 Fallback 처리
+float ema_15s_safe = nz(ema_15s, ema_1m)
+float ema_30s_safe = nz(ema_30s, ema_1m)
+float close_15s_safe = nz(close_15s, close)
+float close_30s_safe = nz(close_30s, close)
+
+// =============================================================================
+// Part 3: Custom Logic - Trend Alignment Engine (커스텀 로직 - 정렬 엔진)
+// =============================================================================
+
+// --- 정렬 조건 계산 ---
+// 상승 정렬: 15S EMA > 30S EMA > 1M EMA
+bool bullishAlign = ema_15s_safe > ema_30s_safe and ema_30s_safe > ema_1m
+// 하락 정렬: 15S EMA < 30S EMA < 1M EMA
+bool bearishAlign = ema_15s_safe < ema_30s_safe and ema_30s_safe < ema_1m
+
+// --- 트리거 감지 (정렬이 처음 발생한 바 감지) ---
+bool bullishTrigger = bullishAlign and not bullishAlign[1]
+bool bearishTrigger = bearishAlign and not bearishAlign[1]
+
+// --- 디버그용 EMA 값 플로팅 (옵션) ---
+plot(ema_1m, "EMA 1M", color=color.blue, linewidth=2)
+plot(ema_15s_safe, "EMA 15S", color=color.green, linewidth=1, style=plot.style_linebr)
+plot(ema_30s_safe, "EMA 30S", color=color.red, linewidth=1, style=plot.style_linebr)
+
+// =============================================================================
+// Part 4: Execution & Visualization (실행 및 시각화)
+// =============================================================================
+
+// --- 배경색 칠하기 (배경 색상으로 정렬 상태 표시) ---
+bgcolor(bullishAlign ? bullColor : (bearishAlign ? bearColor : na), title="정렬 배경색")
+
+// --- 진입 라벨 플로팅 ---
+plotshape(bullishTrigger and showLabels, title="마이크로 매수", style=shape.triangleup, location=location.belowbar, color=bullLabelColor, size=size.small, text="▲ MICRO BUY", textcolor=color.white, editable=true)
+plotshape(bearishTrigger and showLabels, title="마이크로 매도", style=shape.triangledown, location=location.abovebar, color=bearLabelColor, size=size.small, text="▼ MICRO SELL", textcolor=color.white, editable=true)
+
+// --- EMA 값 테이블 표시 (디버그용) ---
+dbgPosIn = input.string("우상단", "패널 위치", options=["우상단", "우중단", "우하단", "좌상단", "좌하단"], group=grp_vis, tooltip="상태 패널이 표시될 차트 모서리 위치")
+dbgSizeIn = input.string("작게", "패널 글자 크기", options=["작게", "보통", "크게"], group=grp_vis, tooltip="상태 패널 텍스트 크기")
+dbgPos = dbgPosIn == "우상단" ? position.top_right : dbgPosIn == "우중단" ? position.middle_right : dbgPosIn == "우하단" ? position.bottom_right : dbgPosIn == "좌상단" ? position.top_left : position.bottom_left
+dbgTxtSz = dbgSizeIn == "작게" ? size.small : dbgSizeIn == "보통" ? size.normal : size.large
+var table debugTable = table.new(dbgPos, 4, 4, border_width=1, frame_width=1, frame_color=color.gray)
+if barstate.islast
+    table.cell(debugTable, 0, 0, "EMA 기간", bgcolor=color.gray, text_color=color.white, text_size=dbgTxtSz)
+    table.cell(debugTable, 1, 0, str.tostring(emaLen), text_size=dbgTxtSz)
+    table.cell(debugTable, 0, 1, "EMA 1M", bgcolor=color.blue, text_color=color.white, text_size=dbgTxtSz)
+    table.cell(debugTable, 1, 1, str.tostring(ema_1m, "#.####"), text_size=dbgTxtSz)
+    table.cell(debugTable, 0, 2, "EMA 15S", bgcolor=color.green, text_color=color.white, text_size=dbgTxtSz)
+    table.cell(debugTable, 1, 2, str.tostring(ema_15s_safe, "#.####"), text_size=dbgTxtSz)
+    table.cell(debugTable, 0, 3, "EMA 30S", bgcolor=color.red, text_color=color.white, text_size=dbgTxtSz)
+    table.cell(debugTable, 1, 3, str.tostring(ema_30s_safe, "#.####"), text_size=dbgTxtSz)
+    table.cell(debugTable, 2, 0, "상태", bgcolor=color.gray, text_color=color.white, text_size=dbgTxtSz)
+    table.cell(debugTable, 3, 0, bullishAlign ? "상승 정렬" : (bearishAlign ? "하락 정렬" : "중립"), bgcolor=bullishAlign ? bullColor : (bearishAlign ? bearColor : color.gray), text_color=color.white, text_size=dbgTxtSz)
+
+// =============================================================================
+// Part 5: Alerts & Risk Management (알림 및 리스크 관리)
+// =============================================================================
+
+// --- 상승 정렬 알림 ---
+alertcondition(bullishTrigger and alertBull, title="🟢 마이크로 매수 정렬", message="PM_Matrix: 15S EMA > 30S EMA > 1M EMA - 상승 정렬 발생!")
+
+// --- 하락 정렬 알림 ---
+alertcondition(bearishTrigger and alertBear, title="🔴 마이크로 매도 정렬", message="PM_Matrix: 15S EMA < 30S EMA < 1M EMA - 하락 정렬 발생!")
+
+// --- 동적 메시지 알림 (티커·가격 포함) ---
+if barstate.isconfirmed and ((bullishTrigger and alertBull) or (bearishTrigger and alertBear))
+    alert("PM_Matrix " + (bullishTrigger ? "BULL ALIGN" : "BEAR ALIGN") + " | " + syminfo.ticker + " @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)

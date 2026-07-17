@@ -112,3 +112,6 @@ Filed [[queries/llmwiki-fragility-2026-07-17]]. Top risks: thin raw fuel, prompt
 
 ## [2026-07-18] query | Pine 평탄 저장 + 다대다 카테고리 연결 구조
 폴더=단일부모 한계 → factory 평탄 + `// Tags:` SoT + wiki `pines/scripts`↔`pines/categories` wikilink 다대다 제안. 결정 대기.
+
+## [2026-07-18] lint | Pine 평탄 저장 + Tags 다대다 + 제목 통일
+공장 `1_Indicators|2_Strategies` 카테고리 폴더 제거(22 .pine 평탄). 헤더 `Title/Kind/Tags` 통일, TV 제목=파일 stem. `factory_saver`·어셈블러 Tags SoT. wiki `pines/` 그래프+raw 22캡처 (`pine_factory_to_wiki.py`). factory_gate PASS.

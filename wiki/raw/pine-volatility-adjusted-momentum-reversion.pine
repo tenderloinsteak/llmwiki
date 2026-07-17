@@ -1,0 +1,135 @@
+//@version=6
+// Title: Volatility Adjusted Momentum Reversion
+// Kind: strategy
+// Tags: Momentum, Volatility
+strategy("Volatility_Adjusted_Momentum_Reversion", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, currency=currency.USD)
+
+// === [FIXED SKELETON: INITIAL SETUP & STRATEGY DEFINITION] ===
+// Strategy metadata and configuration handled above
+
+// === [AI INJECTION ZONE: PARAMETERS & INDICATORS] ===
+// [AI_START_INPUTS]
+kcLength = input.int(20, "Keltner Length")
+kcMult = input.float(2.0, "Keltner Multiplier")
+rsiLength = input.int(14, "RSI Length")
+rsiOverbought = input.int(65, "RSI Overbought Limit")
+rsiOversold = input.int(35, "RSI Oversold Limit")
+atrLength = input.int(14, "ATR Length")
+// [AI_END_INPUTS]
+
+// === [FIXED SKELETON: MIDDLEWARE / SETUP] ===
+// Timeframe filter - only trade on specified timeframes
+timeframeFilter = input.timeframe("15", "Trading Timeframe")
+useTimeframeFilter = input.bool(true, "Use Timeframe Filter")
+
+// Session filter
+useSessionFilter = input.bool(false, "Use Session Filter")
+sessionStart = input.session("0930-1600", "Trading Session")
+
+// Calculate timeframe condition
+inTimeframe = not useTimeframeFilter or timeframe.isintraday and timeframe.multiplier <= 60
+inSession = not useSessionFilter or time(timeframe.period, sessionStart)
+
+// Current bar data
+src = close
+high_ = high
+low_ = low
+open_ = open
+volume_ = volume
+
+// Signal variable declarations (default false, reassigned below via :=)
+longCondition = false
+shortCondition = false
+exitCondition = false
+
+// === [AI INJECTION ZONE: ENTRY & EXIT CONDITIONS] ===
+// [AI_START_CONDITIONS]
+_taHoist1 = ta.rsi(close, rsiLength)
+longCondition := ta.crossover(close, ta.sma(close, kcLength) + (kcMult * ta.atr(atrLength))) and _taHoist1 < rsiOverbought
+_taHoist2 = ta.rsi(close, rsiLength)
+shortCondition := ta.crossunder(close, ta.sma(close, kcLength) - (kcMult * ta.atr(atrLength))) and _taHoist2 > rsiOversold
+_taHoist3 = ta.crossover(ta.rsi(close, rsiLength), 50)
+exitCondition := ta.crossunder(ta.rsi(close, rsiLength), 50) or _taHoist3
+// [AI_END_CONDITIONS]
+
+// === [FIXED SKELETON: EXECUTION ENGINE] ===
+// Position management
+var float entryPrice = na
+var float stopLossPrice = na
+var float takeProfitPrice = na
+var int positionSize = 0
+
+// Risk management inputs
+useStopLoss = input.bool(true, "Use Stop Loss")
+stopLossPct = input.float(2.0, "Stop Loss %") / 100
+useTakeProfit = input.bool(true, "Use Take Profit")
+takeProfitPct = input.float(4.0, "Take Profit %") / 100
+useTrailingStop = input.bool(false, "Use Trailing Stop")
+trailingStopPct = input.float(1.5, "Trailing Stop %") / 100
+
+// Max position size
+maxPositionSize = input.int(1, "Max Concurrent Positions")
+
+// Execution Logic
+if inTimeframe and inSession
+    // Long Entry
+    if longCondition and strategy.position_size == 0
+        strategy.entry("Long", strategy.long)
+        entryPrice := close
+        if useStopLoss
+            stopLossPrice := close * (1 - stopLossPct)
+        if useTakeProfit
+            takeProfitPrice := close * (1 + takeProfitPct)
+    
+    // Short Entry
+    if shortCondition and strategy.position_size == 0
+        strategy.entry("Short", strategy.short)
+        entryPrice := close
+        if useStopLoss
+            stopLossPrice := close * (1 + stopLossPct)
+        if useTakeProfit
+            takeProfitPrice := close * (1 - takeProfitPct)
+
+    // Exit Logic
+    if strategy.position_size > 0
+        // Long position management
+        if exitCondition or (useStopLoss and low <= stopLossPrice) or (useTakeProfit and high >= takeProfitPrice)
+            strategy.close("Long", comment="Exit Long")
+            entryPrice := na
+            stopLossPrice := na
+            takeProfitPrice := na
+        else if useTrailingStop and high > entryPrice
+            // Trailing stop for long
+            newStop = high * (1 - trailingStopPct)
+            stopLossPrice := math.max(stopLossPrice, newStop)
+    
+    if strategy.position_size < 0
+        // Short position management
+        if exitCondition or (useStopLoss and high >= stopLossPrice) or (useTakeProfit and low <= takeProfitPrice)
+            strategy.close("Short", comment="Exit Short")
+            entryPrice := na
+            stopLossPrice := na
+            takeProfitPrice := na
+        else if useTrailingStop and low < entryPrice
+            // Trailing stop for short
+            newStop = low * (1 + trailingStopPct)
+            stopLossPrice := math.min(stopLossPrice, newStop)
+
+// === [FIXED SKELETON: VISUALIZATION & ALERTS] ===
+// Plot entry/exit signals
+plotshape(longCondition and strategy.position_size == 0, title="Long Entry", location=location.belowbar, color=color.green, style=shape.labelup, text="LONG", textcolor=color.white, size=size.small)
+plotshape(shortCondition and strategy.position_size == 0, title="Short Entry", location=location.abovebar, color=color.red, style=shape.labeldown, text="SHORT", textcolor=color.white, size=size.small)
+plotshape(exitCondition and strategy.position_size != 0, title="Exit Signal", location=location.abovebar, color=color.orange, style=shape.labeldown, text="EXIT", textcolor=color.white, size=size.small)
+
+// Plot stop loss and take profit levels
+plot(useStopLoss and strategy.position_size > 0 ? stopLossPrice : na, "Stop Loss Long", color=color.red, style=plot.style_linebr)
+plot(useTakeProfit and strategy.position_size > 0 ? takeProfitPrice : na, "Take Profit Long", color=color.green, style=plot.style_linebr)
+plot(useStopLoss and strategy.position_size < 0 ? stopLossPrice : na, "Stop Loss Short", color=color.red, style=plot.style_linebr)
+plot(useTakeProfit and strategy.position_size < 0 ? takeProfitPrice : na, "Take Profit Short", color=color.green, style=plot.style_linebr)
+
+// Alert conditions
+alertcondition(longCondition, title="Long Entry Alert", message="Long entry signal detected")
+alertcondition(shortCondition, title="Short Entry Alert", message="Short entry signal detected")
+alertcondition(exitCondition, title="Exit Alert", message="Exit signal detected")
+
+// === [END OF STRATEGY] ===

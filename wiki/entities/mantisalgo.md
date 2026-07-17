@@ -1,7 +1,7 @@
 ---
 tags: [project, mantisalgo, pine-script]
 created: 2026-07-16
-updated: 2026-07-17
+updated: 2026-07-18
 sources: ["repo: Desktop/dev/MantisAlgo (AGENTS.md, hermes/, config/)", "repo: Desktop/dev/MantisAlgo/docs/AUDIT_REPORT_2026-07-17.md"]
 ---
 # MantisAlgo (맨티스알고)
@@ -18,15 +18,15 @@ sources: ["repo: Desktop/dev/MantisAlgo (AGENTS.md, hermes/, config/)", "repo: D
 - 실행: `python main.py --type strategy|indicator [--review|--from-idea FILE|-n N]`
 - Phase 1 (2026-07-17): `signal_mirror`/`signal_calibrator`/`sig_governor` — 신호 밀도 밴드 게이트
 - 핵심 코드 (2026-07-17 패키지화): `main.py`(루트 유일 진입점) → `mantis/` 패키지 (`pipeline.py` + `context_prompting.py` + `idea_registry.py` 등 19개 모듈, flat import + `__init__.py` sys.path 부트스트랩)
-- 산출: `output/`(초안) → 검증 통과 시 `pinescript_factory/1_Indicators|2_Strategies/<카테고리>/` — 카테고리는 Mantis 30종 택소노미 (2026-07-17 도입, `mantis/factory_saver.py`의 `CATEGORIES`; Price_Action·Volume·Signals·Time_Based·Liquidity·FVG 등 + 레거시 Trend/Momentum/Breakout). 폴더는 주 `category`가 결정, 겹치는 분류는 아이디어 JSON `category_tags` → `.pine` 헤더 `// Tags:`
-- 자산 현황: 모듈 174개(`config/module_registry/registry.json`), 제품 SKU-01..08(`config/product_skus/`), 완성 .pine 22개 (품질 A14/B8/C0 — 2026-07-17 감사 후 저품질 구세대 3개 폐기)
+- 산출: `output/`(초안) → 검증 통과 시 `pinescript_factory/1_Indicators|2_Strategies/` **평탄 저장**. 분류는 `// Tags:` 다대다 (아이디어 JSON `category`+`category_tags`). 헤더 통일: Title / Kind / Tags. 위키 그래프: [[pines/pines-map]] (`hermes/scripts/pine_factory_to_wiki.py`)
+- 자산 현황: 모듈 174개(`config/module_registry/registry.json`), 제품 SKU-01..08(`config/product_skus/`), 완성 .pine 22개 (indicator 11 + strategy 11)
 - 5대 비양보 규칙: ①아이디어 유니크 ②indicator≠strategy ③결정적 주입 우선, LLM은 실패 시만 ④게이트 실패=저장 금지 ⑤시그널 변수 규율
 - Pine 규칙 정본: `docs/pinescript_v6_master_rules.md` (.pine 작업 시에만 읽기; 2026-07-17 docs/로 이동)
 - 작업 표준 정본: `hermes/` 폴더 (factory-manager, idea, ui, module-developer, development, critic)
 
 ## 🔗 연결
 
-[[mantisalgo-pipeline]] · [[mantisalgo-module-registry]] · [[mantisalgo-verification-gate]] · [[mantisalgo-sku-catalog]] · 담당: [[factory-manager]] [[factory-idea]] [[factory-ui]] [[factory-module-developer]] [[factory-development]] [[critic]] · 개념: [[pine-script]] [[5-part-anatomy]] [[repainting]]
+[[mantisalgo-pipeline]] · [[mantisalgo-module-registry]] · [[mantisalgo-verification-gate]] · [[mantisalgo-sku-catalog]] · [[pines/pines-map]] · 담당: [[factory-manager]] [[factory-idea]] [[factory-ui]] [[factory-module-developer]] [[factory-development]] [[critic]] · 개념: [[pine-script]] [[5-part-anatomy]] [[repainting]]
 
 ## 📌 미해결
 

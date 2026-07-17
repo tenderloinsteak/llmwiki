@@ -1,0 +1,689 @@
+//@version=6
+// Title: PAC Lite SKU-01
+// Kind: indicator
+// Tags: Price_Action, Support_Resistance, FVG, Liquidity
+// Concept: SKU-01 PAC Lite — registry-driven module assembly
+// Tier: platform
+// Repaint policy: bar_close
+indicator("PAC_Lite_SKU01", shorttitle="PAC1", overlay=true, max_polylines_count=100, max_labels_count=500, max_boxes_count=500, max_lines_count=500)
+
+// [PLATFORM_START_INPUTS]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 00 - 플랫폼 마스터 설정
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+grpPlatform = "PAC_Lite_SKU01 Platform"
+swingLen = input.int(5, "스윙 피벗 길이", minval=2, group=grpPlatform, display=display.none, tooltip="주요 시장 구조를 잡는 스윙 포인트 길이 — 크게 하면 굵직한 구조만 표시됩니다")
+internalLen = input.int(3, "내부 스윙 길이", minval=2, group=grpPlatform, display=display.none, tooltip="단기(내부) 구조 탐지 길이 — 스윙 피벗 길이보다 작게 설정하세요")
+maxBoxCap = input.int(200, "최대 박스 수", minval=20, group=grpPlatform, display=display.none, tooltip="차트에 유지할 박스 최대 개수 — 초과 시 오래된 것부터 자동 삭제됩니다")
+maxLineCap = input.int(200, "최대 라인 수", minval=20, group=grpPlatform, display=display.none, tooltip="차트에 유지할 라인 최대 개수 — 초과 시 오래된 것부터 자동 삭제됩니다")
+confirmBars = input.bool(true, "바 종가 확정 후 시그널", group=grpPlatform, display=display.none, tooltip="봉 마감 확정 후에만 시그널을 표시해 리페인트를 방지합니다")
+// Registry modules (16): alerts, block_order_bull_bear, imb_fvg_bull_bear, imb_fvg_mitigation, infra_drawing_manager, infra_helpers_library, liq_eqh_eql_lines, liq_sweep, sess_profiles, struct_market_bos_choch, sig_confluence_score, struct_swing_labels
+//   + ui_mtf_dashboard, ui_platform_dashboard, ui_theme_presets, ui_visual_director
+tzSess = input.string("America/New_York", "타임존", group=grpPlatform, display=display.none, tooltip="세션·킬존 계산 기준 타임존")
+// Optional cross-module defaults when feature modules absent
+chochPlusUp = false
+chochPlusDn = false
+useAlertHub = input.bool(true, "알림 허브", group=grpPlatform, display=display.none, tooltip="진입·구조·영역 터치 알림을 통합 관리합니다")
+useOrderBlocks = input.bool(true, "오더 블록", group=grpPlatform, display=display.none, tooltip="기관 매집·분산 추정 구간(오더 블록)을 표시합니다")
+useFvg = input.bool(true, "Fair Value Gap", group=grpPlatform, display=display.none, tooltip="가격 불균형(FVG) 영역을 박스로 표시합니다")
+useDrawMgr = input.bool(true, "드로잉 매니저", group=grpPlatform, display=display.none, tooltip="박스·라인 등 드로잉 객체의 수명주기를 자동 관리합니다")
+useLiquidity = input.bool(true, "동일 고저 유동성", group=grpPlatform, display=display.none, tooltip="동일 고점(EQH)·동일 저점(EQL) 유동성 라인을 표시합니다")
+useSessions = input.bool(true, "세션 프로필", group=grpPlatform, display=display.none, tooltip="아시아·런던·뉴욕 세션 구간과 고저를 표시합니다")
+useMarketStructure = input.bool(true, "시장 구조 (BOS/CHoCH)", group=grpPlatform, display=display.none, tooltip="구조 돌파(BOS)와 추세 전환(CHoCH)을 자동 마킹합니다")
+useMtfDash = input.bool(true, "MTF 대시보드", group=grpPlatform, display=display.none, tooltip="다중 시간대 추세 편향을 우측 패널에 요약합니다")
+useTheme = input.bool(true, "테마/스타일", group=grpPlatform, display=display.none, tooltip="MantisAlgo 시그니처 팔레트(teal/orange)를 적용합니다")
+grpVisual = "차트 표시 (겹침 방지)"
+showSessBg = input.bool(false, "세션·킬존 배경색", group=grpVisual, tooltip="아시아·런던·뉴욕 세션과 킬존 구간을 배경 음영으로 표시합니다")
+showVolBg = input.bool(false, "볼륨·VWAP 배경색", group=grpVisual, tooltip="볼륨 급증·VWAP 이격 구간을 배경 음영으로 표시합니다")
+showSigBg = input.bool(false, "시그널 합류 배경색", group=grpVisual, tooltip="다중 조건이 합류한 구간을 배경 음영으로 강조합니다")
+showOrbMarkers = input.bool(true, "ORB 돌파 마커", group=grpVisual, tooltip="오프닝 레인지(개장 변동폭) 돌파 시 삼각형 마커를 표시합니다")
+showPlatformDash = input.bool(true, "플랫폼 상태 패널 (우하단)", group=grpVisual, tooltip="구조·모멘텀·세션 상태를 요약한 실시간 패널을 표시합니다")
+grpCore = "코어"
+showEma = input.bool(true, "EMA 표시", group=grpCore, tooltip="기준 EMA 라인 표시")
+emaLen = input.int(50, "EMA", group=grpCore, tooltip="기준 EMA 기간 — 추세 방향 판정")
+// [PLATFORM_END_INPUTS]
+// [AI_START_INPUTS]
+
+// [AI_END_INPUTS]
+
+// [PLATFORM_START_TYPES]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 01 - UDT 타입
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+type SwingPoint
+    int barIdx
+    float price
+    int dir
+
+type FvgZone
+    box bx
+    float top
+    float bot
+    int dir
+    bool active
+
+type OrderBlock
+    box bx
+    float top
+    float bot
+    int dir
+    bool mitigated
+
+type LiquidityLevel
+    line ln
+    float price
+    int dir
+// [PLATFORM_END_TYPES]
+
+// [PLATFORM_START_HELPERS]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 19 - 헬퍼 라이브러리
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+f_isBullBar() =>
+    close > open
+
+f_isBearBar() =>
+    close < open
+
+f_bodyRatio() =>
+    rangeBar = math.max(high - low, syminfo.mintick)
+    math.abs(close - open) / rangeBar
+
+f_upperWick() =>
+    math.max(high - math.max(open, close), 0.0)
+
+f_lowerWick() =>
+    math.max(math.min(open, close) - low, 0.0)
+
+f_atrPct(len) =>
+    ta.atr(len) / close * 100
+
+f_nearLevel(price, level, tol) =>
+    not na(level) and math.abs(price - level) <= tol
+
+f_safeEma(src, len) =>
+    ta.ema(src, math.max(len, 1))
+
+f_safeRsi(src, len) =>
+    ta.rsi(src, math.max(len, 2))
+
+f_volRatio(len) =>
+    volume / math.max(ta.sma(volume, len), 1)
+
+f_trendStrength() =>
+    ema20 = ta.ema(close, 20)
+    ema50 = ta.ema(close, 50)
+    ema20 > ema50 ? 1 : ema20 < ema50 ? -1 : 0
+
+f_hasBullStack() =>
+    volR = f_volRatio(20)
+    f_isBullBar() and f_bodyRatio() > 0.5 and volR > 1.2
+
+f_hasBearStack() =>
+    volR = f_volRatio(20)
+    f_isBearBar() and f_bodyRatio() > 0.5 and volR > 1.2
+// [PLATFORM_END_HELPERS]
+
+// [PLATFORM_START_DRAWING]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 02 - 드로잉 매니저 (배열 lifecycle)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+var array<box> boxPool = array.new_box()
+var array<line> linePool = array.new_line()
+var array<label> labelPool = array.new_label()
+
+f_trim_boxes() =>
+    while array.size(boxPool) > maxBoxCap
+        bx = array.shift(boxPool)
+        if not na(bx)
+            box.delete(bx)
+
+f_trim_lines() =>
+    while array.size(linePool) > maxLineCap
+        ln = array.shift(linePool)
+        if not na(ln)
+            line.delete(ln)
+
+f_trim_labels() =>
+    while array.size(labelPool) > 100
+        lb = array.shift(labelPool)
+        if not na(lb)
+            label.delete(lb)
+
+f_push_box(bx) =>
+    if useDrawMgr and not na(bx)
+        array.push(boxPool, bx)
+        f_trim_boxes()
+
+f_push_line(ln) =>
+    if useDrawMgr and not na(ln)
+        array.push(linePool, ln)
+        f_trim_lines()
+
+f_push_label(lb) =>
+    if useDrawMgr and not na(lb)
+        array.push(labelPool, lb)
+        f_trim_labels()
+
+if useDrawMgr and barstate.islastconfirmedhistory
+    f_trim_boxes()
+    f_trim_lines()
+    f_trim_labels()
+// [PLATFORM_END_DRAWING]
+
+// [PLATFORM_START_THEME]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ui_visual_director — 표시 계층
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+displayProfile = input.string("Standard", "표시 프로필", options=["Compact", "Standard", "Full"], group=grpVisual, tooltip="Compact: 핵심 구조만 / Standard: 권장 기본값 / Full: 모든 보조 마커까지 표시")
+showTier1 = true
+showTier2 = displayProfile != "Compact"
+showTier3 = displayProfile == "Full"
+compactMode = displayProfile == "Compact"
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 10 - 테마
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+grpTheme = "테마/색상"
+bullColorIn = input.color(color.teal, "상승", group=grpTheme, inline="thm1", tooltip="상승(불) 요소 기본 색 — 구조·FVG·시그널에 공통 적용됩니다")
+bearColorIn = input.color(color.orange, "하락", group=grpTheme, inline="thm1", tooltip="하락(베어) 요소 기본 색 — 구조·FVG·시그널에 공통 적용됩니다")
+neutralColorIn = input.color(color.gray, "중립", group=grpTheme, inline="thm1", tooltip="중립·보조 요소 색 — 라벨 및 비활성 상태에 적용됩니다")
+zoneTransp = input.int(85, "영역 투명도", minval=50, maxval=98, group=grpTheme, tooltip="FVG·오더블록 등 영역 채우기 투명도 — 높을수록 옅어집니다")
+bullColor = useTheme ? bullColorIn : color.green
+bearColor = useTheme ? bearColorIn : color.red
+neutralColor = useTheme ? color.new(neutralColorIn, 40) : color.gray
+fvgBullBg = useTheme ? color.new(bullColorIn, zoneTransp) : color.new(color.green, 88)
+fvgBearBg = useTheme ? color.new(bearColorIn, zoneTransp) : color.new(color.red, 88)
+// [PLATFORM_END_THEME]
+
+// [PLATFORM_START_STRUCTURE]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 03 - 시장 구조 엔진 (BOS / CHoCH)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+var int msTrend = 0
+var float lastSwingHigh = na
+var float lastSwingLow = na
+var float prevSwingHigh = na
+var float prevSwingLow = na
+
+ph = ta.pivothigh(high, swingLen, swingLen)
+pl = ta.pivotlow(low, swingLen, swingLen)
+
+if useMarketStructure
+    if not na(ph)
+        prevSwingHigh := lastSwingHigh
+        lastSwingHigh := ph
+    if not na(pl)
+        prevSwingLow := lastSwingLow
+        lastSwingLow := pl
+
+_crossBosUp = ta.crossover(close, lastSwingHigh)
+_crossBosDn = ta.crossunder(close, lastSwingLow)
+bosUp = useMarketStructure and not na(lastSwingHigh) and _crossBosUp
+bosDn = useMarketStructure and not na(lastSwingLow) and _crossBosDn
+chochUp = useMarketStructure and msTrend <= 0 and bosUp
+chochDn = useMarketStructure and msTrend >= 0 and bosDn
+
+if useMarketStructure
+    if bosUp
+        msTrend := 1
+    if bosDn
+        msTrend := -1
+
+internalPh = ta.pivothigh(high, internalLen, internalLen)
+internalPl = ta.pivotlow(low, internalLen, internalLen)
+var float intHigh = na
+var float intLow = na
+if useMarketStructure
+    if not na(internalPh)
+        intHigh := internalPh
+    if not na(internalPl)
+        intLow := internalPl
+
+_crossIntBosUp = ta.crossover(close, intHigh)
+_crossIntBosDn = ta.crossunder(close, intLow)
+intBosUp = useMarketStructure and not na(intHigh) and _crossIntBosUp
+intBosDn = useMarketStructure and not na(intLow) and _crossIntBosDn
+
+structMarkBull = bosUp or chochUp
+structMarkBear = bosDn or chochDn
+_showBosUp = bosUp and not chochUp
+_showBosDn = bosDn and not chochDn
+
+_showChochUp = chochUp and not chochPlusUp
+_showChochDn = chochDn and not chochPlusDn
+
+plotshape(useMarketStructure and showTier1 and _showBosUp and (not confirmBars or barstate.isconfirmed),
+     title="BOS Up", style=shape.labelup, location=location.belowbar,
+     color=color.new(color.green, 0), text="BOS", size=size.tiny)
+plotshape(useMarketStructure and showTier1 and _showBosDn and (not confirmBars or barstate.isconfirmed),
+     title="BOS Dn", style=shape.labeldown, location=location.abovebar,
+     color=color.new(color.red, 0), text="BOS", size=size.tiny)
+plotshape(useMarketStructure and showTier1 and _showChochUp and (not confirmBars or barstate.isconfirmed),
+     title="CHoCH Up", style=shape.diamond, location=location.belowbar,
+     color=color.new(color.teal, 0), text="CH+", size=size.tiny)
+plotshape(useMarketStructure and showTier1 and _showChochDn and (not confirmBars or barstate.isconfirmed),
+     title="CHoCH Dn", style=shape.diamond, location=location.abovebar,
+     color=color.new(color.orange, 0), text="CH-", size=size.tiny)
+
+msBias = msTrend > 0 ? "BULL" : msTrend < 0 ? "BEAR" : "NEUT"
+
+f_structureBias() =>
+    msTrend
+
+f_midRange() =>
+    float result = not na(lastSwingHigh) and not na(lastSwingLow) ? (lastSwingHigh + lastSwingLow) / 2 : na
+    result
+
+f_inDiscount() =>
+    mid = f_midRange()
+    not na(mid) and close < mid
+
+f_inPremium() =>
+    mid = f_midRange()
+    not na(mid) and close > mid
+
+f_compositeBias() =>
+    f_trendStrength() + f_structureBias()
+// [PLATFORM_END_STRUCTURE]
+
+// [PLATFORM_START_FVG]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 04 - Fair Value Gap (FVG)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+bullFvg = low > high[2] and close[1] > open[1]
+bearFvg = high < low[2] and close[1] < open[1]
+fvgTop = bullFvg ? low : bearFvg ? low[2] : na
+fvgBot = bullFvg ? high[2] : bearFvg ? high : na
+fvgDir = bullFvg ? 1 : bearFvg ? -1 : 0
+
+var array<box> fvgBoxes = array.new_box()
+
+if useFvg and fvgDir != 0 and (not confirmBars or barstate.isconfirmed)
+    bx = box.new(bar_index - 2, fvgTop, bar_index + 8, fvgBot,
+         border_color=fvgDir > 0 ? color.new(color.green, 60) : color.new(color.red, 60),
+         bgcolor=fvgDir > 0 ? color.new(color.green, 88) : color.new(color.red, 88))
+    array.push(fvgBoxes, bx)
+    f_push_box(bx)
+    while array.size(fvgBoxes) > 40
+        old = array.shift(fvgBoxes)
+        if not na(old)
+            box.delete(old)
+
+fvgMitigated = useFvg and fvgDir != 0 and (
+     (fvgDir > 0 and low <= fvgBot) or (fvgDir < 0 and high >= fvgTop))
+plotshape(useFvg and bullFvg and showTier2 and not structMarkBull, title="Bull FVG", style=shape.square,
+     location=location.belowbar, color=color.new(color.green, 30), size=size.tiny)
+plotshape(useFvg and bearFvg and showTier2 and not structMarkBear, title="Bear FVG", style=shape.square,
+     location=location.abovebar, color=color.new(color.red, 30), size=size.tiny)
+// [PLATFORM_END_FVG]
+
+// [PLATFORM_START_MITIGATION]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 13 - FVG/OB 미티게이션 추적
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+var array<float> fvgTops = array.new_float()
+var array<float> fvgBots = array.new_float()
+var array<int> fvgDirs = array.new_int()
+
+if useFvg and fvgDir != 0
+    array.push(fvgTops, fvgTop)
+    array.push(fvgBots, fvgBot)
+    array.push(fvgDirs, fvgDir)
+    while array.size(fvgTops) > 50
+        array.shift(fvgTops)
+        array.shift(fvgBots)
+        array.shift(fvgDirs)
+
+mitigatedCount = 0
+if array.size(fvgTops) > 0
+    for i = 0 to array.size(fvgTops) - 1
+        t = array.get(fvgTops, i)
+        b = array.get(fvgBots, i)
+        d = array.get(fvgDirs, i)
+        hit = d > 0 ? low <= b : high >= t
+        if hit
+            mitigatedCount += 1
+
+plot(mitigatedCount, "Mitigated FVG Count", color=color.new(color.gray, 50), display=display.none)
+// [PLATFORM_END_MITIGATION]
+
+// [PLATFORM_START_OB]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 05 - 오더 블록 (OB)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+_obAtr = ta.atr(14)
+impulseUp = close > open and (close - open) > _obAtr * 0.8 and close > close[1]
+impulseDn = close < open and (open - close) > _obAtr * 0.8 and close < close[1]
+
+obBullTop = impulseUp ? high[1] : na
+obBullBot = impulseUp ? low[1] : na
+obBearTop = impulseDn ? high[1] : na
+obBearBot = impulseDn ? low[1] : na
+
+var array<box> obBoxes = array.new_box()
+
+if useOrderBlocks and impulseUp and (not confirmBars or barstate.isconfirmed)
+    ob = box.new(bar_index - 1, obBullTop, bar_index + 12, obBullBot,
+         border_color=color.new(color.teal, 40), bgcolor=color.new(color.teal, 85))
+    array.push(obBoxes, ob)
+    f_push_box(ob)
+
+if useOrderBlocks and impulseDn and (not confirmBars or barstate.isconfirmed)
+    ob = box.new(bar_index - 1, obBearTop, bar_index + 12, obBearBot,
+         border_color=color.new(color.orange, 40), bgcolor=color.new(color.orange, 85))
+    array.push(obBoxes, ob)
+    f_push_box(ob)
+
+while array.size(obBoxes) > 30
+    oldOb = array.shift(obBoxes)
+    if not na(oldOb)
+        box.delete(oldOb)
+
+obMitigatedBull = useOrderBlocks and not na(obBullBot) and low < obBullBot
+obMitigatedBear = useOrderBlocks and not na(obBearBot) and high > obBearTop
+// [PLATFORM_END_OB]
+
+// [PLATFORM_START_SESSION]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 07 - 세션 프로필
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+asiaSess = input.session("2000-0000", "아시아", group=grpPlatform, display=display.none, tooltip="아시아 세션 구간 (거래소 시간 기준)")
+londonSess = input.session("0300-0800", "런던", group=grpPlatform, display=display.none, tooltip="런던 세션 구간 (거래소 시간 기준)")
+nySess = input.session("0930-1600", "뉴욕", group=grpPlatform, display=display.none, tooltip="뉴욕 세션 구간 (거래소 시간 기준)")
+inAsia = useSessions and not na(time(timeframe.period, asiaSess, tzSess))
+inLondon = useSessions and not na(time(timeframe.period, londonSess, tzSess))
+inNy = useSessions and not na(time(timeframe.period, nySess, tzSess))
+
+sessionName = inNy ? "NY" : inLondon ? "LDN" : inAsia ? "ASIA" : "OFF"
+
+var float asiaHigh = na
+var float asiaLow = na
+var float ldnHigh = na
+var float ldnLow = na
+asiaStart = inAsia and not inAsia[1]
+ldnStart = inLondon and not inLondon[1]
+if useSessions
+    if asiaStart
+        asiaHigh := high
+        asiaLow := low
+    else if inAsia
+        asiaHigh := math.max(asiaHigh, high)
+        asiaLow := math.min(asiaLow, low)
+    if ldnStart
+        ldnHigh := high
+        ldnLow := low
+    else if inLondon
+        ldnHigh := math.max(ldnHigh, high)
+        ldnLow := math.min(ldnLow, low)
+
+bgcolor(useSessions and showSessBg and inAsia ? color.new(color.yellow, 95) : na)
+bgcolor(useSessions and showSessBg and inLondon ? color.new(color.blue, 96) : na)
+bgcolor(useSessions and showSessBg and inNy ? color.new(color.purple, 96) : na)
+// [PLATFORM_END_SESSION]
+
+// [PLATFORM_START_VOLUME]
+
+// [PLATFORM_END_VOLUME]
+
+// [PLATFORM_START_LIQUIDITY]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 06 - 유동성 (EQH / EQL)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+eqhTol = ta.atr(14) * 0.05
+eqlTol = ta.atr(14) * 0.05
+eqHigh = useLiquidity and not na(ph) and not na(prevSwingHigh) and math.abs(ph - prevSwingHigh) <= eqhTol
+eqLow = useLiquidity and not na(pl) and not na(prevSwingLow) and math.abs(pl - prevSwingLow) <= eqlTol
+
+var array<line> liqLines = array.new_line()
+
+if useLiquidity and eqHigh
+    ln = line.new(bar_index - swingLen, ph, bar_index + 5, ph, color=color.new(color.red, 30), width=1)
+    array.push(liqLines, ln)
+    f_push_line(ln)
+if useLiquidity and eqLow
+    ln = line.new(bar_index - swingLen, pl, bar_index + 5, pl, color=color.new(color.green, 30), width=1)
+    array.push(liqLines, ln)
+    f_push_line(ln)
+
+while array.size(liqLines) > 25
+    oldL = array.shift(liqLines)
+    if not na(oldL)
+        line.delete(oldL)
+
+liqSweepHigh = useLiquidity and not na(lastSwingHigh) and high > lastSwingHigh and close < lastSwingHigh
+liqSweepLow = useLiquidity and not na(lastSwingLow) and low < lastSwingLow and close > lastSwingLow
+
+plotshape(liqSweepHigh and showTier2 and not structMarkBear, title="Liquidity Grab High", style=shape.xcross,
+     location=location.abovebar, color=color.new(color.red, 0), size=size.tiny)
+plotshape(liqSweepLow and showTier2 and not structMarkBull, title="Liquidity Grab Low", style=shape.xcross,
+     location=location.belowbar, color=color.new(color.green, 0), size=size.tiny)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// liq_sweep — Liquidity Grab 확장
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// liqSweepHigh/Low from liq_eqh_eql_lines
+sweepReclaimBull = liqSweepLow[1] and close > lastSwingLow
+sweepReclaimBear = liqSweepHigh[1] and close < lastSwingHigh
+var int sweepBullCount = 0
+var int sweepBearCount = 0
+if liqSweepLow
+    sweepBullCount += 1
+if liqSweepHigh
+    sweepBearCount += 1
+
+bgcolor(not compactMode and sweepReclaimBull ? color.new(color.teal, 90) : not compactMode and sweepReclaimBear ? color.new(color.orange, 90) : na)
+plotshape(showTier3 and not compactMode and sweepReclaimBull, title="Sweep Reclaim Bull", style=shape.diamond,
+     location=location.belowbar, color=color.teal, size=size.small)
+plotshape(showTier3 and not compactMode and sweepReclaimBear, title="Sweep Reclaim Bear", style=shape.diamond,
+     location=location.abovebar, color=color.red, size=size.small)
+
+var label sweepLbl = na
+if liqSweepHigh and barstate.isconfirmed and not compactMode
+    if not na(sweepLbl)
+        label.delete(sweepLbl)
+    sweepLbl := label.new(bar_index, high, "SWEEP H", style=label.style_label_down,
+         color=color.red, textcolor=color.white, size=size.tiny)
+if liqSweepLow and barstate.isconfirmed and not compactMode
+    if not na(sweepLbl)
+        label.delete(sweepLbl)
+    sweepLbl := label.new(bar_index, low, "SWEEP L", style=label.style_label_up,
+         color=color.green, textcolor=color.white, size=size.tiny)
+// [PLATFORM_END_LIQUIDITY]
+
+// [PLATFORM_START_PATTERNS]
+
+// [PLATFORM_END_PATTERNS]
+
+// [PLATFORM_START_TRENDLINES]
+
+// [PLATFORM_END_TRENDLINES]
+
+// [PLATFORM_START_LABELS]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 17 - 구조 라벨 (스윙 태깅)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// declutter: 스윙 태그는 보조 정보 — Full 프로필(showTier3)에서만, 최근 30개 유지
+var array<label> structLabels = array.new_label()
+
+if useMarketStructure and showTier3 and not na(ph) and barstate.isconfirmed
+    lb = label.new(bar_index - swingLen, ph, "SH", style=label.style_label_down, color=color.new(color.red, 30), textcolor=color.white, size=size.tiny)
+    array.push(structLabels, lb)
+    f_push_label(lb)
+if useMarketStructure and showTier3 and not na(pl) and barstate.isconfirmed
+    lb = label.new(bar_index - swingLen, pl, "SL", style=label.style_label_up, color=color.new(color.green, 30), textcolor=color.white, size=size.tiny)
+    array.push(structLabels, lb)
+    f_push_label(lb)
+
+while array.size(structLabels) > 30
+    oldLb = array.shift(structLabels)
+    if not na(oldLb)
+        label.delete(oldLb)
+// [PLATFORM_END_LABELS]
+
+// [PLATFORM_START_MOMENTUM]
+
+// [PLATFORM_END_MOMENTUM]
+
+// [PLATFORM_START_SIGNAL_VARS]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 12 - 시그널 합류 (confluence score)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+confLong = 0
+confShort = 0
+if bosUp or chochUp
+    confLong += 1
+if bosDn or chochDn
+    confShort += 1
+if bullFvg
+    confLong += 1
+if bearFvg
+    confShort += 1
+if msTrend > 0
+    confLong += 1
+if msTrend < 0
+    confShort += 1
+if liqSweepLow
+    confLong += 1
+if liqSweepHigh
+    confShort += 1
+
+confluenceLong = confLong >= 2
+confluenceShort = confShort >= 2
+plotchar(showTier3 and confluenceLong, title="Confluence Long", char="▲", location=location.belowbar, color=color.teal, size=size.tiny)
+plotchar(showTier3 and confluenceShort, title="Confluence Short", char="▼", location=location.abovebar, color=color.orange, size=size.tiny)
+// [PLATFORM_END_SIGNAL_VARS]
+
+// [PLATFORM_START_CORE]
+// [AI_START_LOGIC]
+emaCore = ta.ema(close, emaLen)
+longSignal = confluenceLong and close > emaCore
+shortSignal = confluenceShort and close < emaCore
+plot(showEma ? emaCore : na, "EMA", color=color.yellow)
+// [AI_END_LOGIC]
+// [PLATFORM_END_CORE]
+
+// [PLATFORM_START_CONFLUENCE]
+
+// [PLATFORM_END_CONFLUENCE]
+
+// [PLATFORM_START_SCORE]
+
+// [PLATFORM_END_SCORE]
+
+// [PLATFORM_START_MTF]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 08 - MTF 데이터
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mtf0 = request.security(syminfo.tickerid, "15", close > ta.ema(close, 50), barmerge.gaps_off, barmerge.lookahead_off)
+mtf1 = request.security(syminfo.tickerid, "60", close > ta.ema(close, 50), barmerge.gaps_off, barmerge.lookahead_off)
+mtf2 = request.security(syminfo.tickerid, "240", close > ta.ema(close, 50), barmerge.gaps_off, barmerge.lookahead_off)
+mtf3 = request.security(syminfo.tickerid, "D", close > ta.ema(close, 50), barmerge.gaps_off, barmerge.lookahead_off)
+// [PLATFORM_END_MTF]
+
+// [PLATFORM_START_ALERTS]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 09 - 알림 허브
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+alertcondition(useAlertHub and bosUp, title="PAC_Lite_SKU01 BOS Up", message="PAC_Lite_SKU01 BOS Bullish on {ticker}")
+alertcondition(useAlertHub and bosDn, title="PAC_Lite_SKU01 BOS Dn", message="PAC_Lite_SKU01 BOS Bearish on {ticker}")
+alertcondition(useAlertHub and chochUp, title="PAC_Lite_SKU01 CHoCH Up", message="PAC_Lite_SKU01 CHoCH Bullish")
+alertcondition(useAlertHub and chochDn, title="PAC_Lite_SKU01 CHoCH Dn", message="PAC_Lite_SKU01 CHoCH Bearish")
+alertcondition(useAlertHub and bullFvg, title="PAC_Lite_SKU01 Bull FVG", message="PAC_Lite_SKU01 Bull FVG formed")
+alertcondition(useAlertHub and bearFvg, title="PAC_Lite_SKU01 Bear FVG", message="PAC_Lite_SKU01 Bear FVG formed")
+alertcondition(useAlertHub and liqSweepHigh, title="PAC_Lite_SKU01 Liq Grab High", message="PAC_Lite_SKU01 Liquidity sweep high")
+alertcondition(useAlertHub and liqSweepLow, title="PAC_Lite_SKU01 Liq Grab Low", message="PAC_Lite_SKU01 Liquidity sweep low")
+alertcondition(useAlertHub and longSignal, title="PAC_Lite_SKU01 Long Signal", message="PAC_Lite_SKU01 LONG signal")
+alertcondition(useAlertHub and shortSignal, title="PAC_Lite_SKU01 Short Signal", message="PAC_Lite_SKU01 SHORT signal")
+if useAlertHub and barstate.isconfirmed and (longSignal or shortSignal)
+    alert("PAC_Lite_SKU01 " + (longSignal ? "LONG" : "SHORT") + " | " + syminfo.ticker + " @ " + str.tostring(close, format.mintick), alert.freq_once_per_bar_close)
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 알림
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+alertcondition(longSignal, title="PAC_Lite_SKU01 Long Signal", message="PAC_Lite_SKU01 long signal on {ticker}")
+alertcondition(shortSignal, title="PAC_Lite_SKU01 Short Signal", message="PAC_Lite_SKU01 short signal on {ticker}")
+// [PLATFORM_END_ALERTS]
+
+// [PLATFORM_START_DASHBOARD]
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 11 - 플랫폼 상태 대시보드
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+dashPosIn = input.string("우하단", "패널 위치", options=["우상단", "우중단", "우하단", "좌상단", "좌하단"], group=grpVisual, tooltip="상태 패널이 표시될 차트 모서리 위치")
+dashSizeIn = input.string("보통", "패널 글자 크기", options=["작게", "보통", "크게"], group=grpVisual, tooltip="상태 패널 텍스트 크기 — 화면 해상도에 맞게 조절하세요")
+dashPos = dashPosIn == "우상단" ? position.top_right : dashPosIn == "우중단" ? position.middle_right : dashPosIn == "우하단" ? position.bottom_right : dashPosIn == "좌상단" ? position.top_left : position.bottom_left
+dashTxtSz = dashSizeIn == "작게" ? size.tiny : dashSizeIn == "보통" ? size.small : size.normal
+var table platDash = table.new(dashPos, 2, 12, border_width=1, bgcolor=color.new(color.black, 90))
+if showPlatformDash and barstate.islast
+    table.cell(platDash, 0, 0, "FIELD", text_size=dashTxtSz, bgcolor=color.new(color.gray, 75))
+    table.cell(platDash, 1, 0, "VALUE", text_size=dashTxtSz, bgcolor=color.new(color.gray, 75))
+    table.cell(platDash, 0, 1, "Structure", text_size=dashTxtSz, bgcolor=color.new(color.black, 82))
+    table.cell(platDash, 1, 1, msBias, text_size=dashTxtSz, bgcolor=color.new(color.black, 70))
+    table.cell(platDash, 0, 2, "Session", text_size=dashTxtSz, bgcolor=color.new(color.black, 82))
+    table.cell(platDash, 1, 2, sessionName, text_size=dashTxtSz, bgcolor=color.new(color.black, 70))
+    table.cell(platDash, 0, 3, "Signal", text_size=dashTxtSz, bgcolor=color.new(color.black, 82))
+    sigTxt = longSignal ? "LONG" : shortSignal ? "SHORT" : "—"
+    table.cell(platDash, 1, 3, sigTxt, text_size=dashTxtSz, bgcolor=color.new(color.black, 70))
+    table.cell(platDash, 0, 4, "Conf", text_size=dashTxtSz, bgcolor=color.new(color.black, 82))
+    table.cell(platDash, 1, 4, confluenceLong ? "LONG" : confluenceShort ? "SHORT" : "—", text_size=dashTxtSz, bgcolor=color.new(color.black, 70))
+    table.cell(platDash, 0, 5, "FVG", text_size=dashTxtSz, bgcolor=color.new(color.black, 82))
+    table.cell(platDash, 1, 5, bullFvg ? "BULL" : bearFvg ? "BEAR" : "—", text_size=dashTxtSz, bgcolor=color.new(color.black, 70))
+    table.cell(platDash, 0, 6, "Boxes", text_size=dashTxtSz, bgcolor=color.new(color.black, 82))
+    table.cell(platDash, 1, 6, str.tostring(array.size(boxPool)), text_size=dashTxtSz, bgcolor=color.new(color.black, 70))
+    if useMtfDash
+        table.cell(platDash, 0, 7, "MTF", text_size=size.tiny, bgcolor=color.new(color.gray, 75))
+        table.cell(platDash, 1, 7, "BIAS", text_size=size.tiny, bgcolor=color.new(color.gray, 75))
+        table.cell(platDash, 0, 8, "15", text_size=size.tiny, bgcolor=color.new(color.black, 82))
+        mtfBias0 = mtf0 ? "BULL" : "BEAR"
+        table.cell(platDash, 1, 8, mtfBias0, text_size=size.tiny, bgcolor=color.new(color.black, 70))
+        table.cell(platDash, 0, 9, "60", text_size=size.tiny, bgcolor=color.new(color.black, 82))
+        mtfBias1 = mtf1 ? "BULL" : "BEAR"
+        table.cell(platDash, 1, 9, mtfBias1, text_size=size.tiny, bgcolor=color.new(color.black, 70))
+        table.cell(platDash, 0, 10, "240", text_size=size.tiny, bgcolor=color.new(color.black, 82))
+        mtfBias2 = mtf2 ? "BULL" : "BEAR"
+        table.cell(platDash, 1, 10, mtfBias2, text_size=size.tiny, bgcolor=color.new(color.black, 70))
+        table.cell(platDash, 0, 11, "D", text_size=size.tiny, bgcolor=color.new(color.black, 82))
+        mtfBias3 = mtf3 ? "BULL" : "BEAR"
+        table.cell(platDash, 1, 11, mtfBias3, text_size=size.tiny, bgcolor=color.new(color.black, 70))
+// [PLATFORM_END_DASHBOARD]
+
+// [MODULE_START_VISUALS]
+
+// [MODULE_END_VISUALS]

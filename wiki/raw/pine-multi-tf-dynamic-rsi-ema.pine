@@ -1,0 +1,67 @@
+//@version=6
+// Title: Multi TF Dynamic RSI EMA
+// Kind: strategy
+// Tags: Trend, Momentum, Moving_Averages
+strategy("Multi_TF_Dynamic_RSI_EMA", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, currency=currency.USD)
+
+// === PART 1: 입력 파라미터 ===
+grpMain = "메인 지표 설정"
+emaLen = input.int(21, "EMA 길이", minval=1, group=grpMain)
+rsiLen = input.int(14, "RSI 길이", minval=1, group=grpMain)
+rsiAvgLen = input.int(14, "RSI 평균선 길이", minval=1, group=grpMain)
+htf = input.timeframe("60", "상위 타임프레임", group=grpMain)
+
+grpRisk = "리스크 관리"
+atrLen = input.int(14, "ATR 길이", minval=1, group=grpRisk)
+slMult = input.float(2.0, "손절 ATR 배수", minval=0.1, group=grpRisk)
+tpMult = input.float(3.0, "익절 ATR 배수", minval=0.1, group=grpRisk)
+
+// === PART 2: 지표 계산 ===
+emaVal = ta.ema(close, emaLen)
+rsiVal = ta.rsi(close, rsiLen)
+rsiAvg = ta.sma(rsiVal, rsiAvgLen)
+atrVal = ta.atr(atrLen)
+
+// 상위 타임프레임 추세 필터 (반복 그리기 방지 위해 확정봉 사용)
+htfEma = request.security(syminfo.tickerid, htf, ta.ema(close, emaLen), lookahead=barmerge.lookahead_off)
+
+// === PART 3: 진입/청산 조건 ===
+uptrend = close > emaVal and close > htfEma
+downtrend = close < emaVal and close < htfEma
+_taHoist1 = ta.crossover(rsiVal, rsiAvg)
+longCondition = uptrend and _taHoist1
+_taHoist2 = ta.crossunder(rsiVal, rsiAvg)
+shortCondition = downtrend and _taHoist2
+exitCondition = ta.cross(rsiVal, rsiAvg)
+
+// === PART 4: 실행 엔진 ===
+var float entryPrice = na
+var float slPrice = na
+var float tpPrice = na
+
+if longCondition and strategy.position_size == 0
+    strategy.entry("Long", strategy.long)
+    entryPrice := close
+    slPrice := close - atrVal * slMult
+    tpPrice := close + atrVal * tpMult
+
+if shortCondition and strategy.position_size == 0
+    strategy.entry("Short", strategy.short)
+    entryPrice := close
+    slPrice := close + atrVal * slMult
+    tpPrice := close - atrVal * tpMult
+
+if strategy.position_size > 0
+    if exitCondition or low <= slPrice or high >= tpPrice
+        strategy.close("Long", comment="롱 청산")
+
+if strategy.position_size < 0
+    if exitCondition or high >= slPrice or low <= tpPrice
+        strategy.close("Short", comment="숏 청산")
+
+// === PART 5: 시각화 & 알림 ===
+plot(emaVal, "EMA", color=color.orange, linewidth=2)
+plotshape(longCondition, "롱 진입", location=location.belowbar, color=color.green, style=shape.triangleup, size=size.small)
+plotshape(shortCondition, "숏 진입", location=location.abovebar, color=color.red, style=shape.triangledown, size=size.small)
+alertcondition(longCondition, title="롱 진입 알림", message="RSI-EMA 롱 진입 신호")
+alertcondition(shortCondition, title="숏 진입 알림", message="RSI-EMA 숏 진입 신호")
