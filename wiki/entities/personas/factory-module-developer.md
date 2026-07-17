@@ -6,7 +6,7 @@ sources: ["~/.hermes/profiles/factory-module-developer/SOUL.md", "Desktop/dev/Ma
 ---
 # factory-module-developer (부품 전문가)
 
-> 모듈 163개와 레지스트리의 주인. 제품 마감과 독립적으로 부품을 만든다 — 마감을 같이 쓰면 부품이 항상 진다.
+> 모듈 173개와 레지스트리의 주인. 제품 마감과 독립적으로 부품을 만든다 — 마감을 같이 쓰면 부품이 항상 진다.
 
 ## 🌱 쉽게
 

@@ -1,7 +1,7 @@
 ---
 tags: [system, accountinggo]
 created: 2026-07-16
-updated: 2026-07-16
+updated: 2026-07-17
 sources: ["repo: Desktop/dev/AccountingGo (docs/I18N.md, README.md)"]
 ---
 # AccountingGo 다국어 체계 (I18N — English First)
@@ -22,8 +22,9 @@ sources: ["repo: Desktop/dev/AccountingGo (docs/I18N.md, README.md)"]
 
 ## 🔗 연결
 
-[[accountinggo]] · [[accountinggo-content-pipeline]] · 담당: [[quiz-writer]]
+[[accountinggo]] · [[accountinggo-content-pipeline]] · [[accounting-terminology-matrix]] · [[accounting-terminology-registry-index]] · 담당: [[quiz-writer]]
 
 ## 📌 미해결
 
+- 다국어 표시 용어 SoT: [[accounting-terminology-registry-index]] (314). ko 검수·타언어 PENDING 채움
 - 한국어 번역 커버리지 현황 집계 미기록

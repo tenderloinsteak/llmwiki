@@ -35,7 +35,7 @@ CEO (ceo)
 ## Sync
 
 ```bash
-python3 ~/Desktop/obsidian/hermes/scripts/sync-cursor-agents.py
+python3 ~/Desktop/dev/llmwiki/hermes/scripts/sync-cursor-agents.py
 ```
 
 **Source of truth:** Hermes `SOUL.md` files under `~/.hermes/`.

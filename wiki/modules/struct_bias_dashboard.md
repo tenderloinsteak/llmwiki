@@ -1,7 +1,7 @@
 ---
 tags: [module, mantisalgo, structure, kind/ui]
 updated: 2026-07-17
-sources: ["Mantis Algo/config/module_registry/registry.json"]
+sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
 # struct_bias_dashboard

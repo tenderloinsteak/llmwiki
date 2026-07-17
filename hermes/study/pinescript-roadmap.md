@@ -79,7 +79,7 @@
 
 ### Stage 9 — MantisAlgo 공장 지도 읽기
 - **목표**: 파이프라인·템플릿·아이디어 레지스트리 이해, 오픈소스 해체.
-- **실습**: LuxAlgo Monte Carlo Engine 같은 걸 읽고 "5-Part Anatomy(Inputs→Filter→Logic→Execution→Risk)가 어디인가" 찾기.
+- **실습**: Monte Carlo Engine 참고 스크립트 같은 걸 읽고 "5-Part Anatomy(Inputs→Filter→Logic→Execution→Risk)가 어디인가" 찾기.
 - **통과**: "다음 아이디어는 이 모듈 재활용해서 만들면 된다" 제안 가능.
 
 ## 노트 쌓는 법

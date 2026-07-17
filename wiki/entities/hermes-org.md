@@ -17,7 +17,7 @@ sources: ["Desktop/dev/llmwiki/hermes/CLAUDE.md", "~/.hermes/profiles/"]
 - 조직도: CEO 아래 [[quiz-writer]] [[learning-ux-designer]] [[microstructure-engineer]] [[critic]] [[tutor]] [[librarian]] [[factory-manager]], 공장장 아래 [[factory-idea]] [[factory-development]] [[factory-module-developer]] [[factory-ui]]
 - 페르소나 정본: `~/.hermes/profiles/<이름>/SOUL.md` (11개) — 위키는 요약만
 - 라우팅·수칙 정본: `Desktop/dev/llmwiki/hermes/CLAUDE.md`
-- 팀 일지: `Desktop/dev/llmwiki/hermes/memory.md` — 형식 `date | persona | decision | next`
+- 팀 일지(도구 공통): `Desktop/dev/llmwiki/hermes/memory.md` — Cursor·Claude·Codex·Hermes 모두 같은 파일. 형식 `date | tool-or-persona | decision | next`
 - 품질 게이트: factory→critic 승인 필수 / 새 노트는 librarian 색인 규칙 준수 / tutor의 개념은 표준화 시 repo hermes/로 전파
 - 언어 규칙: 추론은 영어, 곽경준에게는 한국어(결론 우선)
 - 프로젝트별 작업 표준: 각 repo의 `hermes/` 폴더 (코드와 함께 산다)

@@ -5,7 +5,7 @@ Append-only. Entry format: `## [YYYY-MM-DD] ingest|query|lint | title`
 ---
 
 ## [2026-07-16] init | Wiki created
-Structure initialized per Karpathy LLM Wiki pattern: SCHEMA.md, index.md, log.md, raw/{articles,papers,transcripts,assets}, entities/, concepts/, comparisons/, queries/. Operated via librarian-profile skills wiki-ingest / wiki-query / wiki-lint; `WIKI_PATH` set in all 11 Hermes profiles. First suggested sources: LuxAlgo scripts to dissect (tutor track), TradingView market research (factory-idea track).
+Structure initialized per Karpathy LLM Wiki pattern: SCHEMA.md, index.md, log.md, raw/{articles,papers,transcripts,assets}, entities/, concepts/, comparisons/, queries/. Operated via librarian-profile skills wiki-ingest / wiki-query / wiki-lint; `WIKI_PATH` set in all 11 Hermes profiles. First suggested sources: external marketplace scripts to dissect (tutor track), TradingView market research (factory-idea track).
 
 ## [2026-07-16] init | Vault reorganized under Desktop/dev
 Desktop repos (Mantis Algo, ShiftTrade, AccountingGo, pinestudy) and the obsidian vault moved into `Desktop/dev/`. All path references updated (11 SOUL.md, 14 skills, .env WIKI_PATH, wiki + repo hermes files). Vault-root IDEA.md filed as raw/articles/pine-v6-learning-system-idea.md (not yet ingested).
@@ -31,9 +31,9 @@ registry.json modules gained a first-class `kind` field (ui/logic/infra) to sepa
 ## [2026-07-17] lint | git hygiene gap found in llmwiki itself
 `wiki/`, `.cursor/`, root `AGENTS.md`/`CLAUDE.md`, `hermes/scripts/registry_to_wiki.py` are entirely untracked in this repo's git — 200+ wiki pages exist only on disk, no commit history. 11 persona souls + memory.md + hermes/CLAUDE.md + sync-cursor-agents.py are tracked but have uncommitted changes (pre-existing, not from this session). Not committed here to avoid mixing unrelated changes — flagged for 곽경준 to review and commit.
 
-## [2026-07-17] ingest | MantisAlgo LuxAlgo급 감사·개선 + 카테고리 택소노미 + mantis/ 패키지화
+## [2026-07-17] ingest | MantisAlgo TradingView 상용급 감사·개선 + 카테고리 택소노미 + mantis/ 패키지화
 - 품질 감사 결과 filed: [[queries/mantisalgo-quality-audit-2026-07-17]] (컴파일 불가 2건 발견→수리, verify 차단 3종·루브릭 상용 체크 5종 신설, A13/B12/C0)
-- 터치한 페이지: mantisalgo(허브 — mantis/ 구조·30 카테고리·자산 현황), mantisalgo-verification-gate(검사 강화 상세 + 리페인트 정책과의 관계 명시), mantisalgo-sku-catalog(LuxAlgo식 카테고리 재배치 + 품질 스냅샷), mantisalgo-pipeline(mantis/ 패키지 구조 + 저장 경로)
+- 터치한 페이지: mantisalgo(허브 — mantis/ 구조·30 카테고리·자산 현황), mantisalgo-verification-gate(검사 강화 상세 + 리페인트 정책과의 관계 명시), mantisalgo-sku-catalog(Mantis 카테고리 재배치 + 품질 스냅샷), mantisalgo-pipeline(mantis/ 패키지 구조 + 저장 경로)
 - 상충 없음 — 인디케이터 리페인트 허용 정책(07-17)과 lookahead 게이트는 "금지 아닌 문서화 강제"로 양립
 
 ## [2026-07-17] lint | MantisAlgo 구세대 산출물 3개 폐기 (곽경준 지시)
@@ -50,3 +50,40 @@ registry.json modules gained a first-class `kind` field (ui/logic/infra) to sepa
 - Filed [[queries/accountinggo-master-polish-plan-2026-07-17]]; updated [[entities/accountinggo]] + [[entities/accountinggo-content-pipeline]].
 - Repo SoT: `docs/MASTER_POLISH_PLAN.md` (path fix: theory player under `lib/features/exercise/`).
 - Next recommended task: **0-1 tAccount** full posting interaction.
+
+## [2026-07-17] lint | structure + cross-folder + skills inventory
+
+- Skills confirmed: librarian `wiki-ingest`/`wiki-query`/`wiki-lint`/`hermes-wiki-maintenance` + `llm-wiki` ×11 profiles; WIKI_PATH ×11 OK.
+- Structural: 229 md, 0 broken/orphan/index-drift; SKU unmapped=0; modules=173.
+- Fixed in-vault: MantisAlgo path remnants (registry_to_wiki + 182 module/sku sources + kkj-taste + CURSOR-AGENTS + vault cursor rule); factory-module-developer 163→173.
+- Pending (sibling/outside): 3 repo `.cursor/rules` still say `Mantis Algo/`; Hermes SOUL module-developer still `(163 modules)`.
+- Filed [[queries/structure-lint-2026-07-17]].
+
+## [2026-07-17] lint | follow-up: sibling rules + SOUL count
+- Fixed `Mantis Algo/` → `MantisAlgo/` in MantisAlgo/ShiftTrade/AccountingGo `.cursor/rules/wiki-auto-accumulation.mdc`
+- Fixed `~/.hermes/profiles/factory-module-developer/SOUL.md` (163→173 modules)
+- Closed 📌 items 1–2 on [[queries/structure-lint-2026-07-17]]
+
+## [2026-07-17] query | Karpathy LLM Wiki vs our implementation
+Filed [[comparisons/karpathy-llm-wiki-vs-llmwiki]]. Verdict: core pattern (3 layers + ingest/query/lint + index/log) faithfully instantiated; intentional extensions (Hermes split, Korean template, auto-accumulation, registry mirror); practice gaps (thin raw/, empty comparisons until now, optional tips unused).
+
+## [2026-07-17] lint | clarify shared ops journal (not Hermes-only)
+- CLAUDE/AGENTS/SCHEMA + vault&3repo cursor rules: `hermes/memory.md` = shared journal for Cursor/Claude/Codex/Hermes; session start now includes `tail -20 memory.md`.
+
+## [2026-07-17] query | AccountingGo Master Polish Phase2-4 complete
+
+Phase 0–4 실행 트랙 마감. P0 인터랙션 게이트 해제, CI/릴리스 체크리스트/피드백 prefs/마스코트 v1 반영. 상세: [[entities/accountinggo]] · 레포 `docs/MASTER_POLISH_PLAN.md`.
+
+## [2026-07-17] query | LLM wiki fragility assessment
+Filed [[queries/llmwiki-fragility-2026-07-17]]. Top risks: thin raw fuel, prompt-only discipline, silent wrong-compounding, module-mirror drowning curated graph, unused contradiction/ideas loops.
+
+## [2026-07-17] ingest | MantisAlgo Phase 1 signal density engine
+
+## [2026-07-17] ingest | Accounting multilingual terminology registry Wave1
+
+- Raw: `raw/articles/accounting-terms-wikipedia-summaries-2026-07-17.json`, `accounting-terminology-research-notes-2026-07-17.md`
+- Living: [[accounting-terminology-registry-index]] + `concepts/accounting-terminology-registry.json` (**314** = 143 concepts + 171 accounts)
+- Hubs: [[accounting-terminology-matrix]] · [[accounting-locale-registry]]
+- Filed: [[queries/accounting-multilingual-terms-wave1-2026-07-17]]
+- ko 314 filled (`kkj:?`); ja/zh/de/… mostly PENDING (no mass MT)
+

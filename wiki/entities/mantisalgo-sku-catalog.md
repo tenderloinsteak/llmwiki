@@ -15,7 +15,7 @@ sources: ["repo: Desktop/dev/MantisAlgo (config/product_skus/, config/ideas/, he
 ## ⚙️ 정확히
 
 - 정본: `config/product_skus/SKU-01.json` ~ `SKU-08.json` — 모듈 조합 매핑 포함
-- **판매 카테고리 (2026-07-17, LuxAlgo식 30종 도입)**: PAC Lite/Pro·Full Platform→Price_Action, Signals Overlay→Signals, Session Engine→Time_Based, Order Flow→Volume, Trade Engine→Money_Management, Quant Forecast→Forecasting. 부가 분류는 아이디어 JSON `category_tags`(예: PAC Lite = +Support_Resistance, FVG, Liquidity) → `.pine` 헤더 `// Tags:`
+- **판매 카테고리 (2026-07-17, Mantis 30종 도입)**: PAC Lite/Pro·Full Platform→Price_Action, Signals Overlay→Signals, Session Engine→Time_Based, Order Flow→Volume, Trade Engine→Money_Management, Quant Forecast→Forecasting. 부가 분류는 아이디어 JSON `category_tags`(예: PAC Lite = +Support_Resistance, FVG, Liquidity) → `.pine` 헤더 `// Tags:`
 - 품질 스냅샷 (2026-07-17 감사 후): 완성품 22개 A14/B8/C0 (구세대 3개 폐기: MA_Cross·Generated_Pine_Strategy·Donchian_Squeeze), static fail 0, SKU 8종 UI 커버리지 group/tooltip 100%. 전 SKU에 input.color 커스터마이징·패널 위치/크기 옵션·동적 alert() 반영
 - 신규 등록 조건: [[mantisalgo-verification-gate]] 통과 + [[critic]] 승인 + 판매문구 확정
 - 판매문구 구조: 한 줄 훅 → 무엇을 보여주나 → 3단계 사용법 → 설정 → 솔직한 한계

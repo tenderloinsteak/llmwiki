@@ -10,15 +10,16 @@ sources: ["repo: Desktop/dev/MantisAlgo (AGENTS.md, hermes/, config/)", "repo: D
 
 ## 🌱 쉽게
 
-자동차 공장을 떠올리면 된다. 기획팀이 "이런 차를 만들자"고 설계도([[factory-idea|아이디어 JSON]])를 내면, 부품창고([[mantisalgo-module-registry|모듈 레지스트리 173개]])에서 부품을 꺼내 조립 라인([[mantisalgo-pipeline|파이프라인]])이 차를 만들고, 품질검사([[mantisalgo-verification-gate|검증 게이트]])를 통과해야만 출고된다. 마지막으로 외부 감사관([[critic]])이 승인해야 판매 목록([[mantisalgo-sku-catalog|SKU 카탈로그]])에 오른다. 파는 물건은 트레이딩 차트 위에 그려지는 지표(indicator)와 자동매매 규칙(strategy)이다.
+자동차 공장을 떠올리면 된다. 기획팀이 "이런 차를 만들자"고 설계도([[factory-idea|아이디어 JSON]])를 내면, 부품창고([[mantisalgo-module-registry|모듈 레지스트리 174개]])에서 부품을 꺼내 조립 라인([[mantisalgo-pipeline|파이프라인]])이 차를 만들고, 품질검사([[mantisalgo-verification-gate|검증 게이트]])를 통과해야만 출고된다. 마지막으로 외부 감사관([[critic]])이 승인해야 판매 목록([[mantisalgo-sku-catalog|SKU 카탈로그]])에 오른다. 파는 물건은 트레이딩 차트 위에 그려지는 지표(indicator)와 자동매매 규칙(strategy)이다.
 
 ## ⚙️ 정확히
 
 - 위치: `Desktop/dev/MantisAlgo` — 진입 문서는 `AGENTS.md` (전체 재스캔 금지)
 - 실행: `python main.py --type strategy|indicator [--review|--from-idea FILE|-n N]`
+- Phase 1 (2026-07-17): `signal_mirror`/`signal_calibrator`/`sig_governor` — 신호 밀도 밴드 게이트
 - 핵심 코드 (2026-07-17 패키지화): `main.py`(루트 유일 진입점) → `mantis/` 패키지 (`pipeline.py` + `context_prompting.py` + `idea_registry.py` 등 19개 모듈, flat import + `__init__.py` sys.path 부트스트랩)
-- 산출: `output/`(초안) → 검증 통과 시 `pinescript_factory/1_Indicators|2_Strategies/<카테고리>/` — 카테고리는 LuxAlgo식 30종 택소노미 (2026-07-17 도입, `mantis/factory_saver.py`의 `CATEGORIES`; Price_Action·Volume·Signals·Time_Based·Liquidity·FVG 등 + 레거시 Trend/Momentum/Breakout). 폴더는 주 `category`가 결정, 겹치는 분류는 아이디어 JSON `category_tags` → `.pine` 헤더 `// Tags:`
-- 자산 현황: 모듈 173개(`config/module_registry/registry.json`), 제품 SKU-01..08(`config/product_skus/`), 완성 .pine 22개 (품질 A14/B8/C0 — 2026-07-17 감사 후 저품질 구세대 3개 폐기)
+- 산출: `output/`(초안) → 검증 통과 시 `pinescript_factory/1_Indicators|2_Strategies/<카테고리>/` — 카테고리는 Mantis 30종 택소노미 (2026-07-17 도입, `mantis/factory_saver.py`의 `CATEGORIES`; Price_Action·Volume·Signals·Time_Based·Liquidity·FVG 등 + 레거시 Trend/Momentum/Breakout). 폴더는 주 `category`가 결정, 겹치는 분류는 아이디어 JSON `category_tags` → `.pine` 헤더 `// Tags:`
+- 자산 현황: 모듈 174개(`config/module_registry/registry.json`), 제품 SKU-01..08(`config/product_skus/`), 완성 .pine 22개 (품질 A14/B8/C0 — 2026-07-17 감사 후 저품질 구세대 3개 폐기)
 - 5대 비양보 규칙: ①아이디어 유니크 ②indicator≠strategy ③결정적 주입 우선, LLM은 실패 시만 ④게이트 실패=저장 금지 ⑤시그널 변수 규율
 - Pine 규칙 정본: `docs/pinescript_v6_master_rules.md` (.pine 작업 시에만 읽기; 2026-07-17 docs/로 이동)
 - 작업 표준 정본: `hermes/` 폴더 (factory-manager, idea, ui, module-developer, development, critic)

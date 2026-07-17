@@ -1,0 +1,18 @@
+---
+description: LLM knowledge wiki auto-accumulation discipline (Hermes/곽경준)
+alwaysApply: true
+---
+
+# Wiki Auto-Accumulation (applies to every session)
+
+Shared knowledge wiki: `~/Desktop/dev/llmwiki/wiki/` (conventions: `wiki/SCHEMA.md`, catalog: `wiki/index.md`, timeline: `wiki/log.md`). Full operating rules: `~/Desktop/dev/llmwiki/CLAUDE.md`.
+
+Shared ops journal (all tools — Cursor/Claude/Codex/Hermes): `~/Desktop/dev/llmwiki/hermes/memory.md`. Folder name is historical; not Hermes-only.
+
+1. Before deep work, read `wiki/SCHEMA.md` + `wiki/index.md`, and `tail -20 ~/Desktop/dev/llmwiki/hermes/memory.md`.
+2. Any external content you fetch (web page, paper, code) → save to `wiki/raw/articles|papers|code/` WITHOUT asking, then integrate: summary page, update touched entity/concept pages, add `index.md` line, append `## [YYYY-MM-DD] ingest | title` to `wiki/log.md`.
+3. Substantial answers (comparisons, analyses, discovered connections) → file into `wiki/queries/` or `wiki/comparisons/` without asking. Skip one-off fact checks.
+4. `wiki/raw/` is immutable — never edit. Contradictions get `> ⚠️ 상충:` callouts, never silent overwrites.
+5. External Pine code: save to `wiki/raw/code/` → analysis page → compare vs `MantisAlgo/config/module_registry/registry.json` → list missing modules in 📌.
+6. Session decisions go to the **same** ops journal `~/Desktop/dev/llmwiki/hermes/memory.md` (`date | tool-or-persona | decision | next`). Answer 곽경준 in Korean.
+7. 곽경준의 칭찬·불만·선호 발언(특히 UI/UX) → `wiki/entities/kkj-taste.md`에 즉시 기록. 툭 던진 아이디어 → `wiki/ideas/ideas-inbox.md`. 둘 다 묻지 않고 기록.

@@ -33,18 +33,18 @@ If ambiguous, don't guess — confirm which persona owns it in one line.
 
 | Project | Knowledge files (live with the code) |
 |---|---|
-| MantisAlgo | `Desktop/Mantis Algo/hermes/` — factory-manager, idea, ui, module-developer, development, critic |
-| ShiftTrade | `Desktop/ShiftTrade/hermes/microstructure-engineer.md` |
-| AccountingGo | `Desktop/AccountingGo/hermes/` — quiz-writer, learning-ux-designer |
+| MantisAlgo | `Desktop/dev/MantisAlgo/hermes/` — factory-manager, idea, ui, module-developer, development, critic |
+| ShiftTrade | `Desktop/dev/ShiftTrade/hermes/microstructure-engineer.md` |
+| AccountingGo | `Desktop/dev/AccountingGo/hermes/` — quiz-writer, learning-ux-designer |
 | Study (supports all) | [[personas/tutor]] → `study/` : [[study/pinescript-roadmap]] · [[study/learning-log]] · [[study/note-template]] (Pine/quant/stats curriculum) |
 | Wiki itself | [[personas/librarian]] |
 | Always loaded | CLAUDE.md, [[memory]] |
 
 ## Repo Map (source of truth lives in the repos)
 
-- `Desktop/Mantis Algo` — read repo `AGENTS.md` first; never rescan whole repo
-- `Desktop/ShiftTrade` — Next.js + Supabase; Python tick scripts in `scripts/`
-- `Desktop/AccountingGo` — read repo `README.md` + `docs/`; content pipeline is strict
+- `Desktop/dev/MantisAlgo` — read repo `AGENTS.md` first; never rescan whole repo
+- `Desktop/dev/ShiftTrade` — Next.js + Supabase; Python tick scripts in `scripts/`
+- `Desktop/dev/AccountingGo` — read repo `README.md` + `docs/`; content pipeline is strict
 
 ## Wiki Rules
 

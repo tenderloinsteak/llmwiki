@@ -21,7 +21,7 @@ sources: ["disk audit: Desktop/dev/MantisAlgo (main.py, mantis/, tests/, scripts
 | 진입점 | 루트 `main.py`만. 코어는 `mantis/` (flat import + `sys.path` 부트스트랩) |
 | 모듈 | registry 173 = generators/families 173, kind ui26/logic134/infra13, 14 family |
 | SKU | `config/product_skus/` 01–08 전부 있음. `registry.json`의 `product_skus`에는 **01–04, 08만** (05–07 미매핑 — `SKU_BASE_FEATURES`·아이디어 JSON으로는 조립 가능) |
-| 팩토리 | `.pine` **22개** (Ind 11 / Str 11), LuxAlgo식 카테고리 폴더. 구 Trend/Momentum/Breakout만의 구조는 폐기됨 |
+| 팩토리 | `.pine` **22개** (Ind 11 / Str 11), Mantis 카테고리 폴더. 구 Trend/Momentum/Breakout만의 구조는 폐기됨 |
 | 게이트 | `factory_gate.py` → **ALL PASSED** (SKU-01..08 verify+UI audit) |
 | 품질 | `score_factory` A14 / B8 / static fail 0 |
 | 테스트 | 86 collect, **80 pass / 6 fail** (`test_all_sku_tv_safety`: `if useAlertHub` 잔존 — SKU 01,02,03,05,07,08) |

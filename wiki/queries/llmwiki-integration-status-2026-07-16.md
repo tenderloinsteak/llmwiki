@@ -48,4 +48,4 @@ sources: ["disk audit: ~/.hermes/profiles, Desktop/dev/*/AGENTS.md, .cursor/rule
 - SKU-05/06/07 → `product_skus` 매핑 (module-developer)
 - 주간 lint 스케줄
 - specialist SOUL에 taste/ideas 한 줄 전파 여부
-- 첫 실전 ingest (LuxAlgo 또는 microstructure survey)
+- 첫 실전 ingest (외부 참고 스크립트 또는 microstructure survey)
