@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, execution, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **execution** · kind: **logic** · status: live · est_lines: 40
 - 브래킷(양방향 대기) 주문 레벨
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

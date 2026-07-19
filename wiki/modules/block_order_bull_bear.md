@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, blocks, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **blocks** · kind: **logic** · status: live · est_lines: 45
 - 강세·약세 오더 블록 탐지·박스 표시
 - depended on by: [[block_breaker]] [[block_mitigation]] [[block_ob_alert]] [[block_ob_mtf]] [[block_ob_score]]
-- used in: [[SKU-01]] [[SKU-05]]
+- used in: [[SKU-01]] [[SKU-08]] [[SKU-05]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

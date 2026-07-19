@@ -114,4 +114,28 @@ Filed [[queries/llmwiki-fragility-2026-07-17]]. Top risks: thin raw fuel, prompt
 폴더=단일부모 한계 → factory 평탄 + `// Tags:` SoT + wiki `pines/scripts`↔`pines/categories` wikilink 다대다 제안. 결정 대기.
 
 ## [2026-07-18] lint | Pine 평탄 저장 + Tags 다대다 + 제목 통일
-공장 `1_Indicators|2_Strategies` 카테고리 폴더 제거(22 .pine 평탄). 헤더 `Title/Kind/Tags` 통일, TV 제목=파일 stem. `factory_saver`·어셈블러 Tags SoT. wiki `pines/` 그래프+raw 22캡처 (`pine_factory_to_wiki.py`). factory_gate PASS.
+공장 `1_Indicators|2_Strategies` 카테고리 폴더 제거(22 .pine 평탄). 헤더 `Title/Kind/Tags` 통일, TV 제목=파일 stem. `factory_saver`·어셈블러 Tags SoT. wiki `pines/` 그래프 (`pine_factory_to_wiki.py`). factory_gate PASS.
+
+## [2026-07-18] lint | raw inbox 실험 소스 폐기
+- 삭제: pending 클립 3 (hada LLM-Wiki / nashsu feature diff / 칼퇴 YouTube) + 공장 복제 `pine-*.pine` 22. 인제스트 가치 낮음·중복.
+- `pine_factory_to_wiki.py`가 raw 복제 중단. SCHEMA: 공장=SoT, raw pine은 분석 대상 1건만.
+- 유지: `llm-wiki-karpathy.md`, accounting 노트/JSON, `pine-v6-learning-system-idea.md`.
+
+## [2026-07-18] lint | post-raw-cleanup health check
+- path_gate PASSED. pages≈298. catalog unindexed/orphan 0. frontmatter OK.
+- False-positive only: docs 예시 `[[wikilinks]]`/`[[link]]`. Real fix: registry-index JSON wikilink → backtick path; pine-flat query raw-복제 제안에 ⚠️ 상충 개정.
+- Gap: pending ingest 없음. raw 잔여 4(출처 추적용). 다음 소스 후보 = 실제 외부 Pine 분석 1건 또는 학습 Stage0.
+
+## [2026-07-18] lint | SKU-09 wiki sync + generator restore
+- registry_to_wiki + pine_factory_to_wiki: [[skus/SKU-09]] · [[pines/scripts/vwap-regime-quality-sku09]] (kind=indicator, MantisAlgo factory SoT)
+- Updated [[entities/mantisalgo-sku-catalog]] + index SKU-01..09
+- MantisAlgo: pinescript_generator 루트 복구 커밋 `2a8086a`
+
+## [2026-07-18] lint | factory→wiki auto sync
+- `mantis/wiki_sync.py` + `save_to_factory(sync_wiki=True)` → `pine_factory_to_wiki.py`
+- `regenerate_sku_factory.py` batches then syncs pines + registry/skus
+
+## [2026-07-20] query | UI batch3/4 실행 + 레지스트리 194 위키 동기화
+- MantisAlgo `docs/plan_ui_modules_batch3.md` / `batch4.md` 실행 확정: [[ui_volume_bubble_overlay]] [[ui_signal_outcome_badges]] [[ui_htf_ghost_candles]] [[ui_momentum_led_strip]] (live, sku_ship:false).
+- registry_to_wiki + pine_factory_to_wiki: modules 194페이지·modules-map·SKU 갱신. entities/index 173→194, SKU-08은 ship 181(smoke 13 제외)로 정정.
+- factory_gate ALL PASSED. CE10005 회피: 버블 O / 배지 Y·N.

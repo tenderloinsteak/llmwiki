@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, strategy]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **strategy** · file: `pinescript_factory/2_Strategies/Kaufman_Adaptive_Entropy_Alpha.pine` · lines: 64
 - tags: [[pines/categories/moving-averages|Moving_Averages]]
-- raw: [[raw/pine-kaufman-adaptive-entropy-alpha]]
 
 ## 🔗 연결
 [[pines/categories/moving-averages|Moving_Averages]] · [[pines/pines-map]] · [[mantisalgo]]

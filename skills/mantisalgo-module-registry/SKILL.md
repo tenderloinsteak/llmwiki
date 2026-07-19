@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-Modules and their registry are owned independently of product deadlines, because parts always lose to products on a shared schedule — the root of staleness. Single source of truth: `config/module_registry/registry.json` (163 modules). Standards: `../MantisAlgo/hermes/module-developer.md`.
+Modules and their registry are owned independently of product deadlines, because parts always lose to products on a shared schedule — the root of staleness. Single source of truth: `config/module_registry/registry.json` (194 modules). Standards: `../MantisAlgo/hermes/module-developer.md`.
 
 ## When to Use
 

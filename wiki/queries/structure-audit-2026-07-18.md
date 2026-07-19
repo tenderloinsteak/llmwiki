@@ -42,29 +42,13 @@ sources: ["disk audit: Desktop/dev/*, wiki/"]
 
 - [[llm-wiki-pattern]] · [[structure-lint-2026-07-17]] · [[llmwiki-fragility-2026-07-17]] · [[accountinggo-master-polish-phase2-4-2026-07-17]] · [[modules-map]]
 
-## 📌 미해결 (사용자 인제스트 대기 소스 요약)
+## 📌 미해결 (pending raw — 2026-07-18 폐기)
 
-`wiki/raw/`에 새로 수집(Capture)되어 대기 중인 3개의 문서를 분석했습니다. 인제스트(Ingest) 여부와 강조할 중심점에 대해 논의가 필요합니다.
+실험용 raw 3클립 + 공장 복제 pine 22개는 **인제스트 없이 삭제**함 (곽경준 승인).
 
-### 1. `raw/LLM-Wiki - LLM을 활용하여 개인 지식저장소 구축 하기.md`
-- **핵심 요약**:
-  - **compounding artifact**: 검색할 때마다 관련 본문을 임베딩으로 찾아 쓰는 RAG와 달리, 매 인제스트마다 LLM이 기존 위키 페이지(10~15개)를 점진적으로 업데이트 및 교차 연결하는 영속적 지식베이스 구축.
-  - **비용의 제로화**: 위키 관리의 최대 난제인 '유지보수(bookkeeping)' 비용을 LLM이 대폭 낮춤으로써 개인의 Zettelkasten 관리가 현실화됨.
-  - **사용자 검토 의견**: 
-    - *모델 붕괴(collpase)*: AI가 글을 반복 요약하다 보면 정보가 얇아지거나 2차 오류가 복리로 쌓일 수 있으므로 검수(편집국 구조)가 중요함.
-    - *Zettelkasten의 진의*: 직접 글을 쓰면서 뇌에서 생각이 정리되는 것인데, AI가 다 써주면 생각하는 능력을 잃거나 기술 부채가 될 수 있음.
-- **인제스트 제안**: [[concepts/llm-wiki-pattern]] 페이지에 'RAG와의 차이점', '모델 붕괴 및 지식 부채 우려와 극복 방안' 문단으로 나누어 보강.
+| 폐기 | 이유 |
+|---|---|
+| hada.io LLM-Wiki 요약 · nashsu/llm_wiki commit diff · 칼퇴연구소 YouTube | Karpathy 원문·SCHEMA에 이미 반영 / 타 제품 노이즈 / 기준은 이미 Capture≠Ingest로 충분 |
+| `raw/pine-*.pine` ×22 | SoT=`MantisAlgo/pinescript_factory/` + `wiki/pines/` — raw 복제는 중복 |
 
-### 2. `raw/docs update feature overview.md`
-- **핵심 요약**:
-  - **다중 포맷**: PDF, Office 외에도 ePub/Mobi 문서, 웹 클립 등을 통틀어 파싱 지원.
-  - **로컬 보안**: 복잡한 레이아웃을 처리하는 MinerU 파싱을 클라우드뿐 아니라 로컬 API/파이프라인 모드로 지원하여 기밀 보장.
-  - **유지보수 도구**: 전체 위키의 ZIP 백업 및 기존 마크다운 파일들로부터 `wiki/index.md`를 결정론적으로 다시 재구축(rebuild)하는 기능 포함.
-- **인제스트 제안**: [[entities/llm-wiki-pattern]] 또는 [[entities/hermes-org]]의 도구/인프라 섹션에 최신 LLM-Wiki의 발전(로컬 파싱, ePub 지원, 인덱스 재구축) 내용으로 요약 추가.
-
-### 3. `raw/옵시디언 LLM Wiki, 아무 자료나 넣으면 안 됩니다  LLM Wiki 만들기 전에 꼭 정해야 하는 2가지.md`
-- **핵심 요약**:
-  - **수집 필터 (3가지 중 2개 만족 시 보관)**: 1) 다시 사용할 가능성이 높은가 2) 의사 결정에 영향을 주는가 3) 내 프로젝트/업무와 연결되는가. 5분 이상 정리가 필요하다면 보류.
-  - **단일 볼트(Vault) 원칙**: 부서별로 볼트를 나누면 링크와 검색이 끊김. 또한 현실의 자료는 부서 경계에 걸쳐 있으므로 폴더가 아닌 속성(Attributes/YAML)으로 다중 지정할 것.
-  - **볼트 분리 예외**: 기밀/보안상 AI 컨텍스트 차단 필요, 목적의 완전한 불일치(개인 학습 vs 업무), 템플릿/흐름의 이질성.
-- **인제스트 제안**: [[wiki/SCHEMA.md]] 자체의 캡처/인제스트 세부 행동 강령을 보완하거나, [[concepts/llm-wiki-pattern]]에 '옵시디언 볼트 설계와 수집 기준' 개념 페이지로 신설.
+남긴 raw (이미 소화·출처 추적): `llm-wiki-karpathy.md` · accounting 노트/JSON · `pine-v6-learning-system-idea.md`

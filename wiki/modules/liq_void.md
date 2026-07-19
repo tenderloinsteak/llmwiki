@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, liquidity, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **liquidity** · kind: **logic** · status: live · est_lines: 40
 - 유동성 공백(void) 구간
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

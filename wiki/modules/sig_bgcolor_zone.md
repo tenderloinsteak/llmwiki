@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, signal, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **signal** · kind: **ui** · status: live · est_lines: 10
 - 시그널 합류 배경 존 (showSigBg 게이트)
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

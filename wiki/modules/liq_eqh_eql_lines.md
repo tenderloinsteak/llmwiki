@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, liquidity, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **liquidity** · kind: **logic** · status: live · est_lines: 40
 - 동일 고점·저점(EQH/EQL) 라인
 - depended on by: [[liq_alert_hub]] [[liq_sweep]]
-- used in: [[SKU-05]]
+- used in: [[SKU-08]] [[SKU-05]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

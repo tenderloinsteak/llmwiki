@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, premium, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **premium** · kind: **ui** · status: live · est_lines: 25
 - 시각 레이어 토글 세트
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

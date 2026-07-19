@@ -1,6 +1,6 @@
 ---
 tags: [pine-category, mantisalgo]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,7 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 > Mantis 택소노미 태그. 스크립트는 폴더가 아니라 `// Tags:`로 여기 연결된다.
 
-- 소속 스크립트 2개: [[pines/scripts/signals-overlay-sku03|Signals Overlay SKU-03]] · [[pines/scripts/trade-engine-sku06|Trade Engine SKU-06]]
+- 소속 스크립트 3개: [[pines/scripts/signals-overlay-sku03|Signals Overlay SKU-03]] · [[pines/scripts/vwap-regime-quality-sku09|VWAP Regime Quality SKU-09]] · [[pines/scripts/trade-engine-sku06|Trade Engine SKU-06]]
 
 ## 🔗 연결
 [[pines/pines-map]] · [[mantisalgo]]

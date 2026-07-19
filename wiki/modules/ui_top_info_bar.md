@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, ui, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,7 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **ui** · kind: **ui** · status: live · est_lines: 16
 - 상단 심볼·TF·추세·ATR% 미니 정보 바
+- depends on: [[infra_common_series]]
+- used in: [[SKU-08]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

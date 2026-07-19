@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, pattern, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **pattern** · kind: **logic** · status: live · est_lines: 20
 - 캔들 해부 패턴 — 장악형·핀바 rejection
+- used in: [[SKU-08]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

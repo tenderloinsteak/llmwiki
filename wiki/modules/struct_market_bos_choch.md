@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, structure, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -11,6 +11,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - BOS CHoCH
 - depends on: [[infra_drawing_manager]]
 - depended on by: [[liq_trendline]] [[pat_head_shoulders]] [[pat_triangle]] [[pat_wedge]] [[sig_confluence_score]] [[struct_bias_dashboard]] [[struct_bos_validation]] [[struct_breaker_level]] [[struct_choch_plus]] [[struct_dealing_range]] [[struct_eqh_eql]] [[struct_hierarchy_st_it_lt]] [[struct_internal_bos]] [[struct_mss]] [[struct_premium_discount]] [[struct_swing_labels]] [[struct_trend_state_machine]]
-- used in: [[SKU-01]] [[SKU-05]] [[SKU-06]] [[SKU-07]]
+- used in: [[SKU-01]] [[SKU-08]] [[SKU-05]] [[SKU-06]] [[SKU-07]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

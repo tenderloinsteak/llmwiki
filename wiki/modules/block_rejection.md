@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, blocks, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **blocks** · kind: **logic** · status: live · est_lines: 35
 - 리젝션 블록 — 긴 꼬리 거부 구간
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

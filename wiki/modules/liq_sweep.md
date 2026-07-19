@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, liquidity, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -11,6 +11,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - 유동성 스윕 마커
 - depends on: [[liq_eqh_eql_lines]]
 - depended on by: [[struct_bos_validation]]
-- used in: [[SKU-01]]
+- used in: [[SKU-01]] [[SKU-08]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

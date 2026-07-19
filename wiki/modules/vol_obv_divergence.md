@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, volume, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **volume** · kind: **logic** · status: live · est_lines: 26
 - OBV vs 가격 다이버전스 (매집/분산 선행 신호)
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

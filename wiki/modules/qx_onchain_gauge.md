@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, quant, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,6 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **quant** · kind: **logic** · status: live · est_lines: 50
 - 보조 게이지 (배경은 showSigBg 게이트)
-- used in: [[SKU-07]]
+- used in: [[SKU-08]] [[SKU-07]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

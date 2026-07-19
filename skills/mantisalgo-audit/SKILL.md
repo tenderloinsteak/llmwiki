@@ -15,7 +15,7 @@ metadata:
 
 ## Overview
 
-The critic is the judgment layer above the machine checks (`--review` flag, quality-rubric tests). It checks the factory and never helps it produce. With 163 modules and 8 SKUs accumulated, the gravity of existing assets is the enemy. Full checklist: `../MantisAlgo/hermes/critic.md`; overlap baseline: `config/module_registry/registry.json`.
+The critic is the judgment layer above the machine checks (`--review` flag, quality-rubric tests). It checks the factory and never helps it produce. With 194 modules and 8 SKUs accumulated, the gravity of existing assets is the enemy. Full checklist: `../MantisAlgo/hermes/critic.md`; overlap baseline: `config/module_registry/registry.json`.
 
 ## When to Use
 

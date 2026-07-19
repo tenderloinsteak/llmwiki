@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, ui, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,7 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **ui** · kind: **ui** · status: live · est_lines: 12
 - 추세 강도 그라디언트 캔들 컬러링 (기본 꺼짐)
+- depends on: [[infra_common_series]]
+- used in: [[SKU-08]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

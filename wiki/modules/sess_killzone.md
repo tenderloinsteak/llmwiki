@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, session, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **session** · kind: **logic** · status: live · est_lines: 35
 - 런던·뉴욕 킬존
 - depends on: [[sess_profiles]]
-- used in: [[SKU-04]] [[SKU-05]]
+- used in: [[SKU-08]] [[SKU-04]] [[SKU-05]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

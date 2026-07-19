@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, blocks, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **blocks** · kind: **logic** · status: live · est_lines: 50
 - 돌파로 무효화된 오더 블록 → 브레이커 블록 전환 추적
 - depends on: [[block_order_bull_bear]]
-- used in: [[SKU-02]]
+- used in: [[SKU-02]] [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

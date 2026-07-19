@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, session, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **session** · kind: **logic** · status: live · est_lines: 45
 - 아시아·런던·뉴욕 세션 프로필
 - depended on by: [[sess_breakout_shape]] [[sess_compact_variant]] [[sess_initial_balance]] [[sess_killzone]] [[sess_orb]] [[sess_power_hour]] [[sess_timezone_inputs]] [[sess_vwap_reset]] [[vol_vwap_session]]
-- used in: [[SKU-04]]
+- used in: [[SKU-08]] [[SKU-04]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

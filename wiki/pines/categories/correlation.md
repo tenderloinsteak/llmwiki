@@ -1,6 +1,6 @@
 ---
 tags: [pine-category, mantisalgo]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 

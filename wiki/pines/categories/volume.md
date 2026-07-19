@@ -1,6 +1,6 @@
 ---
 tags: [pine-category, mantisalgo]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,7 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 > Mantis 택소노미 태그. 스크립트는 폴더가 아니라 `// Tags:`로 여기 연결된다.
 
-- 소속 스크립트 4개: [[pines/scripts/full-platform-sku08|Full Platform SKU-08]] · [[pines/scripts/order-flow-sku05|Order Flow SKU-05]] · [[pines/scripts/session-engine-sku04|Session Engine SKU-04]] · [[pines/scripts/session-orb-rvol-staged|Session ORB RVOL Staged]]
+- 소속 스크립트 5개: [[pines/scripts/full-platform-sku08|Full Platform SKU-08]] · [[pines/scripts/order-flow-sku05|Order Flow SKU-05]] · [[pines/scripts/session-engine-sku04|Session Engine SKU-04]] · [[pines/scripts/vwap-regime-quality-sku09|VWAP Regime Quality SKU-09]] · [[pines/scripts/session-orb-rvol-staged|Session ORB RVOL Staged]]
 
 ## 🔗 연결
 [[pines/pines-map]] · [[mantisalgo]]

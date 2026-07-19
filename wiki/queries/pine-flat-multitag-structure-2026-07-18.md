@@ -65,28 +65,25 @@ wiki/
       fvg.md
       liquidity.md
       …
-  raw/
-    pine-pac-lite-sku01.pine     ← 원본 캡처 (immutable)
 ```
 
-**스크립트 페이지 frontmatter 예시:**
+> ⚠️ 상충(자체 개정 2026-07-18): 아래 frontmatter/`raw/` 복제 제안은 **폐기**. SoT=`MantisAlgo/pinescript_factory/`, 위키는 `pines/` 그래프만. 분석할 때만 `raw/pine-*.pine` 1건 캡처.
+
+**스크립트 페이지 frontmatter 예시 (현행):**
 
 ```yaml
 tags: [pine-script, mantisalgo, indicator]
-kind: indicator
-mantis_tags: [Price_Action, Support_Resistance, FVG, Liquidity]
-sku: SKU-01
-source_repo: MantisAlgo/pinescript_factory/1_Indicators/PAC_Lite_SKU01.pine
-sources: [raw/pine-pac-lite-sku01.pine]
+updated: 2026-07-18
+sources: ["MantisAlgo/pinescript_factory/"]
 ```
 
 **연결 (다대다):**
 
-- 스크립트 → `## 🔗 연결`에 `[[categories/price-action]] · [[categories/fvg]] · …`
+- 스크립트 → `## 🔗 연결`에 `[[pines/categories/price-action]] · [[pines/categories/fvg]] · …`
 - 카테고리 → 해당 태그 가진 스크립트 목록 (pines-map 또는 카테고리 페이지에 backlink)
 - Obsidian 그래프가 자동으로 다대다 반영
 
-**캡처 ≠ 인제스트 유지:** `.pine`은 먼저 `raw/`에만. 분석 페이지(`pines/scripts/…`)는 요점 논의 후 또는 “알아서/배치” 시.
+**캡처 ≠ 인제스트:** 공장 전체는 raw에 넣지 않음. 외부/분석 대상 `.pine` 1건만 raw 캡처 후 요점 논의 → ingest.
 
 ### 제안 C — 동기화 스크립트 (선택)
 

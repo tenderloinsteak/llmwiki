@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, ui, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,6 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **ui** · kind: **ui** · status: live · est_lines: 45
 - MTF 편향 대시보드
-- used in: [[SKU-01]] [[SKU-07]]
+- used in: [[SKU-01]] [[SKU-08]] [[SKU-07]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

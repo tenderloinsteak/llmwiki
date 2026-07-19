@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, strategy]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **strategy** · file: `pinescript_factory/2_Strategies/Wavelet_Spectral_Divergence_Capture.pine` · lines: 137
 - tags: [[pines/categories/cycle|Cycle]] · [[pines/categories/divergences|Divergences]]
-- raw: [[raw/pine-wavelet-spectral-divergence-capture]]
 
 ## 🔗 연결
 [[pines/categories/cycle|Cycle]] · [[pines/categories/divergences|Divergences]] · [[pines/pines-map]] · [[mantisalgo]]

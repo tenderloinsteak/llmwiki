@@ -41,13 +41,17 @@ def main():
     def feat_list(info):
         f = info.get("features", [])
         if f == "all":
-            return None  # special: uses every module
+            # SKU-08: live + sku_ship (default True) — smoke-only modules stay out
+            return [
+                m["id"] for m in d["modules"]
+                if m.get("status", "live") == "live" and m.get("sku_ship", True)
+            ]
         return f if isinstance(f, list) else []
 
     used_by = {}
     for sku, info in skus.items():
         fl = feat_list(info)
-        for f in (fl or []):
+        for f in fl:
             used_by.setdefault(f, []).append(sku)
     # reverse deps: module -> modules that depend on it
     dependents = {}
@@ -89,8 +93,13 @@ def main():
         if extra.get("tier"):
             lines.append(f"- tier: {extra['tier']} · architecture: {extra.get('architecture_hint','-')}")
         feats = feat_list(info) if info else []
-        if feats is None:
-            lines.append(f"- 사용 모듈: **전체** (`features: \"all\"` — 모듈 {d['total_modules']}개 풀 플랫폼) → [[modules-map]]")
+        if info.get("features") == "all":
+            smoke = sum(1 for m in d["modules"] if not m.get("sku_ship", True))
+            lines.append(
+                f"- 사용 모듈 {len(feats)}개: `features: \"all\"` (sku_ship:true live만"
+                + (f"; smoke-only {smoke}종 제외" if smoke else "")
+                + ") → [[modules-map]]"
+            )
         elif feats:
             lines.append(f"- 사용 모듈 {len(feats)}개: " + " ".join(f"[[{x}]]" for x in feats))
         else:

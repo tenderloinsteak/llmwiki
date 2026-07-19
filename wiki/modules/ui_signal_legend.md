@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, ui, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **ui** · kind: **ui** · status: live · est_lines: 20
 - 마커·색상 의미 범례 패널 (구매자 온보딩)
+- used in: [[SKU-08]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

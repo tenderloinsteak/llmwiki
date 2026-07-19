@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, structure, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **structure** · kind: **ui** · status: live · est_lines: 40
 - bias dash
 - depends on: [[struct_market_bos_choch]] [[struct_hierarchy_st_it_lt]] [[struct_premium_discount]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, session, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -11,6 +11,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - 오프닝 레인지 돌파(ORB)
 - depends on: [[sess_profiles]]
 - depended on by: [[sess_initial_balance]] [[sess_orb_rvol]] [[sess_statistics]]
-- used in: [[SKU-04]]
+- used in: [[SKU-08]] [[SKU-04]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

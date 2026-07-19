@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, imbalance, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **imbalance** · kind: **logic** · status: live · est_lines: 45
 - 강세·약세 Fair Value Gap 박스
 - depended on by: [[imb_bpr]] [[imb_fvg_alert]] [[imb_fvg_mitigation]] [[imb_ifvg]]
-- used in: [[SKU-01]] [[SKU-06]]
+- used in: [[SKU-01]] [[SKU-08]] [[SKU-06]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

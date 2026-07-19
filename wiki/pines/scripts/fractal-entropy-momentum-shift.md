@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, strategy]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **strategy** · file: `pinescript_factory/2_Strategies/Fractal_Entropy_Momentum_Shift.pine` · lines: 140
 - tags: [[pines/categories/momentum|Momentum]]
-- raw: [[raw/pine-fractal-entropy-momentum-shift]]
 
 ## 🔗 연결
 [[pines/categories/momentum|Momentum]] · [[pines/pines-map]] · [[mantisalgo]]

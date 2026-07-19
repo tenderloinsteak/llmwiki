@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, blocks, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **blocks** · kind: **logic** · status: live · est_lines: 45
 - 오더 블록 재테스트(완화) 상태 추적
 - depends on: [[block_order_bull_bear]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

@@ -5,7 +5,9 @@ Generates:
   wiki/pines/scripts/<stem>.md
   wiki/pines/categories/<tag>.md
   wiki/pines/pines-map.md
-  wiki/raw/pine-<stem>.pine   (capture; skip if identical exists)
+
+Factory `.pine` files are SoT — do NOT duplicate into wiki/raw/ (raw is for
+external/experimental sources; analysis ingest copies one script when needed).
 
 Also patches wiki/index.md Pines section.
 
@@ -16,7 +18,6 @@ from __future__ import annotations
 
 import datetime
 import re
-import shutil
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -113,7 +114,6 @@ def write_script_page(row: dict, out_dir: Path) -> None:
     if row["tier"]:
         lines.append(f"- tier: {row['tier']}")
     lines += [
-        f"- raw: [[raw/pine-{script_slug(row['stem'])}]]",
         "",
         "## 🔗 연결",
         f"{tag_links} · [[pines/pines-map]] · [[mantisalgo]]",
@@ -175,20 +175,6 @@ def write_map(rows: list[dict], by_tag: dict[str, list[dict]], out: Path) -> Non
     out.write_text("\n".join(lines), encoding="utf-8")
 
 
-def capture_raw(rows: list[dict]) -> int:
-    raw_dir = WIKI / "raw"
-    raw_dir.mkdir(exist_ok=True)
-    n = 0
-    for r in rows:
-        dest = raw_dir / f"pine-{r['stem'].lower().replace('_', '-')}.pine"
-        src = r["path"]
-        if dest.exists() and dest.read_bytes() == src.read_bytes():
-            continue
-        shutil.copy2(src, dest)
-        n += 1
-    return n
-
-
 def patch_index() -> None:
     index = WIKI / "index.md"
     text = index.read_text(encoding="utf-8")
@@ -229,9 +215,8 @@ def main() -> int:
         write_category_page(tag, by_tag.get(tag, []), cdir)
 
     write_map(rows, dict(by_tag), WIKI / "pines" / "pines-map.md")
-    n_raw = capture_raw(rows)
     patch_index()
-    print(f"scripts={len(rows)} categories={len(all_tags)} raw_copied={n_raw}")
+    print(f"scripts={len(rows)} categories={len(all_tags)}")
     return 0
 
 

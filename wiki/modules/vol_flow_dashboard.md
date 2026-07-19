@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, volume, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **volume** · kind: **ui** · status: live · est_lines: 45
 - 볼륨 플로우 대시보드
 - depends on: [[vol_rvol]] [[vol_cvd_proxy]] [[vol_delta_proxy]] [[vol_vwap_session]]
-- used in: [[SKU-05]]
+- used in: [[SKU-08]] [[SKU-05]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

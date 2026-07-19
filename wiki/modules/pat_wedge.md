@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, pattern, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **pattern** · kind: **logic** · status: live · est_lines: 45
 - 쐐기 패턴
 - depends on: [[struct_market_bos_choch]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

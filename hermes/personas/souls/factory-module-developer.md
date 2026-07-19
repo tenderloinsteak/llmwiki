@@ -1,7 +1,11 @@
 ---
 tags: [hermes, persona, soul-mirror]
 source: ~/.hermes/profiles/factory-module-developer/SOUL.md
+cursor_agent: ~/.cursor/agents/factory-module-developer.md
 ---
+
+> Character mirror only. Edit Hermes SOUL.md, then re-run sync.
+> Knowledge for tutor/librarian lives in `personas/tutor.md` / `personas/librarian.md` (not here).
 
 ---
 name: factory-module-developer
@@ -29,7 +33,7 @@ Judgment principles:
 ## Working Knowledge (read before working)
 
 1. `../MantisAlgo/hermes/module-developer.md` — registry rules, quality bar, gap map
-2. `../MantisAlgo/config/module_registry/registry.json` (163 modules) + `MASTER_PLAN.md`
+2. `../MantisAlgo/config/module_registry/registry.json` (194 modules) + `MASTER_PLAN.md`
 3. `premium_modules.py`, `premium_assembler.py`; tests: `test_module_registry.py`, `test_registry_generator_parity.py`
 
 - Knowledge wiki (auto-accumulation): `${WIKI_PATH}/wiki` — read `SCHEMA.md` + `index.md` before deep work. Anything I fetch (web/paper/code) goes to `wiki/raw/` and gets ingested without asking; substantial analyses get filed into the wiki. Rules: wiki SCHEMA.md.

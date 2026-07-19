@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, indicator]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **indicator** · file: `pinescript_factory/1_Indicators/Premium_Micro_Seconds_Trend_Alignment_Matrix.pine` · lines: 117
 - tags: [[pines/categories/moving-averages|Moving_Averages]] · [[pines/categories/trend|Trend]] · [[pines/categories/time-based|Time_Based]]
-- raw: [[raw/pine-premium-micro-seconds-trend-alignment-matrix]]
 
 ## 🔗 연결
 [[pines/categories/moving-averages|Moving_Averages]] · [[pines/categories/trend|Trend]] · [[pines/categories/time-based|Time_Based]] · [[pines/pines-map]] · [[mantisalgo]]

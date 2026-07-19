@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, indicator]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **indicator** · file: `pinescript_factory/1_Indicators/Adaptive_Regime_Matrix.pine` · lines: 84
 - tags: [[pines/categories/trend|Trend]] · [[pines/categories/volatility|Volatility]] · [[pines/categories/moving-averages|Moving_Averages]]
-- raw: [[raw/pine-adaptive-regime-matrix]]
 
 ## 🔗 연결
 [[pines/categories/trend|Trend]] · [[pines/categories/volatility|Volatility]] · [[pines/categories/moving-averages|Moving_Averages]] · [[pines/pines-map]] · [[mantisalgo]]

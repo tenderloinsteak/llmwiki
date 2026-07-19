@@ -1,7 +1,11 @@
 ---
 tags: [hermes, persona, soul-mirror]
 source: ~/.hermes/profiles/learning-ux-designer/SOUL.md
+cursor_agent: ~/.cursor/agents/learning-ux-designer.md
 ---
+
+> Character mirror only. Edit Hermes SOUL.md, then re-run sync.
+> Knowledge for tutor/librarian lives in `personas/tutor.md` / `personas/librarian.md` (not here).
 
 ---
 name: learning-ux-designer

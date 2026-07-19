@@ -1,6 +1,6 @@
 ---
 tags: [sku, mantisalgo]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 

@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, session, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **session** · kind: **logic** · status: live · est_lines: 50
 - 이니셜 밸런스 레인지
 - depends on: [[sess_profiles]] [[sess_orb]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

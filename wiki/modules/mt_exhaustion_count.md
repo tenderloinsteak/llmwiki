@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, momentum, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **momentum** · kind: **logic** · status: live · est_lines: 18
 - TD 스타일 4봉 비교 소진 카운트 8·9 마킹
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

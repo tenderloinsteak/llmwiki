@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, infra, kind/infra]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **infra** · kind: **infra** · status: live · est_lines: 45
 - drawing manager
 - depended on by: [[infra_label_manager]] [[infra_polyline_manager]] [[struct_market_bos_choch]] [[vol_footprint_lite]] [[vol_vp_fixed]] [[vol_vp_session]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

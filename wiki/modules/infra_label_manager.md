@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, infra, kind/infra]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,7 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **infra** · kind: **infra** · status: live · est_lines: 35
 - label mgr
 - depends on: [[infra_drawing_manager]]
+- depended on by: [[ui_volume_bubble_overlay]] [[ui_signal_outcome_badges]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, imbalance, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **imbalance** · kind: **logic** · status: live · est_lines: 25
 - FVG 최소 크기·품질 필터
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

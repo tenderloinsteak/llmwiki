@@ -13,9 +13,9 @@
 ## Entities — 시스템
 
 - [[entities/mantisalgo-pipeline]] — main.py 생산 라인, 결정적 주입 우선
-- [[entities/mantisalgo-module-registry]] — 부품 173개 장부 (ui/logic/infra), 등재+패리티 테스트
+- [[entities/mantisalgo-module-registry]] — 부품 194개 장부 (ui45/logic135/infra14), 등재+패리티 테스트
 - [[entities/mantisalgo-verification-gate]] — 실패=저장금지 2층 관문(기계+크리틱)
-- [[entities/mantisalgo-sku-catalog]] — 판매 제품 SKU-01..08, 신선도 기준선
+- [[entities/mantisalgo-sku-catalog]] — 판매 제품 SKU-01..09, 신선도 기준선
 - [[entities/shifttrade-tick-engine]] — 가격 엔진, stylized facts가 합격 기준
 - [[entities/shifttrade-data-pipeline]] — Render→Supabase→화면 물길 + 유저 원장
 - [[entities/accountinggo-content-pipeline]] — 오프라인 생성→검증→번들, ID 불변
@@ -69,8 +69,8 @@
 
 ## Modules & SKUs (auto-generated — `registry_to_wiki.py`)
 
-- [[modules/modules-map]] — 모듈 174개 지도 (kind: ui/logic/infra별 + family별) + SKU 연결 허브
-- SKU 상세: [[skus/SKU-01]] [[skus/SKU-02]] [[skus/SKU-03]] [[skus/SKU-04]] [[skus/SKU-05]] [[skus/SKU-06]] [[skus/SKU-07]] [[skus/SKU-08]] — 각 페이지에서 사용 모듈이 그래프로 연결됨
+- [[modules/modules-map]] — 모듈 194개 지도 (kind: ui/logic/infra별 + family별) + SKU 연결 허브
+- SKU 상세: [[skus/SKU-01]] [[skus/SKU-02]] [[skus/SKU-03]] [[skus/SKU-04]] [[skus/SKU-05]] [[skus/SKU-06]] [[skus/SKU-07]] [[skus/SKU-08]] [[skus/SKU-09]] — 각 페이지에서 사용 모듈이 그래프로 연결됨
 
 ## Comparisons
 

@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, volume, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,6 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **volume** · kind: **logic** · status: live · est_lines: 55
 - POC/VAH/VAL 레벨
-- used in: [[SKU-05]]
+- used in: [[SKU-08]] [[SKU-05]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

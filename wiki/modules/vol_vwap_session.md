@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, volume, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -11,6 +11,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - 세션 VWAP
 - depends on: [[sess_profiles]]
 - depended on by: [[vol_flow_dashboard]]
-- used in: [[SKU-05]]
+- used in: [[SKU-08]] [[SKU-05]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

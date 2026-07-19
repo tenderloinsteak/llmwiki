@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, ui, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **ui** · kind: **ui** · status: live · est_lines: 30
 - 간결 모드 토글 (표현 제어)
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

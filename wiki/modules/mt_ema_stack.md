@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, momentum, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,6 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **momentum** · kind: **logic** · status: live · est_lines: 45
 - EMA 스택 정렬 추세 판정
-- used in: [[SKU-03]] [[SKU-06]] [[SKU-07]]
+- used in: [[SKU-03]] [[SKU-08]] [[SKU-06]] [[SKU-07]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, imbalance, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **imbalance** · kind: **logic** · status: live · est_lines: 35
 - 임밸런스 완화 수명주기 관리
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, execution, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **execution** · kind: **logic** · status: live · est_lines: 35
 - 리스크 % 기반 포지션 사이징
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

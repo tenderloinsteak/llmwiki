@@ -13,7 +13,7 @@ metadata:
 
 ## Overview
 
-Walks the add/change workflow for a **logic**-kind module — the analysis and signal engines that sit underneath the UI: structure (`struct_*`), momentum (`mt_*`), volume (`vol_*`), session (`sess_*`), pattern (`pat_*`), quant (`qx_*`), execution (`exec_*`), imbalance (`imb_*`), liquidity (`liq_*`), blocks (`block_*`), signal (`sig_*`), plus the generic `premium` toggles (`risk`, `alerts`, `filters`, `staged_signals`). 134 of the 173 registered modules as of 2026-07-17.
+Walks the add/change workflow for a **logic**-kind module — the analysis and signal engines that sit underneath the UI: structure (`struct_*`), momentum (`mt_*`), volume (`vol_*`), session (`sess_*`), pattern (`pat_*`), quant (`qx_*`), execution (`exec_*`), imbalance (`imb_*`), liquidity (`liq_*`), blocks (`block_*`), signal (`sig_*`), plus the generic `premium` toggles (`risk`, `alerts`, `filters`, `staged_signals`). 135 of the 194 registered modules as of 2026-07-20.
 
 Naming note: 곽경준 calls this family "전략모듈", but it's broader than Pine `strategy()` scripts — the same structure/momentum/volume analysis feeds pure indicators too. Only `exec_*` and `risk` actually place or size orders. If the intent is narrower ("just order-placement modules"), scope the work to `exec_*` and say so.
 

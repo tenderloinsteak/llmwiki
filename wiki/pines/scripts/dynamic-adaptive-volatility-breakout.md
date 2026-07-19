@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, strategy]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **strategy** · file: `pinescript_factory/2_Strategies/Dynamic_Adaptive_Volatility_Breakout.pine` · lines: 78
 - tags: [[pines/categories/volatility|Volatility]] · [[pines/categories/breakout|Breakout]]
-- raw: [[raw/pine-dynamic-adaptive-volatility-breakout]]
 
 ## 🔗 연결
 [[pines/categories/volatility|Volatility]] · [[pines/categories/breakout|Breakout]] · [[pines/pines-map]] · [[mantisalgo]]

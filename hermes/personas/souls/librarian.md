@@ -1,7 +1,11 @@
 ---
 tags: [hermes, persona, soul-mirror]
 source: ~/.hermes/profiles/librarian/SOUL.md
+cursor_agent: ~/.cursor/agents/librarian.md
 ---
+
+> Character mirror only. Edit Hermes SOUL.md, then re-run sync.
+> Knowledge for tutor/librarian lives in `personas/tutor.md` / `personas/librarian.md` (not here).
 
 ---
 name: librarian

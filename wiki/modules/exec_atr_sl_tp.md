@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, execution, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,6 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **execution** · kind: **logic** · status: live · est_lines: 35
 - ATR 기반 SL/TP 산출·표시
-- used in: [[SKU-06]]
+- used in: [[SKU-08]] [[SKU-06]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

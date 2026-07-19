@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, structure, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -11,6 +11,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - ST IT LT
 - depends on: [[struct_market_bos_choch]]
 - depended on by: [[struct_bias_dashboard]] [[struct_it_ltf_sync]]
-- used in: [[SKU-02]] [[SKU-07]]
+- used in: [[SKU-02]] [[SKU-08]] [[SKU-07]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

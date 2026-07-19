@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, strategy]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **strategy** · file: `pinescript_factory/2_Strategies/Volatility_Adjusted_Momentum_Reversion.pine` · lines: 135
 - tags: [[pines/categories/momentum|Momentum]] · [[pines/categories/volatility|Volatility]]
-- raw: [[raw/pine-volatility-adjusted-momentum-reversion]]
 
 ## 🔗 연결
 [[pines/categories/momentum|Momentum]] · [[pines/categories/volatility|Volatility]] · [[pines/pines-map]] · [[mantisalgo]]

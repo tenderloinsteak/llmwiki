@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, premium, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,6 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **premium** · kind: **logic** · status: live · est_lines: 25
 - 통합 알림 모듈 (진입·청산·시그널)
-- used in: [[SKU-05]] [[SKU-07]]
+- used in: [[SKU-08]] [[SKU-05]] [[SKU-07]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, signal, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **signal** · kind: **logic** · status: live · est_lines: 55
 - 반전 존 표시
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

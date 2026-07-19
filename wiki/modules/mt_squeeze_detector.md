@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, momentum, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **momentum** · kind: **logic** · status: live · est_lines: 22
 - TTM 스타일 변동성 스퀴즈 (BB in KC) — 압축·해제 마커
+- used in: [[SKU-08]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

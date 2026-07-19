@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, strategy]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **strategy** · file: `pinescript_factory/2_Strategies/Premium_Micro_Seconds_Liquidity_Engine.pine` · lines: 149
 - tags: [[pines/categories/liquidity|Liquidity]]
-- raw: [[raw/pine-premium-micro-seconds-liquidity-engine]]
 
 ## 🔗 연결
 [[pines/categories/liquidity|Liquidity]] · [[pines/pines-map]] · [[mantisalgo]]

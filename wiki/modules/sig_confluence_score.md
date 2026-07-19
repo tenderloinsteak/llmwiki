@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, signal, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,7 +10,7 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **signal** · kind: **logic** · status: live · est_lines: 30
 - 다중 조건 합류 점수 (confluenceLong/Short)
 - depends on: [[struct_market_bos_choch]]
-- depended on by: [[ui_perf_stats_panel]] [[ui_alert_log_panel]]
-- used in: [[SKU-03]] [[SKU-06]] [[SKU-07]]
+- depended on by: [[ui_perf_stats_panel]] [[ui_alert_log_panel]] [[ui_signal_glow_markers]] [[ui_price_target_rays]] [[ui_signal_outcome_badges]]
+- used in: [[SKU-03]] [[SKU-08]] [[SKU-06]] [[SKU-07]] [[SKU-09]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

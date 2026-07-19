@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, structure, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **structure** · kind: **logic** · status: live · est_lines: 45
 - history sweep
 - depends on: [[infra_bar_close_gate]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

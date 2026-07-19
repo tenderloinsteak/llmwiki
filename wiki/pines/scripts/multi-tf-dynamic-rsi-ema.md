@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, strategy]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -9,7 +9,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 
 - kind: **strategy** · file: `pinescript_factory/2_Strategies/Multi_TF_Dynamic_RSI_EMA.pine` · lines: 67
 - tags: [[pines/categories/trend|Trend]] · [[pines/categories/momentum|Momentum]] · [[pines/categories/moving-averages|Moving_Averages]]
-- raw: [[raw/pine-multi-tf-dynamic-rsi-ema]]
 
 ## 🔗 연결
 [[pines/categories/trend|Trend]] · [[pines/categories/momentum|Momentum]] · [[pines/categories/moving-averages|Moving_Averages]] · [[pines/pines-map]] · [[mantisalgo]]

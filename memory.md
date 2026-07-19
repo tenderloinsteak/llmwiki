@@ -13,6 +13,7 @@ Format: `date | persona | decision/progress | next`
 - 2026-07-15 | tutor | Created `study/` substructure in wiki: `pinescript-roadmap.md` (Track A Spine, Stages 0–9, each w/ goal·concept·analogy·practice·MantisAlgo-link·pass-criteria), `learning-log.md`, `note-template.md`, `notes/index.md`. Linked from `personas/tutor.md` + `CLAUDE.md`. Wiki real path = `Desktop/dev/llmwiki/hermes/` (not `Desktop/dev/헤르메스/`). | Start Stage 0 (TradingView Pine Editor setup) next session
 - 2026-07-16 | orchestrator | Created per-profile workflow skills (skills/hermes/, 1 per profile ×11: production-run, idea-spec, visual-review, module-registry, pipeline-dev, audit, question-authoring, learning-ux, market-realism, tutoring-session, wiki-maintenance) + 3 knowledge-wiki ops skills in librarian (wiki-ingest/query/lint). Consolidated wiki: Desktop/dev/헤르메스 merged into Desktop/dev/llmwiki/hermes (newer tutor.md kept; symlink 헤르메스→obsidian/hermes); all SOUL.md paths fixed. Initialized knowledge wiki at Desktop/dev/llmwiki/wiki (SCHEMA/index/log/raw+4 page dirs); WIKI_PATH set in all 11 profile .env | First ingest into obsidian/wiki; confirm skills load in fresh Hermes sessions
 - 2026-07-16 | orchestrator | Desktop reorganized: Mantis Algo, ShiftTrade, AccountingGo, pinestudy, obsidian vault (+헤르메스 symlink) moved into Desktop/dev/. All references rewritten to dev/ paths across 11 SOUL.md, 14 skills, 11 .env (WIKI_PATH), wiki files, repo hermes/*.md. Vault IDEA.md → wiki/raw/articles/pine-v6-learning-system-idea.md | Re-open Obsidian vault at Desktop/dev/llmwiki; first wiki ingest
+- 2026-07-18 | tutor | 5교시 완료 (코드 비교 학습: A=MantisAlgo SKU-09 / B=LunqFX Plasma Flow). 체크 17/952 확정. 신규 구조: user_profile.md / code_quality_prefs.md / learning_analytics.md, study/ 비교교재. 인터넷 끊김 후 유실 우려 → 점검: 파일 전부 실재·정합성 OK. GitHub 인증 없었음 → gh auth login (tenderloinsteak) → private repo `tenderloinsteak/pinestudy` 신규 생성 + 로컬 커밋 b21ca41 + push 완료 (origin/main 동기화). .gitignore 추가(.obsidian/.DS_Store 제외) | 6교시: B 신호부 전체 조망. 미해결: .obsidian 추적해제(git rm --cached -r .obsidian)는 보류 — 학습내용 무관
 - 2026-07-16 | librarian | Knowledge wiki initial build complete: 36 pages (projects 3 + hermes-org + systems 9 + personas 11 + concepts 12), Karpathy source ingested, repo entry points linked, lint clean. Wiki = dev/llmwiki/wiki, journal stays here | First real ingest (market microstructure survey or external-script dissection); revisit SKU-level pages when sales strategy work starts
 - 2026-07-16 | librarian | Auto-accumulation enabled: SCHEMA rules (fetch→raw, auto-file answers, code-analysis flow), vault root CLAUDE.md/AGENTS.md for cross-tool discipline, wiki-query/ingest skills updated, raw/code/ created | Optional next: registry→wiki sync script (module graph), weekly auto-lint schedule
 - 2026-07-16 | librarian | Cross-tool auto-accumulation완성: Cursor rules ×4, AGENTS.md (ShiftTrade·AccountingGo 신규), SOUL ×11 위키 라인, registry_to_wiki.py(모듈163+SKU8 그래프, 드리프트 발견: SKU-05/06/07 레지스트리 미매핑→module-developer 확인 필요), kkj-taste·ideas-inbox 자동 기록 페이지 | 주간 lint 스케줄; SKU 매핑 드리프트 해소
@@ -80,3 +81,25 @@ Format: `date | persona | decision/progress | next`
 - 2026-07-18 | cursor | username hardcodes scrub: kkj-taste→owner-taste, registry kkj→owner_review, ShiftTrade NEMOTRON_ENGINE_PATH, path_gate /Users/* | re-run sync-cursor-agents on new machine
 
 - 2026-07-18 | cursor | SKU-09 TV 컴파일 수정: CE10123(plotshape series text→const ★티어) + CW10004(ta.atr 삼항 호이스트); verify_v2에 CE10123/CW10004 게이트+테스트 추가
+
+- 2026-07-18 | cursor | UI 차별화: platform dashboard를 모듈적응형으로(VWAP+레짐→FLOW 3열 패널), vol_vwap_bands fill/그라디언트 승격 — SKU-09가 PAC 클론이 아니게
+
+- 2026-07-18 | cursor | pinescript_generator 루트 복구(실수 flatten 이동) + wiki sync: SKU-09/pine 페이지 등록(indicator·MantisAlgo·Tags) · 카탈로그 01..09 | GitHub는 fix/portability-remediation 평탄 레이아웃; main은 아직 30카테고리 폴더
+
+- 2026-07-18 | cursor | 공장 save_to_factory 후 wiki pines 자동 동기화 (mantis/wiki_sync.py); SKU regenerate는 pines+registry 일괄; WIKI_SYNC_ON_FACTORY=0으로 비활성
+
+- 2026-07-20 | cursor | UI 세션1: est_lines 드리프트 4건 갱신 + 팔레트 위반 5모듈 teal/orange 정리; lint advisories 16→7, factory_gate ALL PASSED, SKU 재생성+wiki sync
+
+- 2026-07-20 | cursor | UI 세션2+PartC: confluence 위치input(하단중앙)·ui_audit 코너중복 advisory·countdown/day_range smoke(sku_ship:false)·gate PASS
+
+- 2026-07-20 | cursor | B-3 infra_common_series: 공용 ATR14/EMA50·100/RSI14/VolSMA20 모듈 추가, UI 7종 depends_on 전환, zone=PLATFORM_HELPERS, factory_gate ALL PASSED | neon/Part C 미착수
+
+- 2026-07-20 | factory-ui | Part A 네온 UI 4종(flow/key_levels/beacon/sr_zones) smoke-only 추가, master_dim 보류, registry 183→187, lint0/gate PASS, SKU-08 미탑재
+
+- 2026-07-20 | cursor | UI 계획 잔여 완료: B-3 infra_common_series·B-4/6/7 테마·compact·패널상수·네온4종 smoke(sku_ship:false)·레지스트리 187·gate PASS. A-5 master_dim·volume팔레트는 보류
+
+- 2026-07-20 | factory-ui | Part D/E/F + A-5 UI 7종 추가(sparkline/sess_timeline/vol_bubble/outcome_badges/htf_ghost/led_strip/neon_dim), sku_ship:false, registry 187→194, lint0/gate ALL PASSED | SKU 미탑재
+
+- 2026-07-20 | cursor | UI 잔여 계획 완료: vol팔레트·코너위치input·PartD/E/F 6종+A-5 master_dim(전부 sku_ship:false)·레지스트리 194·gate PASS
+
+- 2026-07-20 | cursor | batch3/4 확정 실행: vol_bubble+outcome_badges(f_push_label·infra_label_manager dep)·htf_ghost+led_strip 스펙정렬·계획서 완료표시·registry/wiki 194 sync

@@ -1,6 +1,6 @@
 ---
 tags: [pine-script, mantisalgo, indicator]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/pinescript_factory/"]
 ---
 
@@ -10,7 +10,6 @@ sources: ["MantisAlgo/pinescript_factory/"]
 - kind: **indicator** · file: `pinescript_factory/1_Indicators/Harmonic_Oscillation_Divergence_Index.pine` · lines: 37
 - tags: [[pines/categories/oscillators|Oscillators]] · [[pines/categories/divergences|Divergences]]
 - concept: 변동성 정규화 ROC 오실레이터 + HMA 시그널 라인 교차
-- raw: [[raw/pine-harmonic-oscillation-divergence-index]]
 
 ## 🔗 연결
 [[pines/categories/oscillators|Oscillators]] · [[pines/categories/divergences|Divergences]] · [[pines/pines-map]] · [[mantisalgo]]

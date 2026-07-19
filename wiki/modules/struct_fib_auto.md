@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, structure, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -9,5 +9,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 
 - family: **structure** · kind: **logic** · status: live · est_lines: 32
 - 최근 확정 스윙 기준 자동 피보나치 되돌림
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

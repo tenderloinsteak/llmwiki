@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, session, kind/ui]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,5 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **session** · kind: **ui** · status: live · est_lines: 20
 - 세션 돌파 마커 변형
 - depends on: [[sess_profiles]]
+- used in: [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]

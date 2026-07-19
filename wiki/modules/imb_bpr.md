@@ -1,6 +1,6 @@
 ---
 tags: [module, mantisalgo, imbalance, kind/logic]
-updated: 2026-07-18
+updated: 2026-07-20
 sources: ["MantisAlgo/config/module_registry/registry.json"]
 ---
 
@@ -10,6 +10,6 @@ sources: ["MantisAlgo/config/module_registry/registry.json"]
 - family: **imbalance** · kind: **logic** · status: live · est_lines: 45
 - Balanced Price Range — 상반 FVG 중첩 구간
 - depends on: [[imb_fvg_bull_bear]]
-- used in: [[SKU-02]]
+- used in: [[SKU-02]] [[SKU-08]]
 
 [[modules-map]] · [[mantisalgo-module-registry]]
